@@ -1,19 +1,19 @@
-package token;
+package util;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import util.Position;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Token {
+public class Position {
 
-    private String value;
-    private TokenType tokenType;
-    private Position position;
+    private int lineStart;
+    private int lineFinish;
+    private int columnStart;
+    private int columnFinish;
 
 }

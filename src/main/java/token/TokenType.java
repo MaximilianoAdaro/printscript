@@ -1,25 +1,27 @@
 package token;
 
 public enum TokenType {
-    LET,
 
-    IDENTIFIER,
-
-    NUMBER_TYPE,
-    STRING_TYPE,
-
-    TYPE_DECLARATION,
-
-    STRING,
-    NUMBER,
-
+    // Single-character tokens.
     SEMICOLON,
+    COLON,
     ASSIGNATION,
 
-    PRODUCT,
-    SUM,
+    // Operations
     MINUS,
-    DIVISION,
+    PLUS,
+    MULTIPLY,
+    DIVIDE,
 
+    // Literals.
+    IDENTIFIER,
+    STRING,
+    NUMBER,
+    BOOLEAN,
+
+    // Keywords.
     PRINT,
+    LET,
+
+    INVALID
 }
