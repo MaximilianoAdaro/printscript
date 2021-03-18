@@ -1,10 +1,12 @@
 package state.context;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
 import model.Position;
 
 @Data
+@AllArgsConstructor
 public class LexerContext {
 
     @NonNull
