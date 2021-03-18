@@ -12,4 +12,7 @@ repositories {
 dependencies {
     implementation 'org.projectlombok:lombok:1.18.18'
     testImplementation 'junit:junit:4.13'
+    implementation project(":lexer")
+    implementation project(":parser")
+    implementation project(":interpreter")
 }
