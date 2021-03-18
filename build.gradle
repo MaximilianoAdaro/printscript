@@ -11,5 +11,5 @@ repositories {
 
 dependencies {
     implementation 'org.projectlombok:lombok:1.18.18'
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
 }
