@@ -1,19 +1,12 @@
 plugins {
-    id 'java'
+    id 'java-library'
+    id 'my-library.java-common-conventions'
 }
 
 group 'org.example'
 version '1.0-SNAPSHOT'
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     implementation project(":lexer")
     implementation project(":parser")
-}
-
-test {
-    useJUnitPlatform()
 }
