@@ -1,25 +1,17 @@
 package model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NonNull;
+
 
 @Data
 @Builder
+@AllArgsConstructor
 public class Position {
-    @NonNull
-    private final int lineStart;
-    @NonNull
-    private final int lineEnd;
-    @NonNull
-    private final int columnStart;
-    @NonNull
-    private final int columnEnd;
 
-    public Position(@NonNull int lineStart, @NonNull int lineEnd, @NonNull int columnStart, @NonNull int columnEnd) {
-        this.lineStart = lineStart;
-        this.lineEnd = lineEnd;
-        this.columnStart = columnStart;
-        this.columnEnd = columnEnd;
-    }
+    private final int lineStart;
+    private final int lineEnd;
+    private final int columnStart;
+    private final int columnEnd;
 }

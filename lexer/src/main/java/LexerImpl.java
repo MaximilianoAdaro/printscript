@@ -4,19 +4,35 @@ import model.Token;
 import state.LexerState;
 import state.impls.EmptyState;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Data
 public class LexerImpl implements Lexer {
 
     @NonNull
-    private final LexerState state = new EmptyState();
+    private final List<Token> tokens = new ArrayList<>();
     @NonNull
-    private final List<Token> tokens = Collections.emptyList();
+    private LexerState state = new EmptyState();
 
     @Override
     public @NonNull List<Token> createTokens(@NonNull String text) {
-        return null;
+        final var characterStream = getCharacterStream(text);
+
+        characterStream.forEach(this::consumeCharacter);
+
+        return tokens;
+    }
+
+    private Stream<Character> getCharacterStream(String text) {
+        return text.chars().mapToObj(c -> (char) c);
+    }
+
+
+    private void consumeCharacter(Character c) {
+        final var nextState = state.nextValue(c);
+        state.getToken().ifPresent(tokens::add);
+        state = nextState;
     }
 }

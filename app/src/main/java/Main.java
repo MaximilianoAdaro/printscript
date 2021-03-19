@@ -1,13 +1,26 @@
+import fileReader.FileReaderPS;
+import lombok.SneakyThrows;
+import model.Token;
+import node.Node;
+
+import java.util.List;
+
 public class Main {
 
+    final private Lexer lexer = new LexerImpl();
+    final private Parser parser = new ParserImpl();
+    final private Validator validator = new ValidatorImpl();
+    final private Interpreter interpreter = new InterpreterImpl();
+
     public static void main(String[] args) {
-
-        Dummy dummy = new Dummy();
-//        Dummy2 dummy2 = Dummy2.builder().name("dummy2 name").build();
-//        Dummy2 dummy2bis = new Dummy2("dummy2 name");
-//        Dummy3 dummy3 = new Dummy3("asdf", new Dummy2());
-
         System.out.println("This is the main");
 
+    }
+
+    @SneakyThrows
+    void run(final String path) {
+        String text = FileReaderPS.readFile(path);
+        List<Token> tokens = lexer.createTokens(text);
+        List<Node> nodes = parser.createNodes(tokens);
     }
 }

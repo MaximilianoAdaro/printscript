@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class FileReaderPS {
 
-    public String readFile(String filePath) throws FileNotFoundException {
+    public static String readFile(String filePath) throws FileNotFoundException {
         File file = new File(filePath);
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
