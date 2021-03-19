@@ -2,6 +2,7 @@ import lombok.Data;
 import lombok.NonNull;
 import model.Token;
 import state.LexerState;
+import state.context.LexerContext;
 import state.impls.EmptyState;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class LexerImpl implements Lexer {
     @NonNull
     private final List<Token> tokens = new ArrayList<>();
     @NonNull
-    private LexerState state = new EmptyState();
+    private LexerState state = new EmptyState(new LexerContext());
 
     @Override
     public @NonNull List<Token> createTokens(@NonNull String text) {

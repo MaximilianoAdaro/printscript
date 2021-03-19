@@ -1,8 +1,18 @@
 package state.impls;
 
-import lombok.Data;
+import lombok.NonNull;
 import state.AbstractLexerState;
+import state.LexerState;
+import state.context.LexerContext;
 
-@Data
+
 public class TextState extends AbstractLexerState {
+    public TextState(LexerContext lexerContext) {
+        super(lexerContext);
+    }
+
+    @Override
+    public @NonNull LexerState nextValue(@NonNull char c) {
+        return null;
+    }
 }

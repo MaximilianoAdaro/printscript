@@ -3,6 +3,7 @@ import lombok.SneakyThrows;
 import model.Token;
 import node.Node;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -14,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("This is the main");
+        System.out.println(Arrays.toString("".getBytes()));
 
     }
 
