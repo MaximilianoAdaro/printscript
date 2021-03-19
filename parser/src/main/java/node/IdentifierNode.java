@@ -1,6 +1,6 @@
 package node;
 
-public class IdentifierNode implements Node {
+public class IdentifierNode<T> implements Calculable<T>, Nameable {
 
     private final String value;
 
@@ -11,5 +11,10 @@ public class IdentifierNode implements Node {
     @Override
     public void accept() {
 
+    }
+
+    @Override
+    public T calculate() {
+        return null;
     }
 }

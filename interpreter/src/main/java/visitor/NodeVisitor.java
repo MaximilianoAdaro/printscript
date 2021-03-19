@@ -1,6 +1,7 @@
 package visitor;
 
 import node.*;
+import node.OperandNode.*;
 
 public interface NodeVisitor {
 
