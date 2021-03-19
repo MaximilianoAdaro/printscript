@@ -1,7 +1,7 @@
 package node;
 
 
-public class DeclarationNode implements Node {
+public class DeclarationNode implements Nameable {
 
     private final TypeValue typeValue;
     private final IdentifierNode node;

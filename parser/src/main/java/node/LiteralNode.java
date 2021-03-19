@@ -1,6 +1,6 @@
 package node;
 
-public class LiteralNode implements Node {
+public class LiteralNode<T> implements Calculable<T> {
 
     private final LiteralValue literalValue;
 
@@ -11,5 +11,10 @@ public class LiteralNode implements Node {
     @Override
     public void accept() {
 
+    }
+
+    @Override
+    public T calculate() {
+        return null;
     }
 }
