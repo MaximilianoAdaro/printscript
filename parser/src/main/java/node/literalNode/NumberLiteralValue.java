@@ -1,4 +1,6 @@
-package node;
+package node.literalNode;
+
+import node.interfaces.LiteralValue;
 
 public class NumberLiteralValue implements LiteralValue<Double> {
 

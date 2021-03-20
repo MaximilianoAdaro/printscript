@@ -1,5 +1,7 @@
 package node;
 
+import node.interfaces.Node;
+
 public class PrintNode implements Node {
 
     private final Node node;

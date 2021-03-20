@@ -1,12 +1,15 @@
 package node;
 
 
-public class DeclarationNode implements Nameable {
+import node.interfaces.Declarational;
+import node.literalNode.TypeValue;
+
+public class DeclarationNode<T> implements Declarational {
 
     private final TypeValue typeValue;
-    private final IdentifierNode node;
+    private final IdentifierNode<T> node;
 
-    public DeclarationNode(TypeValue typeValue, IdentifierNode node) {
+    public DeclarationNode(TypeValue typeValue, IdentifierNode<T> node) {
         this.typeValue = typeValue;
         this.node = node;
     }

@@ -1,6 +1,6 @@
-package node.OperandNode;
+package node.operandNode;
 
-import node.Calculable;
+import node.interfaces.Calculable;
 
 public abstract class OperandNode<T> implements Calculable<T> {
 

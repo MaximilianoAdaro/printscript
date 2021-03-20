@@ -1,10 +1,13 @@
-package node;
+package node.literalNode;
+
+import node.interfaces.Calculable;
+import node.interfaces.LiteralValue;
 
 public class LiteralNode<T> implements Calculable<T> {
 
-    private final LiteralValue literalValue;
+    private final LiteralValue<T> literalValue;
 
-    public LiteralNode(LiteralValue literalValue) {
+    public LiteralNode(LiteralValue<T> literalValue) {
         this.literalValue = literalValue;
     }
 
