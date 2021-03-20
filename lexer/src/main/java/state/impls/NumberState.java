@@ -8,6 +8,8 @@ import state.context.LexerContext;
 
 import java.util.Optional;
 
+import static utils.CharacterUtils.*;
+
 public class NumberState extends AbstractLexerState {
 
     private boolean done = false;
@@ -18,24 +20,15 @@ public class NumberState extends AbstractLexerState {
 
     @Override
     public LexerState nextValue(char c) {
-        if (isNumber(c)) {
-            lexerContext.addCharacter(c);
-            return this;
-        }
-        if (isMathSymbol(c)) {
+        if (isNumber(c)) return new NumberState(lexerContext.addCharacter(c));
+        if (isAnySymbol(c)) {
             done = true;
             return new SymbolState(lexerContext.reset(c));
         }
-        if (isBlank(c)) {
+        if (isWhitespace(c)) {
             done = true;
             return new EmptyState(lexerContext.reset());
         }
-
-        if (isSemicolon(c)) {
-            done = true;
-            return new SymbolState(lexerContext.reset(c));
-        }
-
 
         throw new IllegalStateException("Unexpected value: " + c);
 
@@ -43,6 +36,6 @@ public class NumberState extends AbstractLexerState {
 
     @Override
     public Optional<Token> getToken() {
-        return getToken(done, TokenType.NUMBER);
+        return createToken(done, TokenType.NUMBER);
     }
 }

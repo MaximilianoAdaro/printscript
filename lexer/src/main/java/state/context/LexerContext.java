@@ -14,26 +14,35 @@ public class LexerContext {
 
     @Builder.Default
     private String accumulator = "";
+
+    @Builder.Default
     private final Position position = new Position(0, 0, 0, 0);
 
     public LexerContext reset(Character c) {
-        accumulator = c.toString();
-        return this;
+        return LexerContext.builder()
+                .position(position)
+                .accumulator(c.toString())
+                .build();
+
 
     }
 
     public LexerContext reset() {
-        accumulator = "";
-        return this;
+        return LexerContext.builder()
+                .accumulator("")
+                .position(position)
+                .build();
     }
 
-    void changeLine() {
+    public void changeLine() {
 //        position
     }
 
     public LexerContext addCharacter(Character c) {
-        accumulator += c.toString();
-        return this;
+        return LexerContext.builder()
+                .position(position)
+                .accumulator(accumulator + c)
+                .build();
     }
 
 

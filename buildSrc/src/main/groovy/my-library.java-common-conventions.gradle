@@ -8,6 +8,8 @@ repositories {
 
 dependencies {
     testImplementation 'junit:junit:4.13'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.19.0'
+
 
     compileOnly 'org.projectlombok:lombok:1.18.16'
     annotationProcessor 'org.projectlombok:lombok:1.18.16'

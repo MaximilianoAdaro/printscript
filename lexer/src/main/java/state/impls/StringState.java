@@ -25,14 +25,13 @@ public class StringState extends AbstractLexerState {
             done = true;
             return new EmptyState(lexerContext.reset());
         }
-        lexerContext.addCharacter(c);
-        return this;
+        return new StringState(lexerContext.addCharacter(c), startSymbol);
 
     }
 
     @Override
     public Optional<Token> getToken() {
-        return getToken(done, TokenType.STRING);
+        return createToken(done, TokenType.STRING);
     }
 
     private boolean isSameAsStart(char c) {

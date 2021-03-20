@@ -4,6 +4,8 @@ import state.AbstractLexerState;
 import state.LexerState;
 import state.context.LexerContext;
 
+import static utils.CharacterUtils.*;
+
 
 public class EmptyState extends AbstractLexerState {
 
@@ -14,10 +16,11 @@ public class EmptyState extends AbstractLexerState {
 
     @Override
     public LexerState nextValue(char c) {
-        if (isBlank(c)) return this;
+        if (isWhitespace(c)) return new EmptyState(lexerContext.reset());
         if (isNumber(c)) return new NumberState(lexerContext.reset(c));
-        if (isStringSymbol(c)) return new StringState(lexerContext, c);
+        if (isStringSymbol(c)) return new StringState(lexerContext.reset(), c);
         if (isAnySymbol(c)) return new SymbolState(lexerContext.reset(c));
+        if (isLetter(c)) return new TextState(lexerContext.reset(c));
         throw new IllegalStateException("Unexpected value: " + c);
     }
 }

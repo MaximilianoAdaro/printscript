@@ -1,5 +1,3 @@
-import lombok.Data;
-import lombok.NonNull;
 import model.Token;
 import state.LexerState;
 import state.context.LexerContext;
@@ -9,31 +7,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-@Data
 public class LexerImpl implements Lexer {
 
-    @NonNull
-    private final List<Token> tokens = new ArrayList<>();
-    @NonNull
+
     private LexerState state = new EmptyState(new LexerContext());
+    private final List<Token> tokens = new ArrayList<>();
 
     @Override
-    public @NonNull List<Token> createTokens(@NonNull String text) {
-        final var characterStream = getCharacterStream(text);
-
-        characterStream.forEach(this::consumeCharacter);
-
+    public List<Token> createTokens(String text) {
+        getCharacterStream(text)
+                .forEach(this::consumeCharacter);
+        consumeCharacter(' '); // last character, end of file
         return tokens;
     }
-
-    private Stream<Character> getCharacterStream(String text) {
-        return text.chars().mapToObj(c -> (char) c);
-    }
-
 
     private void consumeCharacter(Character c) {
         final var nextState = state.nextValue(c);
         state.getToken().ifPresent(tokens::add);
         state = nextState;
     }
+
+
+    private Stream<Character> getCharacterStream(String text) {
+        return text.chars().mapToObj(c -> (char) c);
+    }
+
 }
