@@ -32,4 +32,5 @@ public class LexerImpl implements Lexer {
         return text.chars().mapToObj(c -> (char) c);
     }
 
+
 }

@@ -8,25 +8,37 @@ import state.context.LexerContext;
 
 import java.util.Optional;
 
+import static utils.CharacterUtils.*;
+
 
 public class StringState extends AbstractLexerState {
 
     private final char startSymbol;
-    private boolean done = false;
+    private final boolean done;
 
     public StringState(LexerContext lexerContext, char startSymbol) {
+        this(lexerContext, startSymbol, false);
+    }
+
+    public StringState(LexerContext lexerContext, char startSymbol, boolean done) {
         super(lexerContext);
         this.startSymbol = startSymbol;
+        this.done = done;
     }
 
     @Override
     public LexerState nextValue(char c) {
-        if (isSameAsStart(c)) {
-            done = true;
-            return new EmptyState(lexerContext.reset());
+        if (!done) {
+            if (isSameAsStart(c)) return new StringState(lexerContext.addCharacter(c), startSymbol, true);
+            return new StringState(lexerContext.addCharacter(c), startSymbol);
         }
-        return new StringState(lexerContext.addCharacter(c), startSymbol);
 
+        if (isWhitespace(c)) return new EmptyState(lexerContext.reset());
+        if (isAnySymbol(c)) return new SymbolState(lexerContext.reset(c));
+        if (isNumber(c)) return new NumberState(lexerContext.reset(c));
+        if (isLetter(c)) return new TextState(lexerContext.reset(c));
+
+        throw new IllegalStateException("Unexpected value: " + c);
     }
 
     @Override
