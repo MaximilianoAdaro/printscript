@@ -1,6 +1,7 @@
-package node;
+package node.impl;
 
-import node.interfaces.Node;
+import node.Node;
+import node.visitor.NodeVisitor;
 
 public class PrintNode implements Node {
 
@@ -11,7 +12,7 @@ public class PrintNode implements Node {
     }
 
     @Override
-    public void accept() {
-
+    public void accept(NodeVisitor nodeVisitor) {
+        nodeVisitor.visit(this);
     }
 }

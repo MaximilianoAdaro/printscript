@@ -1,6 +1,6 @@
 package node.interfaces;
 
-import node.literalNode.TypeValue;
+import node.impl.literalNodes.TypeValue;
 
 public interface LiteralValue<T> {
 

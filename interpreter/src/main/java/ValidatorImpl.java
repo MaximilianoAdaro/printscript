@@ -1,10 +1,12 @@
-import node.interfaces.Node;
+import node.Node;
 
 import java.util.List;
 
 public class ValidatorImpl implements Validator {
+
     @Override
     public List<Node> validate() {
         return null;
     }
+
 }

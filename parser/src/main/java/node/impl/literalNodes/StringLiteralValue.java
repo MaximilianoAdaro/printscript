@@ -1,16 +1,22 @@
-package node.literalNode;
+package node.impl.literalNodes;
 
 import node.interfaces.LiteralValue;
 
 public class StringLiteralValue implements LiteralValue<String> {
 
+    private final String value;
+
+    public StringLiteralValue(String value) {
+        this.value = value;
+    }
+
     @Override
     public String getValue() {
-        return null;
+        return value;
     }
 
     @Override
     public TypeValue getTypeValue() {
-        return null;
+        return TypeValue.STRING;
     }
 }
