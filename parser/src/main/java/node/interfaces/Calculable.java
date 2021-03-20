@@ -1,4 +1,4 @@
-package node;
+package node.interfaces;
 
 public interface Calculable<T> extends Node {
 

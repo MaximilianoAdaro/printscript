@@ -1,6 +1,9 @@
 package node;
 
-public class IdentifierNode<T> implements Calculable<T>, Nameable {
+import node.interfaces.Calculable;
+import node.interfaces.Declarational;
+
+public class IdentifierNode<T> implements Calculable<T>, Declarational {
 
     private final String value;
 

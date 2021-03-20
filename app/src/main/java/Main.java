@@ -1,7 +1,7 @@
 import fileReader.FileReaderPS;
 import lombok.SneakyThrows;
 import model.Token;
-import node.Node;
+import node.interfaces.Node;
 
 import java.util.Arrays;
 import java.util.List;

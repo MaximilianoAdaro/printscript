@@ -1,6 +1,6 @@
-package node.OperandNode;
+package node.operandNode;
 
-import node.Calculable;
+import node.interfaces.Calculable;
 
 public class MinusNode<T> extends OperandNode<T> {
 

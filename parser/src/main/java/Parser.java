@@ -1,5 +1,5 @@
 import model.Token;
-import node.Node;
+import node.interfaces.Node;
 
 import java.util.List;
 

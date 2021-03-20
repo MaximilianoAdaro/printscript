@@ -1,4 +1,6 @@
-package node;
+package node.literalNode;
+
+import node.interfaces.LiteralValue;
 
 public class StringLiteralValue implements LiteralValue<String> {
 

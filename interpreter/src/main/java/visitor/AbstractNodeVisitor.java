@@ -1,7 +1,8 @@
 package visitor;
 
 import node.*;
-import node.OperandNode.*;
+import node.literalNode.LiteralNode;
+import node.operandNode.*;
 
 public abstract class AbstractNodeVisitor implements NodeVisitor {
 
