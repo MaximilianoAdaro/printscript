@@ -33,6 +33,7 @@ public class StringState extends AbstractLexerState {
             return new StringState(lexerContext.addCharacter(c), startSymbol);
         }
 
+        if (isNewline(c)) return new EmptyState(lexerContext.changeLine());
         if (isWhitespace(c)) return new EmptyState(lexerContext.reset());
         if (isAnySymbol(c)) return new SymbolState(lexerContext.reset(c));
         if (isNumber(c)) return new NumberState(lexerContext.reset(c));

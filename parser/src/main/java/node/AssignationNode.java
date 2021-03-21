@@ -16,6 +16,5 @@ public class AssignationNode<T> implements Node {
 
     @Override
     public void accept() {
-
     }
 }

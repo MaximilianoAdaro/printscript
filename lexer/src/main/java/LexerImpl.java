@@ -10,8 +10,12 @@ import java.util.stream.Stream;
 public class LexerImpl implements Lexer {
 
 
-    private LexerState state = new EmptyState(new LexerContext());
     private final List<Token> tokens = new ArrayList<>();
+    private LexerState state = new EmptyState(new LexerContext());
+
+    public static List<Token> lex(String text) {
+        return new LexerImpl().createTokens(text);
+    }
 
     @Override
     public List<Token> createTokens(String text) {

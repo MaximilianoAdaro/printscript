@@ -22,6 +22,10 @@ public class TextState extends AbstractLexerState {
 
     @Override
     public LexerState nextValue(char c) {
+        if (isNewline(c)) {
+            done = true;
+            return new EmptyState(lexerContext.changeLine());
+        }
         if (isWhitespace(c)) {
             done = true;
             return new EmptyState(lexerContext.reset());

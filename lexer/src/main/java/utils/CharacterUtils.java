@@ -8,6 +8,10 @@ public class CharacterUtils {
         return c == ';';
     }
 
+    public static boolean isNewline(Character c) {
+        return c == '\n';
+    }
+
     public static boolean isMathSymbol(Character c) {
         return List.of('=', '+', '-', '*', '/').contains(c);
     }
