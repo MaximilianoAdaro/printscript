@@ -1,6 +1,4 @@
-import model.Position;
 import model.Token;
-import model.TokenType;
 import org.junit.Test;
 
 import java.util.List;
@@ -9,28 +7,10 @@ import java.util.Map;
 import static java.util.Map.entry;
 import static model.TokenType.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static utils.TestUtils.cp;
+import static utils.TestUtils.ct;
 
 public class LexerImplTest {
-
-    // create position
-    private Position cp(int lineStart, int lineEnd, int columnStart, int columnEnd) {
-        return Position.builder()
-                .lineStart(lineStart)
-                .lineEnd(lineEnd)
-                .columnStart(columnStart)
-                .columnEnd(columnEnd)
-                .build();
-    }
-
-
-    // create token
-    private Token ct(String value, TokenType tokenType, Position position) {
-        return Token.builder()
-                .tokenType(tokenType)
-                .value(value)
-                .position(position)
-                .build();
-    }
 
 
     private List<Token> lex(String text) {
@@ -188,8 +168,7 @@ public class LexerImplTest {
                 var = var + 10;
                 let hello = 'hello';
                 let result = hello + var;
-                println result;
-                """;
+                println result;""";
 
 
         final var expected = List.of(

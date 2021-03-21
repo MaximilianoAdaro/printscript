@@ -13,7 +13,7 @@ import model.Position;
 public class LexerContext {
 
     @Builder.Default
-    private String accumulator = "";
+    private final String accumulator = "";
 
     @Builder.Default
     private final Position position = new Position(1, 1, 0, 0);
