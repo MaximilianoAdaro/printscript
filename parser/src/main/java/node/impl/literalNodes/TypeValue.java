@@ -1,4 +1,4 @@
-package node.literalNode;
+package node.impl.literalNodes;
 
 public enum TypeValue {
     NUMBER,

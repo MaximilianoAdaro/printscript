@@ -1,7 +1,8 @@
-package node.literalNode;
+package node.impl.literalNodes;
 
 import node.interfaces.Calculable;
 import node.interfaces.LiteralValue;
+import node.visitor.NodeVisitor;
 
 public class LiteralNode<T> implements Calculable<T> {
 
@@ -12,12 +13,12 @@ public class LiteralNode<T> implements Calculable<T> {
     }
 
     @Override
-    public void accept() {
-
+    public void accept(NodeVisitor nodeVisitor) {
+        nodeVisitor.visit(this);
     }
 
     @Override
     public T calculate() {
-        return null;
+        return literalValue.getValue();
     }
 }

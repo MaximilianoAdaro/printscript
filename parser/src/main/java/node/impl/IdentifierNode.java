@@ -1,7 +1,8 @@
-package node;
+package node.impl;
 
 import node.interfaces.Calculable;
 import node.interfaces.Declarational;
+import node.visitor.NodeVisitor;
 
 public class IdentifierNode<T> implements Calculable<T>, Declarational {
 
@@ -12,8 +13,8 @@ public class IdentifierNode<T> implements Calculable<T>, Declarational {
     }
 
     @Override
-    public void accept() {
-
+    public void accept(NodeVisitor nodeVisitor) {
+        nodeVisitor.visit(this);
     }
 
     @Override
