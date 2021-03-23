@@ -17,7 +17,7 @@ public class CharacterUtils {
     }
 
     public static boolean isSymbol(Character c) {
-        return List.of(':', ';').contains(c);
+        return List.of(':', ';', '(', ')').contains(c);
     }
 
     public static boolean isStringSymbol(Character c) {

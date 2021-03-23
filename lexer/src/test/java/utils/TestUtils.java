@@ -6,6 +6,11 @@ import model.TokenType;
 import state.context.LexerContext;
 import state.impls.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 public class TestUtils {
 
     // create position
@@ -60,5 +65,52 @@ public class TestUtils {
     public static TextState cts(LexerContext lexerContext) {
         return new TextState(lexerContext);
     }
+
+
+    public static List<Character> getSymbols() {
+        return List.of('=', '+', '-', '*', '/', ':', ';');
+    }
+
+    public static List<Character> getWhitespace() {
+        return List.of(' ', '\t');
+    }
+
+    public static List<Character> getStringSymbols() {
+        return List.of('\'', '\"');
+    }
+
+    public static List<Character> getAllLetters() {
+        return IntStream.concat(
+                IntStream.rangeClosed('a', 'z'),
+                IntStream.rangeClosed('A', 'Z')
+        ).mapToObj(c -> (char) c)
+                .collect(Collectors.toList());
+    }
+
+
+    public static List<Character> getNumbers() {
+        return IntStream.rangeClosed('0', '9')
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.toList());
+    }
+
+    public static List<Character> getAlphaNumeric() {
+        return Stream.concat(getNumbers().stream(), getAllLetters().stream())
+                .collect(Collectors.toList());
+    }
+
+    public static List<Character> getAllAsciiCharacters() {
+        return IntStream.rangeClosed(0, 255)
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.toList());
+    }
+
+    public static List<Character> getSymbolsNewlineAndWhitespace() {
+        return Stream.concat(
+                Stream.concat(getSymbols().stream(), Stream.of('\n')),
+                getWhitespace().stream()
+        ).collect(Collectors.toList());
+    }
+
 
 }

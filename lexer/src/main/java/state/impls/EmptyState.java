@@ -1,5 +1,7 @@
 package state.impls;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import state.AbstractLexerState;
 import state.LexerState;
 import state.context.LexerContext;
@@ -7,6 +9,8 @@ import state.context.LexerContext;
 import static utils.CharacterUtils.*;
 
 
+@ToString
+@EqualsAndHashCode(callSuper = true)
 public class EmptyState extends AbstractLexerState {
 
 

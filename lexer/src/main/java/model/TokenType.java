@@ -4,6 +4,8 @@ public enum TokenType {
     SEMICOLON,
     COLON,
     ASSIGNATION,
+    LEFT_PAREN,
+    RIGHT_PAREN,
 
     MINUS,
     PLUS,
@@ -16,5 +18,8 @@ public enum TokenType {
     NUMBER,
 
     PRINT,
-    LET
+    LET,
+
+    NUMBER_TYPE,
+    STRING_TYPE,
 }

@@ -1,5 +1,7 @@
 package state.impls;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import model.Token;
 import model.TokenType;
 import state.AbstractLexerState;
@@ -10,7 +12,8 @@ import java.util.Optional;
 
 import static utils.CharacterUtils.*;
 
-
+@ToString
+@EqualsAndHashCode(callSuper = true)
 public class StringState extends AbstractLexerState {
 
     private final char startSymbol;

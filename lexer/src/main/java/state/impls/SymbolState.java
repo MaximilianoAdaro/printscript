@@ -1,5 +1,7 @@
 package state.impls;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import model.Token;
 import model.TokenType;
 import state.AbstractLexerState;
@@ -10,7 +12,8 @@ import java.util.Optional;
 
 import static utils.CharacterUtils.*;
 
-
+@ToString
+@EqualsAndHashCode(callSuper = true)
 public class SymbolState extends AbstractLexerState {
 
     public SymbolState(LexerContext lexerContext) {
@@ -23,6 +26,8 @@ public class SymbolState extends AbstractLexerState {
         if (isWhitespace(c)) return new EmptyState(lexerContext.reset());
         if (isNumber(c)) return new NumberState(lexerContext.reset(c));
         if (isAnySymbol(c)) return new SymbolState(lexerContext.reset(c));
+        if (isStringSymbol(c)) return new StringState(lexerContext.reset(c), c);
+        if (isLetter(c)) return new TextState(lexerContext.reset(c));
 
         throw new IllegalStateException("Unexpected value: " + c);
     }
@@ -38,6 +43,8 @@ public class SymbolState extends AbstractLexerState {
             case "=" -> createToken(TokenType.ASSIGNATION);
             case ":" -> createToken(TokenType.COLON);
             case ";" -> createToken(TokenType.SEMICOLON);
+            case "(" -> createToken(TokenType.LEFT_PAREN);
+            case ")" -> createToken(TokenType.RIGHT_PAREN);
 
             default -> throw new IllegalStateException("Unexpected value: " + c);
         };

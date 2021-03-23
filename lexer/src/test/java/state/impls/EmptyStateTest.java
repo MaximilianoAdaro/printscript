@@ -2,9 +2,6 @@ package state.impls;
 
 import org.junit.Test;
 
-import java.util.List;
-import java.util.stream.IntStream;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static utils.TestUtils.*;
 
@@ -23,12 +20,15 @@ public class EmptyStateTest {
 
     @Test
     public void whiteSpaceShouldReturnEmpty() {
-        final var actual = ces(clc("", cp(1, 1, 1, 1)))
-                .nextValue(' ');
+        getWhitespace()
+                .forEach(c -> {
+                    final var actual = ces(clc("", cp(1, 1, 1, 1)))
+                            .nextValue(c);
+                    final var expected = ces(clc("", cp(1, 1, 2, 2)));
+                    assertThat(actual).isEqualTo(expected);
+                });
 
-        final var expected = ces(clc("", cp(1, 1, 2, 2)));
 
-        assertThat(actual).isEqualTo(expected);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class EmptyStateTest {
 
     @Test
     public void symbolShouldReturnSymbol() {
-        List.of('=', '+', '-', '*', '/', ':', ';').forEach(s -> {
+        getSymbols().forEach(s -> {
 
             final var actual = ces(clc("", cp(1, 1, 1, 1)))
                     .nextValue(s);
@@ -85,10 +85,7 @@ public class EmptyStateTest {
 
     @Test
     public void letterShouldReturnText() {
-        IntStream.concat(
-                IntStream.rangeClosed('a', 'z'),
-                IntStream.rangeClosed('A', 'Z')
-        ).mapToObj(c -> (char) c)
+        getAllLetters()
                 .forEach(s -> {
 
                     final var actual = ces(clc("", cp(1, 1, 1, 1)))
@@ -101,5 +98,12 @@ public class EmptyStateTest {
                 });
     }
 
+
+    @Test
+    public void getTokenShouldReturnEmpty() {
+        final var actual = ces(clc("", cp(1, 1, 1, 1)))
+                .getToken();
+        assertThat(actual).isEmpty();
+    }
 
 }

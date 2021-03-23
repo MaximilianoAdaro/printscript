@@ -34,6 +34,8 @@ public class LexerImplTest {
                         ct(";", SEMICOLON, cp(1, 1, 1, 1)),
                         ct(":", COLON, cp(1, 1, 1, 1)),
                         ct("=", ASSIGNATION, cp(1, 1, 1, 1)),
+                        ct("(", LEFT_PAREN, cp(1, 1, 1, 1)),
+                        ct(")", RIGHT_PAREN, cp(1, 1, 1, 1)),
                         ct("-", MINUS, cp(1, 1, 1, 1)),
                         ct("+", PLUS, cp(1, 1, 1, 1)),
                         ct("*", MULTIPLY, cp(1, 1, 1, 1)),
@@ -45,7 +47,9 @@ public class LexerImplTest {
                         ct("1", NUMBER, cp(1, 1, 1, 1)),
                         ct("56348563", NUMBER, cp(1, 1, 1, 8)),
                         ct("println", PRINT, cp(1, 1, 1, 7)),
-                        ct("let", LET, cp(1, 1, 1, 3))
+                        ct("let", LET, cp(1, 1, 1, 3)),
+                        ct("number", NUMBER_TYPE, cp(1, 1, 1, 6)),
+                        ct("string", STRING_TYPE, cp(1, 1, 1, 6))
                 );
 
         expectedTokens.forEach(token ->
@@ -164,19 +168,21 @@ public class LexerImplTest {
     @Test
     public void testMultipleStatements() {
         final var text = """
-                let var = 100;
+                let var: number = 100;
                 var = var + 10;
-                let hello = 'hello';
-                let result = hello + var;
-                println result;""";
+                let hello: string = 'hello';
+                let result: string = hello + var;
+                println(result);""";
 
 
         final var expected = List.of(
                 ct("let", LET, cp(1, 1, 1, 3)),
                 ct("var", IDENTIFIER, cp(1, 1, 5, 7)),
-                ct("=", ASSIGNATION, cp(1, 1, 9, 9)),
-                ct("100", NUMBER, cp(1, 1, 11, 13)),
-                ct(";", SEMICOLON, cp(1, 1, 14, 14)),
+                ct(":", COLON, cp(1, 1, 8, 8)),
+                ct("number", NUMBER_TYPE, cp(1, 1, 10, 15)),
+                ct("=", ASSIGNATION, cp(1, 1, 17, 17)),
+                ct("100", NUMBER, cp(1, 1, 19, 21)),
+                ct(";", SEMICOLON, cp(1, 1, 22, 22)),
 
                 ct("var", IDENTIFIER, cp(2, 2, 1, 3)),
                 ct("=", ASSIGNATION, cp(2, 2, 5, 5)),
@@ -187,21 +193,27 @@ public class LexerImplTest {
 
                 ct("let", LET, cp(3, 3, 1, 3)),
                 ct("hello", IDENTIFIER, cp(3, 3, 5, 9)),
-                ct("=", ASSIGNATION, cp(3, 3, 11, 11)),
-                ct("'hello'", STRING, cp(3, 3, 13, 19)),
-                ct(";", SEMICOLON, cp(3, 3, 20, 20)),
+                ct(":", COLON, cp(3, 3, 10, 10)),
+                ct("string", STRING_TYPE, cp(3, 3, 12, 17)),
+                ct("=", ASSIGNATION, cp(3, 3, 19, 19)),
+                ct("'hello'", STRING, cp(3, 3, 21, 27)),
+                ct(";", SEMICOLON, cp(3, 3, 28, 28)),
 
                 ct("let", LET, cp(4, 4, 1, 3)),
                 ct("result", IDENTIFIER, cp(4, 4, 5, 10)),
-                ct("=", ASSIGNATION, cp(4, 4, 12, 12)),
-                ct("hello", IDENTIFIER, cp(4, 4, 14, 18)),
-                ct("+", PLUS, cp(4, 4, 20, 20)),
-                ct("var", IDENTIFIER, cp(4, 4, 22, 24)),
-                ct(";", SEMICOLON, cp(4, 4, 25, 25)),
+                ct(":", COLON, cp(4, 4, 11, 11)),
+                ct("string", STRING_TYPE, cp(4, 4, 13, 18)),
+                ct("=", ASSIGNATION, cp(4, 4, 20, 20)),
+                ct("hello", IDENTIFIER, cp(4, 4, 22, 26)),
+                ct("+", PLUS, cp(4, 4, 28, 28)),
+                ct("var", IDENTIFIER, cp(4, 4, 30, 32)),
+                ct(";", SEMICOLON, cp(4, 4, 33, 33)),
 
                 ct("println", PRINT, cp(5, 5, 1, 7)),
+                ct("(", LEFT_PAREN, cp(5, 5, 8, 8)),
                 ct("result", IDENTIFIER, cp(5, 5, 9, 14)),
-                ct(";", SEMICOLON, cp(5, 5, 15, 15))
+                ct(")", RIGHT_PAREN, cp(5, 5, 15, 15)),
+                ct(";", SEMICOLON, cp(5, 5, 16, 16))
         );
 
         testWithExpected(text, expected);

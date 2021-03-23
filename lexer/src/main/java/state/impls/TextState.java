@@ -1,5 +1,7 @@
 package state.impls;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import model.Token;
 import model.TokenType;
 import state.AbstractLexerState;
@@ -10,7 +12,8 @@ import java.util.Optional;
 
 import static utils.CharacterUtils.*;
 
-
+@ToString
+@EqualsAndHashCode(callSuper = true)
 public class TextState extends AbstractLexerState {
 
     private boolean done;
@@ -48,6 +51,8 @@ public class TextState extends AbstractLexerState {
         return switch (accumulator) {
             case "let" -> createToken(TokenType.LET);
             case "println" -> createToken(TokenType.PRINT);
+            case "number" -> createToken(TokenType.NUMBER_TYPE);
+            case "string" -> createToken(TokenType.STRING_TYPE);
             default -> createToken(TokenType.IDENTIFIER);
         };
 
