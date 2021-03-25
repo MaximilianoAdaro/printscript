@@ -12,22 +12,22 @@ import node.impl.operandNodes.SumNode;
 
 public interface NodeVisitor {
 
-    <T> void visit(DeclarationNode<T> declarationNode);
+     void visit(DeclarationNode declarationNode);
 
-    <T> void visit(IdentifierNode<T> identifierNode);
+     void visit(IdentifierNode identifierNode);
 
     void visit(PrintNode printNode);
 
-    <T> void visit(AssignationNode<T> assignationNode);
+     void visit(AssignationNode assignationNode);
 
-    <T> void visit(SumNode<T> sumNode);
+     void visit(SumNode sumNode);
 
-    <T> void visit(MinusNode<T> minusNode);
+     void visit(MinusNode minusNode);
 
-    <T> void visit(DivisionNode<T> divisionNode);
+     void visit(DivisionNode divisionNode);
 
-    <T> void visit(ProductNode<T> productNode);
+     void visit(ProductNode productNode);
 
-    <T> void visit(LiteralNode<T> literalNode);
+     void visit(LiteralNode literalNode);
 
 }

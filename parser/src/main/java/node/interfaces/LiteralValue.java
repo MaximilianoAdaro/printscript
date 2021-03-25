@@ -2,9 +2,9 @@ package node.interfaces;
 
 import node.impl.literalNodes.TypeValue;
 
-public interface LiteralValue<T> {
+public interface LiteralValue {
 
-    T getValue();
+    Object getValue();
 
     TypeValue getTypeValue();
 }

@@ -5,12 +5,12 @@ import node.interfaces.Calculable;
 import node.interfaces.Declarational;
 import node.visitor.NodeVisitor;
 
-public class AssignationNode<T> implements Node {
+public class AssignationNode implements Node {
 
-    private final Calculable<T> calculable;
+    private final Calculable calculable;
     private final Declarational declarational;
 
-    public AssignationNode(Calculable<T> calculable, Declarational declarational) {
+    public AssignationNode(Calculable calculable, Declarational declarational) {
         this.calculable = calculable;
         this.declarational = declarational;
     }

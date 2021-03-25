@@ -1,16 +1,17 @@
 package node.impl.operandNodes;
 
 import node.interfaces.Calculable;
+import node.interfaces.LiteralValue;
 import node.visitor.NodeVisitor;
 
-public class SumNode<T> extends OperandNode<T> {
+public class SumNode extends OperandNode {
 
-    public SumNode(Calculable<T> rightNode, Calculable<T> leftNode) {
+    public SumNode(Calculable rightNode, Calculable leftNode) {
         super(rightNode, leftNode);
     }
 
     @Override
-    public T calculate() {
+    public LiteralValue calculate() {
 //        return leftNode.calculate() + rightNode.calculate();
         return null;
     }

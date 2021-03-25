@@ -1,16 +1,17 @@
 package node.impl.operandNodes;
 
 import node.interfaces.Calculable;
+import node.interfaces.LiteralValue;
 import node.visitor.NodeVisitor;
 
-public class MinusNode<T> extends OperandNode<T> {
+public class MinusNode extends OperandNode {
 
-    public MinusNode(Calculable<T> rightNode, Calculable<T> leftNode) {
+    public MinusNode(Calculable rightNode, Calculable leftNode) {
         super(rightNode, leftNode);
     }
 
     @Override
-    public T calculate() {
+    public LiteralValue calculate() {
 //        return leftNode.calculate() - rightNode.calculate();
         return null;
     }

@@ -2,7 +2,7 @@ package node.impl.literalNodes;
 
 import node.interfaces.LiteralValue;
 
-public class NumberLiteralValue implements LiteralValue<Double> {
+public class NumberLiteralValue implements LiteralValue {
 
     private final double value;
 

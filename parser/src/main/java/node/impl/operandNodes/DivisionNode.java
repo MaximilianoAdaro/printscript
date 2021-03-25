@@ -1,16 +1,17 @@
 package node.impl.operandNodes;
 
 import node.interfaces.Calculable;
+import node.interfaces.LiteralValue;
 import node.visitor.NodeVisitor;
 
-public class DivisionNode<T> extends OperandNode<T> {
+public class DivisionNode extends OperandNode {
 
-    public DivisionNode(Calculable<T> rightNode, Calculable<T> leftNode) {
+    public DivisionNode(Calculable rightNode, Calculable leftNode) {
         super(rightNode, leftNode);
     }
 
     @Override
-    public T calculate() {
+    public LiteralValue calculate() {
 //        return leftNode.calculate() / rightNode.calculate();
         return null;
     }

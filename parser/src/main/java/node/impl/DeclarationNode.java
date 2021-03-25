@@ -5,12 +5,12 @@ import node.impl.literalNodes.TypeValue;
 import node.interfaces.Declarational;
 import node.visitor.NodeVisitor;
 
-public class DeclarationNode<T> implements Declarational {
+public class DeclarationNode implements Declarational {
 
     private final TypeValue typeValue;
-    private final IdentifierNode<T> identifierNode;
+    private final IdentifierNode identifierNode;
 
-    public DeclarationNode(TypeValue typeValue, IdentifierNode<T> identifierNode) {
+    public DeclarationNode(TypeValue typeValue, IdentifierNode identifierNode) {
         this.typeValue = typeValue;
         this.identifierNode = identifierNode;
     }

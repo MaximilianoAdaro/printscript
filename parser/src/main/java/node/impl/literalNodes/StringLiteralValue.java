@@ -2,7 +2,7 @@ package node.impl.literalNodes;
 
 import node.interfaces.LiteralValue;
 
-public class StringLiteralValue implements LiteralValue<String> {
+public class StringLiteralValue implements LiteralValue {
 
     private final String value;
 

@@ -14,17 +14,17 @@ import node.visitor.NodeVisitor;
 public abstract class AbstractNodeVisitor implements NodeVisitor {
 
     @Override
-    public <T> void visit(DeclarationNode<T> declarationNode) {
+    public  void visit(DeclarationNode declarationNode) {
 
     }
 
     @Override
-    public <T> void visit(IdentifierNode<T> identifierNode) {
+    public  void visit(IdentifierNode identifierNode) {
 
     }
 
     @Override
-    public <T> void visit(LiteralNode<T> literalNode) {
+    public  void visit(LiteralNode literalNode) {
 
     }
 
@@ -34,27 +34,27 @@ public abstract class AbstractNodeVisitor implements NodeVisitor {
     }
 
     @Override
-    public <T> void visit(AssignationNode<T> assignationNode) {
+    public  void visit(AssignationNode assignationNode) {
 
     }
 
     @Override
-    public <T> void visit(SumNode<T> sumNode) {
+    public  void visit(SumNode sumNode) {
 
     }
 
     @Override
-    public <T> void visit(MinusNode<T> minusNode) {
+    public  void visit(MinusNode minusNode) {
 
     }
 
     @Override
-    public <T> void visit(DivisionNode<T> divisionNode) {
+    public  void visit(DivisionNode divisionNode) {
 
     }
 
     @Override
-    public <T> void visit(ProductNode<T> productNode) {
+    public  void visit(ProductNode productNode) {
 
     }
 }

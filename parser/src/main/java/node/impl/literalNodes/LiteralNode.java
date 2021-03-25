@@ -4,11 +4,11 @@ import node.interfaces.Calculable;
 import node.interfaces.LiteralValue;
 import node.visitor.NodeVisitor;
 
-public class LiteralNode<T> implements Calculable<T> {
+public class LiteralNode implements Calculable {
 
-    private final LiteralValue<T> literalValue;
+    private final LiteralValue literalValue;
 
-    public LiteralNode(LiteralValue<T> literalValue) {
+    public LiteralNode(LiteralValue literalValue) {
         this.literalValue = literalValue;
     }
 
@@ -18,7 +18,7 @@ public class LiteralNode<T> implements Calculable<T> {
     }
 
     @Override
-    public T calculate() {
-        return literalValue.getValue();
+    public LiteralValue calculate() {
+        return literalValue;
     }
 }

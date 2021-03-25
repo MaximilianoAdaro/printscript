@@ -2,7 +2,7 @@ package node.interfaces;
 
 import node.Node;
 
-public interface Calculable<T> extends Node {
+public interface Calculable extends Node {
 
-    T calculate();
+    LiteralValue calculate();
 }
