@@ -1,9 +1,6 @@
 package node.visitor;
 
-import node.impl.AssignationNode;
-import node.impl.DeclarationNode;
-import node.impl.IdentifierNode;
-import node.impl.PrintNode;
+import node.impl.*;
 import node.impl.literalNodes.LiteralNode;
 import node.impl.operandNodes.DivisionNode;
 import node.impl.operandNodes.MinusNode;
@@ -20,14 +17,16 @@ public interface NodeVisitor {
 
      void visit(AssignationNode assignationNode);
 
-     void visit(SumNode sumNode);
+    void visit(SumNode sumNode);
 
-     void visit(MinusNode minusNode);
+    void visit(MinusNode minusNode);
 
-     void visit(DivisionNode divisionNode);
+    void visit(DivisionNode divisionNode);
 
-     void visit(MultiplyNode multiplyNode);
+    void visit(MultiplyNode multiplyNode);
 
-     void visit(LiteralNode literalNode);
+    void visit(LiteralNode literalNode);
+
+    void visit(EmptyNode emptyNode);
 
 }

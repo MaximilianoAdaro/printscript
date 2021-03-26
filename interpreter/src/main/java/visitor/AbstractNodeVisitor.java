@@ -1,9 +1,6 @@
 package visitor;
 
-import node.impl.AssignationNode;
-import node.impl.DeclarationNode;
-import node.impl.IdentifierNode;
-import node.impl.PrintNode;
+import node.impl.*;
 import node.impl.literalNodes.LiteralNode;
 import node.impl.operandNodes.DivisionNode;
 import node.impl.operandNodes.MinusNode;
@@ -12,6 +9,7 @@ import node.impl.operandNodes.SumNode;
 import node.visitor.NodeVisitor;
 
 public abstract class AbstractNodeVisitor implements NodeVisitor {
+
 
     @Override
     public  void visit(DeclarationNode declarationNode) {
@@ -49,12 +47,17 @@ public abstract class AbstractNodeVisitor implements NodeVisitor {
     }
 
     @Override
-    public  void visit(DivisionNode divisionNode) {
+    public void visit(DivisionNode divisionNode) {
 
     }
 
     @Override
-    public  void visit(MultiplyNode multiplyNode) {
+    public void visit(MultiplyNode multiplyNode) {
+
+    }
+
+    @Override
+    public void visit(EmptyNode emptyNode) {
 
     }
 }

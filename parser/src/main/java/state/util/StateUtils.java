@@ -13,4 +13,8 @@ public class StateUtils {
         return list;
     }
 
+    public static Calculable makeTree(List<Calculable> calculables) {
+        return null;
+    }
+
 }
