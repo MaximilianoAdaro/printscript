@@ -33,9 +33,11 @@ public class StringState extends AbstractLexerState {
     public LexerState nextValue(char c) {
         if (!done) {
             if (isSameAsStart(c)) return new StringState(lexerContext.addCharacter(c), startSymbol, true);
+            if (isNewline(c)) throw new IllegalStateException();
             return new StringState(lexerContext.addCharacter(c), startSymbol);
         }
 
+        // done
         if (isNewline(c)) return new EmptyState(lexerContext.changeLine());
         if (isWhitespace(c)) return new EmptyState(lexerContext.reset());
         if (isAnySymbol(c)) return new SymbolState(lexerContext.reset(c));

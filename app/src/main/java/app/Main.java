@@ -18,6 +18,7 @@ public class Main {
     static void run(final String path) {
         String text = FileReaderPS.readFile(path);
         final var tokens = LexerImpl.lex(text);
+        System.out.println("tokens = " + tokens);
         final var nodes = ParserImpl.parse(tokens);
         System.out.println(nodes);
     }

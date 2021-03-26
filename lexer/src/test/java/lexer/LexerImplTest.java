@@ -247,4 +247,14 @@ public class LexerImplTest {
         final var s = "22342.234.23";
         assertThatThrownBy(() -> lex(s)).isInstanceOf(IllegalStateException.class);
     }
+
+    @Test
+    public void testString() {
+        final var s = """
+                'hello
+                world'""";
+
+        assertThatThrownBy(() -> lex(s))
+                .isInstanceOf(IllegalStateException.class);
+    }
 }

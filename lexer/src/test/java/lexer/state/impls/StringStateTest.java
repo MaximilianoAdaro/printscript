@@ -7,14 +7,27 @@ import java.util.Optional;
 
 import static lexer.utils.TestUtils.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringStateTest {
 
     @Test
-    public void anythingToNotDoneStringShouldReturnString() {
+    public void newlineToNotDoneStringShouldNotWork() {
+        getStringSymbols().forEach(startSymbol -> {
+            final var state = css(clc("'hello", cp(1, 1, 1, 6)), startSymbol, false);
+            assertThatThrownBy(() -> state.nextValue('\n'))
+                    .isInstanceOf(IllegalStateException.class);
+
+        });
+    }
+
+    @Test
+    public void anythingExceptNewlineToNotDoneStringShouldReturnString() {
         getStringSymbols().forEach(startSymbol ->
                 getAllAsciiCharacters()
                         .forEach(c -> {
+                            if (c == '\n') return;
+
                             final var actual = css(clc("'hello", cp(1, 1, 1, 6)), startSymbol, false)
                                     .nextValue(c);
 
