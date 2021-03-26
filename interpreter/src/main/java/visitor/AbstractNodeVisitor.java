@@ -1,12 +1,12 @@
 package visitor;
 
-import node.impl.*;
-import node.impl.literalNodes.LiteralNode;
-import node.impl.operandNodes.DivisionNode;
-import node.impl.operandNodes.MinusNode;
-import node.impl.operandNodes.MultiplyNode;
-import node.impl.operandNodes.SumNode;
-import node.visitor.NodeVisitor;
+import parser.node.impl.*;
+import parser.node.impl.literalNodes.LiteralNode;
+import parser.node.impl.operandNodes.DivisionNode;
+import parser.node.impl.operandNodes.MinusNode;
+import parser.node.impl.operandNodes.MultiplyNode;
+import parser.node.impl.operandNodes.SumNode;
+import parser.node.visitor.NodeVisitor;
 
 public abstract class AbstractNodeVisitor implements NodeVisitor {
 

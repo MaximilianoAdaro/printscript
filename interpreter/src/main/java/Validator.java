@@ -1,4 +1,4 @@
-import node.Node;
+import parser.node.Node;
 
 import java.util.List;
 
