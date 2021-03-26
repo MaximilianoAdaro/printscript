@@ -1,5 +1,7 @@
 package state.impls.declarationStates;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import model.Token;
 import model.TokenType;
 import node.impl.DeclarationNode;
@@ -10,6 +12,8 @@ import state.ParserState;
 import state.impls.AssignationState;
 import state.impls.EmptyState;
 
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class TypeState extends AbstractParserState {
 
     private final Token token;

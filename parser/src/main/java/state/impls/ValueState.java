@@ -28,10 +28,10 @@ public class ValueState extends AbstractParserState {
     @Override
     public ParserState nextToken(Token token) {
         return switch (token.getTokenType()) {
-            case PLUS -> new OperandState(declarational, addToList(calculableList, new SumNode()));
-            case MINUS -> new OperandState(declarational, addToList(calculableList, new MinusNode()));
-            case MULTIPLY -> new OperandState(declarational, addToList(calculableList, new MultiplyNode()));
-            case DIVIDE -> new OperandState(declarational, addToList(calculableList, new DivisionNode()));
+            case PLUS -> getOperandState(new SumNode());
+            case MINUS -> getOperandState(new MinusNode());
+            case MULTIPLY -> getOperandState(new MultiplyNode());
+            case DIVIDE -> getOperandState(new DivisionNode());
             case SEMICOLON -> {
 //                node = new DeclarationNode<>();
 //                node = new AssignationNode<>();
@@ -39,5 +39,9 @@ public class ValueState extends AbstractParserState {
             }
             default -> throw new IllegalStateException("Unexpected value: " + token.getTokenType());
         };
+    }
+
+    private OperandState getOperandState(Calculable calculable) {
+        return new OperandState(declarational, addToList(calculableList, calculable));
     }
 }

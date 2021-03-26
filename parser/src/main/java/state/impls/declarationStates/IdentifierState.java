@@ -1,16 +1,16 @@
 package state.impls.declarationStates;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import model.Token;
 import state.AbstractParserState;
 import state.ParserState;
 
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class IdentifierState extends AbstractParserState {
 
     private final Token token;
-
-    public IdentifierState(Token token) {
-        this.token = token;
-    }
 
     @Override
     public ParserState nextToken(Token token) {
