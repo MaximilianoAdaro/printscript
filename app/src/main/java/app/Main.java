@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        run("/home/joacoiannuzzi/dev/printscript/app/src/main/resources/text.ps");
+        run("app/src/main/resources/text.ps");
 
     }
 

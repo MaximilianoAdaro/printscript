@@ -32,32 +32,31 @@ public class LexerImplTest {
 
     @Test
     public void testIndividualTokens() {
-        final var expectedTokens =
-                List.of(
-                        ct(";", SEMICOLON, cp(1, 1, 1, 1)),
-                        ct(":", COLON, cp(1, 1, 1, 1)),
-                        ct("=", ASSIGNATION, cp(1, 1, 1, 1)),
-                        ct("(", LEFT_PAREN, cp(1, 1, 1, 1)),
-                        ct(")", RIGHT_PAREN, cp(1, 1, 1, 1)),
-                        ct("-", MINUS, cp(1, 1, 1, 1)),
-                        ct("+", PLUS, cp(1, 1, 1, 1)),
-                        ct("*", MULTIPLY, cp(1, 1, 1, 1)),
-                        ct("/", DIVIDE, cp(1, 1, 1, 1)),
-                        ct("identifier", IDENTIFIER, cp(1, 1, 1, 10)),
-                        ct("variable", IDENTIFIER, cp(1, 1, 1, 8)),
-                        ct("This is a string", STRING, cp(1, 1, 1, 18)),
-                        ct("This is a string", STRING, cp(1, 1, 1, 18)),
-                        ct("1", NUMBER, cp(1, 1, 1, 1)),
-                        ct("56348563", NUMBER, cp(1, 1, 1, 8)),
-                        ct("println", PRINT, cp(1, 1, 1, 7)),
-                        ct("let", LET, cp(1, 1, 1, 3)),
-                        ct("number", NUMBER_TYPE, cp(1, 1, 1, 6)),
-                        ct("string", STRING_TYPE, cp(1, 1, 1, 6))
+        Map<String, Token> expectedTokens =
+                Map.ofEntries(
+                        entry(";", ct(";", SEMICOLON, cp(1, 1, 1, 1))),
+                        entry(":", ct(":", COLON, cp(1, 1, 1, 1))),
+                        entry("=", ct("=", ASSIGNATION, cp(1, 1, 1, 1))),
+                        entry("(", ct("(", LEFT_PAREN, cp(1, 1, 1, 1))),
+                        entry(")", ct(")", RIGHT_PAREN, cp(1, 1, 1, 1))),
+                        entry("-", ct("-", MINUS, cp(1, 1, 1, 1))),
+                        entry("+", ct("+", PLUS, cp(1, 1, 1, 1))),
+                        entry("*", ct("*", MULTIPLY, cp(1, 1, 1, 1))),
+                        entry("/", ct("/", DIVIDE, cp(1, 1, 1, 1))),
+                        entry("identifier", ct("identifier", IDENTIFIER, cp(1, 1, 1, 10))),
+                        entry("variable", ct("variable", IDENTIFIER, cp(1, 1, 1, 8))),
+                        entry("'This is a string'", ct("This is a string", STRING, cp(1, 1, 1, 17))),
+                        entry("\"This is a string\"", ct("This is a string", STRING, cp(1, 1, 1, 17))),
+                        entry("1", ct("1", NUMBER, cp(1, 1, 1, 1))),
+                        entry("56348563", ct("56348563", NUMBER, cp(1, 1, 1, 8))),
+                        entry("563.48563", ct("563.48563", NUMBER, cp(1, 1, 1, 9))),
+                        entry("println", ct("println", PRINT, cp(1, 1, 1, 7))),
+                        entry("let", ct("let", LET, cp(1, 1, 1, 3))),
+                        entry("number", ct("number", NUMBER_TYPE, cp(1, 1, 1, 6))),
+                        entry("string", ct("string", STRING_TYPE, cp(1, 1, 1, 6)))
                 );
 
-        expectedTokens.forEach(token ->
-                testWithExpected(token.getValue(), List.of(token))
-        );
+        expectedTokens.forEach((value, token) -> testWithExpected(value, List.of(token)));
     }
 
     @Test
@@ -199,8 +198,8 @@ public class LexerImplTest {
                 ct(":", COLON, cp(3, 3, 10, 10)),
                 ct("string", STRING_TYPE, cp(3, 3, 12, 17)),
                 ct("=", ASSIGNATION, cp(3, 3, 19, 19)),
-                ct("hello", STRING, cp(3, 3, 22, 26)),
-                ct(";", SEMICOLON, cp(3, 3, 28, 28)),
+                ct("hello", STRING, cp(3, 3, 21, 26)),
+                ct(";", SEMICOLON, cp(3, 3, 27, 27)),
 
                 ct("let", LET, cp(4, 4, 1, 3)),
                 ct("result", IDENTIFIER, cp(4, 4, 5, 10)),
