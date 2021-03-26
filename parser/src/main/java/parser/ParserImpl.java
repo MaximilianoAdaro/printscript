@@ -21,6 +21,7 @@ public class ParserImpl implements Parser {
     @Override
     public List<Node> createNodes(List<Token> tokens) {
         tokens.forEach(this::consumeToken);
+        consumeToken(Token.end()); // last character, end of file
         return nodes;
     }
 

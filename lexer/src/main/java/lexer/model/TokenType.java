@@ -22,4 +22,6 @@ public enum TokenType {
 
     NUMBER_TYPE,
     STRING_TYPE,
+
+    END
 }

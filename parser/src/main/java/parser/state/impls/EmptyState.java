@@ -22,6 +22,7 @@ public class EmptyState extends AbstractParserState {
             case LET -> new DeclarationState();
             case IDENTIFIER -> new IdentifierAssignationState();
             case PRINT -> new PrintState();
+            case END -> new EmptyState();
             default -> throw new IllegalStateException("Unexpected value: " + token.getTokenType());
         };
     }

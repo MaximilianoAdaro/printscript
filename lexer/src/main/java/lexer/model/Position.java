@@ -51,4 +51,13 @@ public class Position {
                 .columnEnd(columnEnd)
                 .build();
     }
+
+    public static Position empty(){
+        return Position.builder()
+                .lineStart(0)
+                .lineEnd(0)
+                .columnStart(0)
+                .columnEnd(0)
+                .build();
+    }
 }
