@@ -1,10 +1,12 @@
 package parser.node.impl;
 
 
+import lombok.Data;
 import parser.node.impl.literalNodes.TypeValue;
 import parser.node.interfaces.Declarational;
 import parser.node.visitor.NodeVisitor;
 
+@Data
 public class DeclarationNode implements Declarational {
 
     private final TypeValue typeValue;

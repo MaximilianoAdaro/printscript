@@ -1,10 +1,12 @@
 package parser.node.impl;
 
+import lombok.Data;
 import parser.node.impl.literalNodes.TypeValue;
 import parser.node.interfaces.Calculable;
 import parser.node.interfaces.LiteralValue;
 import parser.node.visitor.NodeVisitor;
 
+@Data
 public class EmptyNode implements Calculable {
 
     @Override

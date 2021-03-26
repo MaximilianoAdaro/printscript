@@ -1,7 +1,9 @@
 package parser.node.impl.literalNodes;
 
+import lombok.Data;
 import parser.node.interfaces.LiteralValue;
 
+@Data
 public class NumberLiteralValue implements LiteralValue {
 
     private final double value;
