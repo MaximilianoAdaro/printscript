@@ -1,12 +1,20 @@
 package parser.node.impl.operandNodes;
 
-import lombok.Data;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import parser.node.interfaces.Calculable;
 import parser.node.interfaces.LiteralValue;
 import parser.node.visitor.NodeVisitor;
 
 @EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
 public class MultiplyNode extends OperandNode {
+
+    @Builder
+    public MultiplyNode(Calculable rightNode, Calculable leftNode) {
+        super(rightNode, leftNode);
+    }
 
     @Override
     public LiteralValue calculate() {

@@ -1,8 +1,7 @@
 package parser.state.impls;
 
 import lexer.model.Token;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import parser.node.interfaces.Declarational;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
@@ -11,13 +10,12 @@ import java.util.Collections;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AssignationState extends AbstractParserState {
 
-    private final Declarational declarational;
-
-    public AssignationState(Declarational declarational) {
-        this.declarational = declarational;
-    }
+    private Declarational declarational;
 
     @Override
     public ParserState nextToken(Token token) {

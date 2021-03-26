@@ -2,8 +2,7 @@ package parser.state.impls.declarationStates;
 
 import lexer.model.Token;
 import lexer.model.TokenType;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import parser.node.impl.DeclarationNode;
 import parser.node.impl.IdentifierNode;
 import parser.node.impl.literalNodes.TypeValue;
@@ -14,15 +13,13 @@ import parser.state.impls.EmptyState;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class TypeState extends AbstractParserState {
 
-    private final Token token;
-    private final TokenType tokenType;
-
-    public TypeState(Token token, TokenType tokenType) {
-        this.token = token;
-        this.tokenType = tokenType;
-    }
+    private Token token;
+    private TokenType tokenType;
 
     @Override
     public ParserState nextToken(Token t) {

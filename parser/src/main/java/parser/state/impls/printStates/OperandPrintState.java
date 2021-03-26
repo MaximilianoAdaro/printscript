@@ -1,8 +1,7 @@
 package parser.state.impls.printStates;
 
 import lexer.model.Token;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
 
@@ -12,9 +11,12 @@ import static parser.state.util.StateUtils.addToList;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class OperandPrintState extends AbstractParserState {
 
-    private final List<Token> tokens;
+    private List<Token> tokens;
 
     public OperandPrintState(Token token, List<Token> tokens) {
         this.tokens = addToList(tokens, token);

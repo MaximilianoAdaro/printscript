@@ -1,8 +1,7 @@
 package parser.state.impls.printStates;
 
 import lexer.model.Token;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import parser.node.impl.PrintNode;
 import parser.node.interfaces.Calculable;
 import parser.state.AbstractParserState;
@@ -11,9 +10,12 @@ import parser.state.impls.EmptyState;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class RightParenState extends AbstractParserState {
 
-    private final Calculable calculable;
+    private Calculable calculable;
 
     @Override
     public ParserState nextToken(Token token) {

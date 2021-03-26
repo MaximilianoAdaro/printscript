@@ -1,20 +1,18 @@
 package parser.state.impls.declarationStates;
 
 import lexer.model.Token;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ColonState extends AbstractParserState {
 
-    private final Token token;
-
-    public ColonState(Token token) {
-        this.token = token;
-    }
+    private Token token;
 
     @Override
     public ParserState nextToken(Token token) {
