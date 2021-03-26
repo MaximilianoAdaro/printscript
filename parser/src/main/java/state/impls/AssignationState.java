@@ -25,7 +25,7 @@ public class AssignationState extends AbstractParserState {
             case IDENTIFIER -> new IdentifiedState(declarational, Collections.singletonList(new IdentifierNode(token.getValue())));
             case NUMBER -> new ValueState(declarational, Collections.singletonList(new LiteralNode(new NumberLiteralValue(Integer.parseInt(token.getValue())))));
             case STRING -> new ValueState(declarational, Collections.singletonList(new LiteralNode(new StringLiteralValue(token.getValue()))));
-            default -> null;
+            default -> throw new IllegalStateException("Unexpected value: " + token.getTokenType());
         };
     }
 }

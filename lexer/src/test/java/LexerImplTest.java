@@ -7,6 +7,7 @@ import java.util.Map;
 import static java.util.Map.entry;
 import static model.TokenType.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static utils.TestUtils.cp;
 import static utils.TestUtils.ct;
 
@@ -229,4 +230,19 @@ public class LexerImplTest {
         testWithExpected(s, expected);
     }
 
+
+    @Test
+    public void testDecimal() {
+        final var s = "22342.23423";
+        final var expected = List.of(
+                ct("22342.23423", NUMBER, cp(1, 1, 1, 11))
+        );
+        testWithExpected(s, expected);
+    }
+
+    @Test
+    public void testNotDecimal() {
+        final var s = "22342.234.23";
+        assertThatThrownBy(() -> lex(s)).isInstanceOf(IllegalStateException.class);
+    }
 }

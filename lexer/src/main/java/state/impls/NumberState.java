@@ -17,28 +17,28 @@ import static utils.CharacterUtils.*;
 public class NumberState extends AbstractLexerState {
 
     private boolean done = false;
+    private boolean isDecimal = false;
 
-    public NumberState(LexerContext reset) {
-        super(reset);
+    public NumberState(LexerContext context) {
+        super(context);
+    }
+
+    public NumberState(LexerContext context, boolean isDecimal) {
+        super(context);
+        this.isDecimal = isDecimal;
     }
 
     @Override
     public LexerState nextValue(char c) {
-        if (isNumber(c)) return new NumberState(lexerContext.addCharacter(c));
-
-        if (isAnySymbol(c)) {
-            done = true;
-            return new SymbolState(lexerContext.reset(c));
+        if (isNumber(c)) return new NumberState(lexerContext.addCharacter(c), isDecimal);
+        if (isDot(c)) {
+            if (!isDecimal) return new NumberState(lexerContext.addCharacter(c), true);
+            throw new IllegalStateException();
         }
-
-        if (isNewline(c)) {
-            done = true;
-            return new EmptyState(lexerContext.changeLine());
-        }
-        if (isWhitespace(c)) {
-            done = true;
-            return new EmptyState(lexerContext.reset());
-        }
+        done = true;
+        if (isAnySymbol(c)) return new SymbolState(lexerContext.reset(c));
+        if (isNewline(c)) return new EmptyState(lexerContext.changeLine());
+        if (isWhitespace(c)) return new EmptyState(lexerContext.reset());
 
         throw new IllegalStateException("Unexpected value: " + c);
 

@@ -11,6 +11,10 @@ public class ParserImpl implements Parser {
     private final List<Node> nodes = new ArrayList<>();
     private ParserState state = new EmptyState();
 
+    public static List<Node> parse(List<Token> tokens) {
+        return new ParserImpl().createNodes(tokens);
+    }
+
     @Override
     public List<Node> createNodes(List<Token> tokens) {
         tokens.forEach(this::consumeToken);

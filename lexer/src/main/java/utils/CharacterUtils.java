@@ -32,6 +32,10 @@ public class CharacterUtils {
         return Character.isDigit(c);
     }
 
+    public static boolean isDot(Character c) {
+        return c == '.';
+    }
+
     public static boolean isWhitespace(Character c) {
         return Character.isWhitespace(c);
     }
