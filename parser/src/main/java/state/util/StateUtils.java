@@ -7,8 +7,8 @@ import java.util.List;
 
 public class StateUtils {
 
-    public static List<Calculable> addToList(List<Calculable> calculableList, Calculable calculable) {
-        List<Calculable> list = new ArrayList<>(calculableList);
+    public static List<Calculable> addToList(List<Calculable> calculables, Calculable calculable) {
+        List<Calculable> list = new ArrayList<>(calculables);
         list.add(calculable);
         return list;
     }

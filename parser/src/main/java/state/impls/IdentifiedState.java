@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import model.Token;
-import node.impl.operandNodes.DivisionNode;
-import node.impl.operandNodes.MinusNode;
-import node.impl.operandNodes.MultiplyNode;
-import node.impl.operandNodes.SumNode;
+import node.impl.AssignationNode;
 import node.interfaces.Calculable;
 import node.interfaces.Declarational;
 import state.AbstractParserState;
@@ -15,7 +12,7 @@ import state.ParserState;
 
 import java.util.List;
 
-import static state.util.StateUtils.addToList;
+import static state.util.StateUtils.makeTree;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -23,25 +20,18 @@ import static state.util.StateUtils.addToList;
 public class IdentifiedState extends AbstractParserState {
 
     private final Declarational declarational;
-    private final List<Calculable> calculableList;
+    private final List<Calculable> calculables;
 
     @Override
     public ParserState nextToken(Token token) {
         return switch (token.getTokenType()) {
-            case PLUS -> getOperandState(new SumNode());
-            case MINUS -> getOperandState(new MinusNode());
-            case MULTIPLY -> getOperandState(new MultiplyNode());
-            case DIVIDE -> getOperandState(new DivisionNode());
+            case PLUS, MINUS, MULTIPLY, DIVIDE -> new OperandState(declarational, token, calculables);
             case SEMICOLON -> {
-//                node = new DeclarationNode<>();
-//                node = new AssignationNode<>();
+                node = new AssignationNode(makeTree(calculables), declarational);
                 yield new EmptyState();
             }
             default -> throw new IllegalStateException("Unexpected value: " + token.getTokenType());
         };
     }
 
-    private OperandState getOperandState(Calculable calculable) {
-        return new OperandState(declarational, addToList(calculableList, calculable));
-    }
 }
