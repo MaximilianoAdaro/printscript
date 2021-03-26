@@ -11,10 +11,12 @@ public class ParserImplTest {
 
         String text = """
                 let x: string = "hello world";
-                println(x);""";
+                let y: number = 18.3;
+                println(x + y);
+                """;
         final var tokens = LexerImpl.lex(text);
         final var nodes = ParserImpl.parse(tokens);
-        System.out.println(nodes);
+        nodes.forEach(System.out::println);
     }
 
 }

@@ -6,7 +6,6 @@ import parser.node.interfaces.LiteralValue;
 import parser.node.visitor.NodeVisitor;
 
 @EqualsAndHashCode(callSuper = true)
-@Data
 public class SumNode extends OperandNode {
 
     @Override
