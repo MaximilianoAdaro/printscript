@@ -1,4 +1,4 @@
-package visitor;
+package interpreter.visitor;
 
 import parser.node.impl.*;
 import parser.node.impl.literalNodes.LiteralNode;

@@ -1,6 +1,7 @@
 package parser;
 
 import lexer.model.Token;
+import lombok.val;
 import parser.node.Node;
 import parser.state.ParserState;
 import parser.state.impls.EmptyState;
@@ -24,7 +25,7 @@ public class ParserImpl implements Parser {
     }
 
     private void consumeToken(Token t) {
-        final var nextState = state.nextToken(t);
+        val nextState = state.nextToken(t);
         state.getNode().ifPresent(nodes::add);
         state = nextState;
     }

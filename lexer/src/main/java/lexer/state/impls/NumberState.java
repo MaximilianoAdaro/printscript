@@ -17,10 +17,10 @@ import static lexer.utils.CharacterUtils.*;
 public class NumberState extends AbstractLexerState {
 
     private boolean done = false;
-    private boolean isDecimal = false;
+    private final boolean isDecimal;
 
     public NumberState(LexerContext context) {
-        super(context);
+        this(context, false);
     }
 
     public NumberState(LexerContext context, boolean isDecimal) {
