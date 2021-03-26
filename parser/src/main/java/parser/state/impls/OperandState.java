@@ -4,12 +4,6 @@ import lexer.model.Token;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import parser.node.impl.IdentifierNode;
-import parser.node.impl.literalNodes.LiteralNode;
-import parser.node.impl.literalNodes.NumberLiteralValue;
-import parser.node.impl.literalNodes.StringLiteralValue;
-import parser.node.impl.operandNodes.*;
-import parser.node.interfaces.Calculable;
 import parser.node.interfaces.Declarational;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
@@ -24,31 +18,20 @@ import static parser.state.util.StateUtils.addToList;
 public class OperandState extends AbstractParserState {
 
     private final Declarational declarational;
-    private final List<Calculable> calculables;
+    private final List<Token> tokens;
 
-    public OperandState(Declarational declarational, Token token, List<Calculable> calculables) {
-        final OperandNode calculabe = switch (token.getTokenType()) {
-            case PLUS -> new SumNode();
-            case MINUS -> new MinusNode();
-            case MULTIPLY -> new MultiplyNode();
-            case DIVIDE -> new DivisionNode();
-            default -> throw new IllegalStateException("Unexpected value: " + token.getTokenType());
-        };
+    public OperandState(Declarational declarational, Token token, List<Token> tokens) {
         this.declarational = declarational;
-        this.calculables = addToList(calculables, calculabe);
+        this.tokens = addToList(tokens, token);
     }
 
     @Override
     public ParserState nextToken(Token token) {
         return switch (token.getTokenType()) {
-            case IDENTIFIER -> new IdentifiedState(declarational, addToList(calculables, new IdentifierNode(token.getValue())));
-            case NUMBER -> getValueState(new LiteralNode(new NumberLiteralValue(Double.parseDouble(token.getValue()))));
-            case STRING -> getValueState(new LiteralNode(new StringLiteralValue(token.getValue())));
+            case IDENTIFIER -> new IdentifiedState(declarational, addToList(tokens, token));
+            case NUMBER, STRING -> new ValueState(declarational, addToList(tokens, token));
             default -> throw new IllegalStateException("Unexpected value: " + token.getTokenType());
         };
     }
 
-    private ValueState getValueState(LiteralNode literalNode) {
-        return new ValueState(declarational, addToList(calculables, literalNode));
-    }
 }

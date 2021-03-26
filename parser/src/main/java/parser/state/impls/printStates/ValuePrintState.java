@@ -3,10 +3,6 @@ package parser.state.impls.printStates;
 import lexer.model.Token;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import parser.node.impl.literalNodes.LiteralNode;
-import parser.node.impl.literalNodes.NumberLiteralValue;
-import parser.node.impl.literalNodes.StringLiteralValue;
-import parser.node.interfaces.Calculable;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
 
@@ -21,27 +17,21 @@ import static parser.state.util.StateUtils.makeTree;
 @Data
 public class ValuePrintState extends AbstractParserState {
 
-    private final List<Calculable> calculables;
+    private final List<Token> tokens;
 
     public ValuePrintState(Token token) {
         this(token, Collections.emptyList());
     }
 
-    public ValuePrintState(Token token, List<Calculable> calculables) {
-
-        final var literalValue = switch (token.getTokenType()) {
-            case NUMBER -> new NumberLiteralValue(Double.parseDouble(token.getValue()));
-            case STRING -> new StringLiteralValue(token.getValue());
-            default -> throw new IllegalStateException();
-        };
-        this.calculables = addToList(calculables, new LiteralNode(literalValue));
+    public ValuePrintState(Token token, List<Token> tokens) {
+        this.tokens = addToList(tokens, token);
     }
 
     @Override
     public ParserState nextToken(Token token) {
         return switch (token.getTokenType()) {
-            case PLUS, MINUS, MULTIPLY, DIVIDE -> new OperandPrintState(token, calculables);
-            case RIGHT_PAREN -> new RightParenState(makeTree(calculables));
+            case PLUS, MINUS, MULTIPLY, DIVIDE -> new OperandPrintState(token, tokens);
+            case RIGHT_PAREN -> new RightParenState(makeTree(tokens));
             default -> throw new IllegalStateException();
         };
     }

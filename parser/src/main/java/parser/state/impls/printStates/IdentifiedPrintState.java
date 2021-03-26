@@ -4,8 +4,6 @@ import lexer.model.Token;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import parser.node.impl.IdentifierNode;
-import parser.node.interfaces.Calculable;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
 
@@ -19,21 +17,21 @@ import static parser.state.util.StateUtils.makeTree;
 @AllArgsConstructor
 public class IdentifiedPrintState extends AbstractParserState {
 
-    private final List<Calculable> calculables;
+    private final List<Token> tokens;
 
     public IdentifiedPrintState(Token token) {
         this(token, List.of());
     }
 
-    public IdentifiedPrintState(Token token, List<Calculable> calculables) {
-        this.calculables = addToList(calculables, new IdentifierNode(token.getValue()));
+    public IdentifiedPrintState(Token token, List<Token> tokens) {
+        this.tokens = addToList(tokens, token);
     }
 
     @Override
     public ParserState nextToken(Token token) {
         return switch (token.getTokenType()) {
-            case PLUS, MINUS, MULTIPLY, DIVIDE -> new OperandPrintState(token, calculables);
-            case RIGHT_PAREN -> new RightParenState(makeTree(calculables));
+            case PLUS, MINUS, MULTIPLY, DIVIDE -> new OperandPrintState(token, tokens);
+            case RIGHT_PAREN -> new RightParenState(makeTree(tokens));
             default -> throw new IllegalStateException();
         };
     }

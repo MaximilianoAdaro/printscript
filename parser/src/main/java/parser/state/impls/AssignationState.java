@@ -3,12 +3,7 @@ package parser.state.impls;
 import lexer.model.Token;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import parser.node.impl.IdentifierNode;
-import parser.node.impl.literalNodes.LiteralNode;
-import parser.node.impl.literalNodes.NumberLiteralValue;
-import parser.node.impl.literalNodes.StringLiteralValue;
 import parser.node.interfaces.Declarational;
-import parser.node.interfaces.LiteralValue;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
 
@@ -27,14 +22,10 @@ public class AssignationState extends AbstractParserState {
     @Override
     public ParserState nextToken(Token token) {
         return switch (token.getTokenType()) {
-            case IDENTIFIER -> new IdentifiedState(declarational, Collections.singletonList(new IdentifierNode(token.getValue())));
-            case NUMBER -> getValueState(new NumberLiteralValue(Double.parseDouble(token.getValue())));
-            case STRING -> getValueState(new StringLiteralValue(token.getValue()));
+            case IDENTIFIER -> new IdentifiedState(declarational, Collections.singletonList(token));
+            case NUMBER, STRING -> new ValueState(declarational, Collections.singletonList(token));
             default -> throw new IllegalStateException("Unexpected value: " + token.getTokenType());
         };
     }
 
-    private ValueState getValueState(LiteralValue literalValue) {
-        return new ValueState(declarational, Collections.singletonList(new LiteralNode(literalValue)));
-    }
 }
