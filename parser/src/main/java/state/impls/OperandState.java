@@ -29,14 +29,13 @@ public class OperandState extends AbstractParserState {
     public ParserState nextToken(Token token) {
         return switch (token.getTokenType()) {
             case IDENTIFIER -> new IdentifiedState(declarational, addToList(calculableList, new IdentifierNode(token.getValue())));
-            case NUMBER -> new ValueState(declarational, addToList(calculableList, new LiteralNode(new NumberLiteralValue(Integer.parseInt(token.getValue())))));
-            case STRING -> new ValueState(declarational, addToList(calculableList, new LiteralNode(new StringLiteralValue(token.getValue()))));
+            case NUMBER -> getValueState(new LiteralNode(new NumberLiteralValue(Double.parseDouble(token.getValue()))));
+            case STRING -> getValueState(new LiteralNode(new StringLiteralValue(token.getValue())));
             default -> throw new IllegalStateException("Unexpected value: " + token.getTokenType());
         };
     }
 
-    private List<Calculable> addNodeToList(Calculable calculable) {
-        calculableList.add(calculable);
-        return calculableList;
+    private ValueState getValueState(LiteralNode literalNode) {
+        return new ValueState(declarational, addToList(calculableList, literalNode));
     }
 }
