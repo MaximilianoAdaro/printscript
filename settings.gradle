@@ -1,2 +1,3 @@
 rootProject.name = 'printscript'
-include 'lexer', 'parser', 'interpreter', 'app'
+include 'lexer', 'parser', 'interpreter', 'app', 'fileReader'
+
