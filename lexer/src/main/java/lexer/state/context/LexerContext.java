@@ -48,4 +48,10 @@ public class LexerContext {
     }
 
 
+    public LexerContext copy() {
+        return LexerContext.builder()
+                .position(position.copy())
+                .accumulator(accumulator)
+                .build();
+    }
 }

@@ -41,27 +41,27 @@ public class TestUtils {
                 .build();
     }
 
-    // create empty lexer.state
+    // create empty state
     public static EmptyState ces(LexerContext lexerContext) {
         return new EmptyState(lexerContext);
     }
 
-    // create number lexer.state
+    // create number state
     public static NumberState cns(LexerContext lexerContext) {
         return new NumberState(lexerContext);
     }
 
-    // create string lexer.state
+    // create string state
     public static StringState css(LexerContext lexerContext, char startSymbol, boolean done) {
         return new StringState(lexerContext, startSymbol, done);
     }
 
-    // create symbol lexer.state
+    // create symbol state
     public static SymbolState csys(LexerContext lexerContext) {
         return new SymbolState(lexerContext);
     }
 
-    // create text lexer.state
+    // create text state
     public static TextState cts(LexerContext lexerContext) {
         return new TextState(lexerContext);
     }

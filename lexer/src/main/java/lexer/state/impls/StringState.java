@@ -32,7 +32,7 @@ public class StringState extends AbstractLexerState {
     @Override
     public LexerState nextValue(char c) {
         if (!done) {
-            if (isSameAsStart(c)) return new StringState(lexerContext.addCharacter(c), startSymbol, true);
+            if (isSameAsStart(c)) return new StringState(lexerContext.copy(), startSymbol, true);
             if (isNewline(c)) throw new IllegalStateException();
             return new StringState(lexerContext.addCharacter(c), startSymbol);
         }

@@ -32,9 +32,9 @@ public class ParserImplTest {
         nodes.forEach(System.out::println);
         assertThat(nodes).hasSize(3);
 
-        LiteralNode literalNode1 = literalNode(strValue("hello world"));
+        LiteralNode literalNode1 = literalNode(strValue("\"hello world\""));
         DeclarationNode declarationNode1 = declNode(identifierNode("x"), TypeValue.STRING);
-//        assertThat(nodes.get(0)).isEqualTo(assignNode(literalNode1, declarationNode1));
+        assertThat(nodes.get(0)).isEqualTo(assignNode(literalNode1, declarationNode1));
 
         LiteralNode literalNode2 = literalNode(numbValue(18.3));
         DeclarationNode declarationNode2 = declNode(identifierNode("y"), TypeValue.NUMBER);

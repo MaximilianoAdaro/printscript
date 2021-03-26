@@ -43,4 +43,12 @@ public class Position {
                 .build();
     }
 
+    public Position copy() {
+        return Position.builder()
+                .lineStart(lineStart)
+                .lineEnd(lineEnd)
+                .columnStart(columnStart)
+                .columnEnd(columnEnd)
+                .build();
+    }
 }

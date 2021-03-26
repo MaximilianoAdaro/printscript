@@ -26,7 +26,7 @@ public class SymbolState extends AbstractLexerState {
         if (isWhitespace(c)) return new EmptyState(lexerContext.reset());
         if (isNumber(c)) return new NumberState(lexerContext.reset(c));
         if (isAnySymbol(c)) return new SymbolState(lexerContext.reset(c));
-        if (isStringSymbol(c)) return new StringState(lexerContext.reset(c), c);
+        if (isStringSymbol(c)) return new StringState(lexerContext.reset(), c);
         if (isLetter(c)) return new TextState(lexerContext.reset(c));
 
         throw new IllegalStateException("Unexpected value: " + c);

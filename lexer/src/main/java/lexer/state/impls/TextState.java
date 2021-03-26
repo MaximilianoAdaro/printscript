@@ -25,19 +25,12 @@ public class TextState extends AbstractLexerState {
 
     @Override
     public LexerState nextValue(char c) {
-        if (isNewline(c)) {
-            done = true;
-            return new EmptyState(lexerContext.changeLine());
-        }
-        if (isWhitespace(c)) {
-            done = true;
-            return new EmptyState(lexerContext.reset());
-        }
-        if (isAnySymbol(c)) {
-            done = true;
-            return new SymbolState(lexerContext.reset(c));
-        }
         if (isLetter(c) || isNumber(c)) return new TextState(lexerContext.addCharacter(c));
+
+        done = true;
+        if (isNewline(c)) return new EmptyState(lexerContext.changeLine());
+        if (isWhitespace(c)) return new EmptyState(lexerContext.reset());
+        if (isAnySymbol(c)) return new SymbolState(lexerContext.reset(c));
 
         throw new IllegalStateException("Unexpected value: " + c);
     }
