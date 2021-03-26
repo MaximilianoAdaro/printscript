@@ -28,12 +28,12 @@ public class StringStateTest {
                         .forEach(c -> {
                             if (c == '\n') return;
 
-                            final var actual = css(clc("'hello", cp(1, 1, 1, 6)), startSymbol, false)
+                            final var actual = css(clc("hello", cp(1, 1, 2, 6)), startSymbol, false)
                                     .nextValue(c);
 
                             final var expected = startSymbol == c
-                                    ? css(clc("'hello" + c, cp(1, 1, 1, 7)), startSymbol, true)
-                                    : css(clc("'hello" + c, cp(1, 1, 1, 7)), startSymbol, false);
+                                    ? css(clc("hello", cp(1, 1, 2, 6)), startSymbol, true)
+                                    : css(clc("hello" + c, cp(1, 1, 2, 7)), startSymbol, false);
 
 
                             assertThat(actual).isEqualTo(expected);

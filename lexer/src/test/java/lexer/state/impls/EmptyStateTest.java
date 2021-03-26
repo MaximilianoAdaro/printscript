@@ -47,7 +47,7 @@ public class EmptyStateTest {
                 .nextValue('\'');
 
         final var expected = css(
-                clc("'", cp(1, 1, 2, 2)),
+                clc("", cp(1, 1, 2, 2)),
                 '\'',
                 false
         );
@@ -61,7 +61,7 @@ public class EmptyStateTest {
                 .nextValue('"');
 
         final var expected = css(
-                clc("\"", cp(1, 1, 2, 2)),
+                clc("", cp(1, 1, 2, 2)),
                 '"',
                 false
         );

@@ -74,11 +74,11 @@ public class SymbolStateTest {
     public void stringSymbolShouldReturnString() {
         getSymbols().forEach(c ->
                 getStringSymbols()
-                        .forEach(symbol -> {
+                        .forEach(stringSymbol -> {
                             final var actual = csys(
                                     clc(c.toString(), cp(1, 1, 1, 1))
-                            ).nextValue(symbol);
-                            final var expected = css(clc(symbol.toString(), cp(1, 1, 2, 2)), symbol, false);
+                            ).nextValue(stringSymbol);
+                            final var expected = css(clc("", cp(1, 1, 2, 2)), stringSymbol, false);
 
                             assertThat(actual).isEqualTo(expected);
 
