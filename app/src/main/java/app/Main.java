@@ -1,3 +1,5 @@
+package app;
+
 import fileReader.FileReaderPS;
 import lexer.LexerImpl;
 import lombok.SneakyThrows;
@@ -8,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        run("/home/maxi/projects/ing-sist/printscript/app/src/main/resources/text.ps");
+        run("/home/joacoiannuzzi/dev/printscript/app/src/main/resources/text.ps");
 
     }
 
