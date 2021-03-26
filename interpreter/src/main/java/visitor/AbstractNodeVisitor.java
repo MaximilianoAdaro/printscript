@@ -7,7 +7,7 @@ import node.impl.PrintNode;
 import node.impl.literalNodes.LiteralNode;
 import node.impl.operandNodes.DivisionNode;
 import node.impl.operandNodes.MinusNode;
-import node.impl.operandNodes.ProductNode;
+import node.impl.operandNodes.MultiplyNode;
 import node.impl.operandNodes.SumNode;
 import node.visitor.NodeVisitor;
 
@@ -54,7 +54,7 @@ public abstract class AbstractNodeVisitor implements NodeVisitor {
     }
 
     @Override
-    public  void visit(ProductNode productNode) {
+    public  void visit(MultiplyNode multiplyNode) {
 
     }
 }

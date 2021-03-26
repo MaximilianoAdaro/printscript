@@ -22,22 +22,23 @@ public class TypeState extends AbstractParserState {
 
     @Override
     public ParserState nextToken(Token t) {
+        return switch (t.getTokenType()) {
+            case ASSIGNATION -> new AssignationState(getDeclarationNode());
+            case SEMICOLON -> {
+                node = getDeclarationNode();
+                yield new EmptyState();
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + t.getTokenType());
+        };
+    }
 
+    private DeclarationNode getDeclarationNode() {
         TypeValue typeValue = switch (tokenType) {
             case STRING_TYPE -> TypeValue.STRING;
             case NUMBER_TYPE -> TypeValue.NUMBER;
             default -> throw new IllegalStateException("Unexpected value: " + tokenType);
         };
-        DeclarationNode declarationNode = new DeclarationNode(typeValue, new IdentifierNode(token.getValue()));
-
-        return switch (t.getTokenType()) {
-            case ASSIGNATION -> new AssignationState(declarationNode);
-            case SEMICOLON -> {
-                node = declarationNode;
-                yield new EmptyState();
-            }
-            default -> throw new IllegalStateException("Unexpected value: " + t.getTokenType());
-        };
+        return new DeclarationNode(typeValue, new IdentifierNode(token.getValue()));
     }
 
 }

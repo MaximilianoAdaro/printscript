@@ -6,10 +6,6 @@ import node.visitor.NodeVisitor;
 
 public class MinusNode extends OperandNode {
 
-    public MinusNode(Calculable rightNode, Calculable leftNode) {
-        super(rightNode, leftNode);
-    }
-
     @Override
     public LiteralValue calculate() {
 //        return leftNode.calculate() - rightNode.calculate();

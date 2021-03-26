@@ -6,10 +6,6 @@ import node.visitor.NodeVisitor;
 
 public class DivisionNode extends OperandNode {
 
-    public DivisionNode(Calculable rightNode, Calculable leftNode) {
-        super(rightNode, leftNode);
-    }
-
     @Override
     public LiteralValue calculate() {
 //        return leftNode.calculate() / rightNode.calculate();

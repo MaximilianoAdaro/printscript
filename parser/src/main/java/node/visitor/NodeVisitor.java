@@ -7,7 +7,7 @@ import node.impl.PrintNode;
 import node.impl.literalNodes.LiteralNode;
 import node.impl.operandNodes.DivisionNode;
 import node.impl.operandNodes.MinusNode;
-import node.impl.operandNodes.ProductNode;
+import node.impl.operandNodes.MultiplyNode;
 import node.impl.operandNodes.SumNode;
 
 public interface NodeVisitor {
@@ -26,7 +26,7 @@ public interface NodeVisitor {
 
      void visit(DivisionNode divisionNode);
 
-     void visit(ProductNode productNode);
+     void visit(MultiplyNode multiplyNode);
 
      void visit(LiteralNode literalNode);
 

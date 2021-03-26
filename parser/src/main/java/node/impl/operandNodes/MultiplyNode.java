@@ -4,11 +4,7 @@ import node.interfaces.Calculable;
 import node.interfaces.LiteralValue;
 import node.visitor.NodeVisitor;
 
-public class ProductNode extends OperandNode {
-
-    public ProductNode(Calculable rightNode, Calculable leftNode) {
-        super(rightNode, leftNode);
-    }
+public class MultiplyNode extends OperandNode {
 
     @Override
     public LiteralValue calculate() {

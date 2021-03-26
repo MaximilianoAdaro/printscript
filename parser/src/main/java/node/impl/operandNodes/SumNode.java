@@ -1,14 +1,12 @@
 package node.impl.operandNodes;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import node.interfaces.Calculable;
 import node.interfaces.LiteralValue;
 import node.visitor.NodeVisitor;
 
 public class SumNode extends OperandNode {
-
-    public SumNode(Calculable rightNode, Calculable leftNode) {
-        super(rightNode, leftNode);
-    }
 
     @Override
     public LiteralValue calculate() {
