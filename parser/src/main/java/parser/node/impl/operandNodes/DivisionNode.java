@@ -23,6 +23,11 @@ public class DivisionNode extends OperandNode {
     }
 
     @Override
+    public Calculable resolveTree(OperandNode operator, Calculable operand) {
+        return resolveTreeAsMulAndDiv(operator, operand);
+    }
+
+    @Override
     public void accept(NodeVisitor nodeVisitor) {
         nodeVisitor.visit(this);
     }

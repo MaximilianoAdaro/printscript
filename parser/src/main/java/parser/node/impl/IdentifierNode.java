@@ -2,6 +2,7 @@ package parser.node.impl;
 
 import lombok.Builder;
 import lombok.Data;
+import parser.node.impl.operandNodes.OperandNode;
 import parser.node.interfaces.Calculable;
 import parser.node.interfaces.Declarational;
 import parser.node.interfaces.LiteralValue;
@@ -26,5 +27,12 @@ public class IdentifierNode implements Calculable, Declarational {
     public LiteralValue calculate() {
         //todo: find in all assigment the value for this identity
         return null;
+    }
+
+    @Override
+    public Calculable resolveTree(OperandNode operator, Calculable operand) {
+        operator.setLeftNode(this);
+        operator.setRightNode(operand);
+        return operator;
     }
 }

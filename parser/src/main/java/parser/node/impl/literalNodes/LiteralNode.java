@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import parser.node.impl.operandNodes.OperandNode;
 import parser.node.interfaces.Calculable;
 import parser.node.interfaces.LiteralValue;
 import parser.node.visitor.NodeVisitor;
@@ -24,5 +25,12 @@ public class LiteralNode implements Calculable {
     @Override
     public LiteralValue calculate() {
         return literalValue;
+    }
+
+    @Override
+    public Calculable resolveTree(OperandNode operator, Calculable operand) {
+        operator.setLeftNode(this);
+        operator.setRightNode(operand);
+        return operator;
     }
 }

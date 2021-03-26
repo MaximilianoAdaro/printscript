@@ -26,4 +26,9 @@ public class SumNode extends OperandNode {
     public void accept(NodeVisitor nodeVisitor) {
         nodeVisitor.visit(this);
     }
+
+    @Override
+    public Calculable resolveTree(OperandNode operator, Calculable operand) {
+        return resolveTreeAsSumAndMin(operator, operand);
+    }
 }

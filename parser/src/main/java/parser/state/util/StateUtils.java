@@ -1,6 +1,5 @@
 package parser.state.util;
 
-import jdk.jshell.spi.ExecutionControl;
 import lexer.model.Token;
 import lombok.SneakyThrows;
 import parser.node.impl.operandNodes.OperandNode;
@@ -19,17 +18,24 @@ public class StateUtils {
         return list;
     }
 
-    //TODO: implement this
+    /**
+                   X =      Y + 2 * 3 + Z / 3 * 4 * 5
+     */
     @SneakyThrows
     public static Calculable makeTree(List<Token> tokens) {
-        if (tokens.size() == 1) return getNode(tokens.get(0));
-        if (tokens.size() == 3) {
-            OperandNode node = (OperandNode) getNode(tokens.get(1));
-            node.setLeftNode(getNode(tokens.get(0)));
-            node.setRightNode(getNode(tokens.get(2)));
-            return node;
+        if (tokens.isEmpty()) throw new RuntimeException("Cannot be empty");
+        Calculable root = getNode(tokens.get(0));
+        if (tokens.size() == 1) return root;
+
+        for (int i = 1; i < tokens.size(); i = i + 2) {
+            root = resolveTree(root, getNode(tokens.get(i)), getNode(tokens.get(i+1)));
         }
-        throw new ExecutionControl.NotImplementedException("We are lazy");
+
+        return root;
+    }
+
+    private static Calculable resolveTree(Calculable rootTree, Calculable operator, Calculable operand) {
+        return rootTree.resolveTree((OperandNode) operator, operand);
     }
 
 }
