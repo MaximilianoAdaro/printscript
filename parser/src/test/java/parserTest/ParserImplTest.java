@@ -32,13 +32,13 @@ public class ParserImplTest {
         nodes.forEach(System.out::println);
         assertThat(nodes).hasSize(3);
 
-        LiteralNode literalNode1 = literalNode(strValue("hello world"));
-        DeclarationNode declarationNode1 = declNode(identifierNode("x"), TypeValue.STRING);
-        assertThat(nodes.get(0)).isEqualTo(assignNode(literalNode1, declarationNode1));
+        LiteralNode assignNodeLeft0 = literalNode(strValue("hello world"));
+        DeclarationNode assignNodeRight0 = declNode(identifierNode("x"), TypeValue.STRING);
+        assertThat(nodes.get(0)).isEqualTo(assignNode(assignNodeLeft0, assignNodeRight0));
 
-        LiteralNode literalNode2 = literalNode(numbValue(18.3));
-        DeclarationNode declarationNode2 = declNode(identifierNode("y"), TypeValue.NUMBER);
-        assertThat(nodes.get(1)).isEqualTo(assignNode(literalNode2, declarationNode2));
+        LiteralNode assignNodeLeft1 = literalNode(numbValue(18.3));
+        DeclarationNode assignNodeRight1 = declNode(identifierNode("y"), TypeValue.NUMBER);
+        assertThat(nodes.get(1)).isEqualTo(assignNode(assignNodeLeft1, assignNodeRight1));
 
         Calculable calculableNode = new SumNode(identifierNode("y"), identifierNode("x"));
         assertThat(nodes.get(2)).isEqualTo(printNode(calculableNode));
