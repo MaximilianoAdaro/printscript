@@ -57,10 +57,24 @@ public class NodeUtils {
                 .build();
     }
 
+    // create NumberLiteralValueNode
+    public static LiteralNode numbValueNode(double number) {
+        return LiteralNode.builder()
+                .literalValue(numbValue(number))
+                .build();
+    }
+
     // create NumberLiteralValue
     public static NumberLiteralValue numbValue(double number) {
         return NumberLiteralValue.builder()
                 .value(number)
+                .build();
+    }
+
+    // create StringLiteralValueNode
+    public static LiteralNode strValueNode(String value) {
+        return LiteralNode.builder()
+                .literalValue(strValue(value))
                 .build();
     }
 
