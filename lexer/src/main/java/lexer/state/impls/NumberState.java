@@ -38,7 +38,6 @@ public class NumberState extends AbstractLexerState {
 
 
 
-
       return new NumberState(lexerContext.addCharacter(c), isDecimal);
     if (isDot(c)) {
       if (!isDecimal) return new NumberState(lexerContext.addCharacter(c), true);
