@@ -25,7 +25,6 @@ public class LexerImpl implements Lexer {
   }
 
   private void consumeCharacter(Character c) {
-
     final var nextState = state.nextValue(c);
     state.getToken().ifPresent(tokens::add);
     state = nextState;

@@ -12,10 +12,6 @@ java {
     targetCompatibility = JavaVersion.VERSION_15
 }
 
-task compile {
-    dependsOn compileJava, compileTestJava, tasks.googleJavaFormat
-}
-
 repositories {
     mavenCentral()
 }
@@ -28,6 +24,11 @@ dependencies {
 test {
     finalizedBy jacocoTestReport // report is always generated after tests run
     finalizedBy jacocoTestCoverageVerification
+}
+
+
+task compile {
+    dependsOn compileJava, compileTestJava, tasks.googleJavaFormat
 }
 
 build.dependsOn(tasks.googleJavaFormat)
