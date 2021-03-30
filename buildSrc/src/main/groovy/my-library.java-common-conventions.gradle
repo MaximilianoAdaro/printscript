@@ -27,7 +27,7 @@ test {
 }
 
 build.dependsOn(tasks.googleJavaFormat)
-verifyGoogleJavaFormat.dependsOn(tasks.googleJavaFormat)
+//verifyGoogleJavaFormat.dependsOn(tasks.googleJavaFormat)
 
 googleJavaFormat {
     toolVersion = '1.9'
@@ -72,9 +72,7 @@ checkstyleTest {
 }
 
 task installGitHooks(type: Copy) {
-    from(file("${rootDir}/config/hooks/pre-commit-stub")) {
-        rename 'pre-commit-stub', 'pre-commit'
-    }
+    from(file("${rootDir}/config/hooks/pre-commit"))
     into file("${rootDir}/.git/hooks")
     fileMode 0777
 }
