@@ -72,9 +72,9 @@ checkstyleTest {
 }
 
 task installGitHooks(type: Copy) {
-    from(file("${rootDir}/config/hooks/pre-commit"))
-    into file("${rootDir}/.git/hooks")
-    fileMode 0777
+    from file("$rootDir/config/hooks")
+    into file("$rootDir/.git/hooks")
+//    fileMode 0777
 }
 
 build.dependsOn installGitHooks
