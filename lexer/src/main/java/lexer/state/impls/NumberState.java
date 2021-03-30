@@ -29,21 +29,31 @@ public class NumberState extends AbstractLexerState {
 
   @Override
   public LexerState nextValue(char c) {
-    if (isNumber(c)) return new NumberState(lexerContext.addCharacter(c), isDecimal);
+    if (isNumber(c))
+
+
+
+
+
+
+
+
+
+      return new NumberState(lexerContext.addCharacter(c), isDecimal);
     if (isDot(c)) {
       if (!isDecimal) return new NumberState(lexerContext.addCharacter(c), true);
       throw new IllegalStateException();
     }
     done = true;
     if (isAnySymbol(c)) return new SymbolState(lexerContext.reset(c));
-    if (isNewline(c)) return new EmptyState(lexerContext.changeLine());
+    if (isNewline(c))           return new EmptyState(lexerContext.changeLine());
     if (isWhitespace(c)) return new EmptyState(lexerContext.reset());
 
-    throw new IllegalStateException("Unexpected value: " + c);
+    throw              new IllegalStateException("Unexpected value: " + c);
   }
 
   @Override
-  public Optional<Token> getToken() {
+  public          Optional<Token>       getToken() {
     return createToken(done, TokenType.NUMBER);
   }
 }
