@@ -27,6 +27,8 @@ test {
 }
 
 build.dependsOn(tasks.googleJavaFormat)
+build.mustRunAfter(tasks.googleJavaFormat)
+check.mustRunAfter(tasks.googleJavaFormat)
 //verifyGoogleJavaFormat.dependsOn(tasks.googleJavaFormat)
 
 googleJavaFormat {

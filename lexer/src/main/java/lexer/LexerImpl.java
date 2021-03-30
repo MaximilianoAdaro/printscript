@@ -11,15 +11,7 @@ import lexer.state.impls.EmptyState;
 public class LexerImpl implements Lexer {
 
   private final List<Token> tokens = new ArrayList<>();
-  private LexerState state = new
-
-
-
-
-
-
-
-          EmptyState(new LexerContext());
+  private LexerState state = new EmptyState(new LexerContext());
 
   public static List<Token> lex(String text) {
     return new LexerImpl().createTokens(text);
@@ -32,7 +24,24 @@ public class LexerImpl implements Lexer {
     return tokens;
   }
 
-  private void consumeCharacter(Character c) {
+  private void consumeCharacter
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          (Character c) {
     final var nextState = state.nextValue(c);
     state.getToken().ifPresent(tokens::add);
     state = nextState;
