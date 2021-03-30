@@ -22,6 +22,7 @@ public class SymbolState extends AbstractLexerState {
   @Override
   public LexerState nextValue(char c) {
     if (isNewline(c)) return new EmptyState(lexerContext.changeLine());
+
     if (isWhitespace(c)) return new EmptyState(lexerContext.reset());
     if (isNumber(c)) return new NumberState(lexerContext.reset(c));
     if (isAnySymbol(c)) return new SymbolState(lexerContext.reset(c));
