@@ -1,14 +1,12 @@
 package parser.state;
 
+import java.util.Optional;
 import lexer.model.Token;
 import parser.node.Node;
 
-import java.util.Optional;
-
-
 public interface ParserState {
 
-    Optional<Node> getNode();
+  Optional<Node> getNode();
 
-    ParserState nextToken(Token token);
+  ParserState nextToken(Token token);
 }

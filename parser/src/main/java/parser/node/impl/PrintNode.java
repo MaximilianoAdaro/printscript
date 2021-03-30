@@ -14,10 +14,10 @@ import parser.node.visitor.NodeVisitor;
 @AllArgsConstructor
 public class PrintNode implements Node {
 
-    private Calculable calculable;
+  private Calculable calculable;
 
-    @Override
-    public void accept(NodeVisitor nodeVisitor) {
-        nodeVisitor.visit(this);
-    }
+  @Override
+  public void accept(NodeVisitor nodeVisitor) {
+    nodeVisitor.visit(this);
+  }
 }

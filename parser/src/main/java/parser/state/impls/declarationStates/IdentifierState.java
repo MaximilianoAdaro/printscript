@@ -12,13 +12,13 @@ import parser.state.ParserState;
 @AllArgsConstructor
 public class IdentifierState extends AbstractParserState {
 
-    private Token token;
+  private Token token;
 
-    @Override
-    public ParserState nextToken(Token token) {
-        return switch (token.getTokenType()) {
-            case COLON -> new ColonState(this.token);
-            default -> null;
-        };
-    }
+  @Override
+  public ParserState nextToken(Token token) {
+    return switch (token.getTokenType()) {
+      case COLON -> new ColonState(this.token);
+      default -> null;
+    };
+  }
 }

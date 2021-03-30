@@ -18,14 +18,14 @@ dependencies {
 }
 
 application {
-    mainClass = 'Main'
+    mainClass = 'app.Main'
 }
 
 jar {
     manifest {
         attributes(
                 'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-                'Main-Class': 'Main'
+                'Main-Class': 'app.Main'
         )
     }
 }

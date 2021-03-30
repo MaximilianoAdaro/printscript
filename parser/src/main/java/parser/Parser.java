@@ -1,10 +1,9 @@
 package parser;
 
+import java.util.List;
 import lexer.model.Token;
 import parser.node.Node;
 
-import java.util.List;
-
 public interface Parser {
-    List<Node> createNodes(final List<Token> tokens);
+  List<Node> createNodes(final List<Token> tokens);
 }

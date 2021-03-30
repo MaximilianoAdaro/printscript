@@ -9,26 +9,26 @@ import parser.node.visitor.NodeVisitor;
 
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-public class MultiplyNode extends OperandNode {
+public class MultiplyNode extends OperatorNode {
 
-    @Builder
-    public MultiplyNode(Calculable rightNode, Calculable leftNode) {
-        super(rightNode, leftNode);
-    }
+  @Builder
+  public MultiplyNode(Calculable rightNode, Calculable leftNode) {
+    super(rightNode, leftNode);
+  }
 
-    @Override
-    public LiteralValue calculate() {
-//        return leftNode.calculate() * rightNode.calculate();
-        return null;
-    }
+  @Override
+  public LiteralValue calculate() {
+    //        return leftNode.calculate() * rightNode.calculate();
+    return null;
+  }
 
-    @Override
-    public Calculable resolveTree(OperandNode operator, Calculable operand) {
-        return resolveTreeAsMulAndDiv(operator, operand);
-    }
+  @Override
+  public Calculable resolveTree(OperatorNode operator, Calculable operand) {
+    return resolveTreeAsMulAndDiv(operator, operand);
+  }
 
-    @Override
-    public void accept(NodeVisitor nodeVisitor) {
-        nodeVisitor.visit(this);
-    }
+  @Override
+  public void accept(NodeVisitor nodeVisitor) {
+    nodeVisitor.visit(this);
+  }
 }

@@ -7,19 +7,17 @@ import parser.ParserImpl;
 
 public class Main {
 
+  public static void main(String[] args) {
 
-    public static void main(String[] args) {
+    run("app/src/main/resources/text.ps");
+  }
 
-        run("app/src/main/resources/text.ps");
-
-    }
-
-    @SneakyThrows
-    static void run(final String path) {
-        String text = FileReaderPS.readFile(path);
-        final var tokens = LexerImpl.lex(text);
-        System.out.println("tokens = " + tokens);
-        final var nodes = ParserImpl.parse(tokens);
-        System.out.println(nodes);
-    }
+  @SneakyThrows
+  static void run(final String path) {
+    String text = FileReaderPS.readFile(path);
+    final var tokens = LexerImpl.lex(text);
+    System.out.println("tokens = " + tokens);
+    final var nodes = ParserImpl.parse(tokens);
+    System.out.println(nodes);
+  }
 }
