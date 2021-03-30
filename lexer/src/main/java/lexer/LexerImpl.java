@@ -24,24 +24,8 @@ public class LexerImpl implements Lexer {
     return tokens;
   }
 
-  private void consumeCharacter
+  private void consumeCharacter(Character c) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          (Character c) {
     final var nextState = state.nextValue(c);
     state.getToken().ifPresent(tokens::add);
     state = nextState;

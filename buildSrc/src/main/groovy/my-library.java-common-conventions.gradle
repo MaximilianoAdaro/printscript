@@ -27,9 +27,7 @@ test {
 }
 
 build.dependsOn(tasks.googleJavaFormat)
-build.mustRunAfter(tasks.googleJavaFormat)
-check.mustRunAfter(tasks.googleJavaFormat)
-//verifyGoogleJavaFormat.dependsOn(tasks.googleJavaFormat)
+verifyGoogleJavaFormat.dependsOn(tasks.googleJavaFormat)
 
 googleJavaFormat {
     toolVersion = '1.9'
@@ -76,7 +74,7 @@ checkstyleTest {
 task installGitHooks(type: Copy) {
     from file("$rootDir/config/hooks")
     into file("$rootDir/.git/hooks")
-//    fileMode 0777
+    fileMode 0777
 }
 
 build.dependsOn installGitHooks
