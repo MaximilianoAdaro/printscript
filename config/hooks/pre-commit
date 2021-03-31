@@ -7,6 +7,6 @@ REPO_ROOT_DIR=$(git rev-parse --show-toplevel)
 files=$( (git diff --cached --name-only --diff-filter=ACMR | grep -Ei "\.java$") || true)
 
 if [ -n "$files" ]; then
-    "$REPO_ROOT_DIR/gradlew" compiles
-    git add $(echo "$files" | paste -s -d " ")
+  "$REPO_ROOT_DIR/gradlew" compiles
+  git add $(echo "$files" | paste -s -d " ")
 fi
