@@ -4,6 +4,5 @@ import parser.node.visitor.NodeVisitor;
 
 public interface Node {
 
-    void accept(NodeVisitor nodeVisitor);
-
+  void accept(NodeVisitor nodeVisitor);
 }

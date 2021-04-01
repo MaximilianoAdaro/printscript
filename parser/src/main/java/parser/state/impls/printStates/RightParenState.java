@@ -15,16 +15,16 @@ import parser.state.impls.EmptyState;
 @AllArgsConstructor
 public class RightParenState extends AbstractParserState {
 
-    private Calculable calculable;
+  private Calculable calculable;
 
-    @Override
-    public ParserState nextToken(Token token) {
-        return switch (token.getTokenType()) {
-            case SEMICOLON -> {
-                node = new PrintNode(calculable);
-                yield new EmptyState();
-            }
-            default -> throw new IllegalStateException();
-        };
-    }
+  @Override
+  public ParserState nextToken(Token token) {
+    return switch (token.getTokenType()) {
+      case SEMICOLON -> {
+        node = new PrintNode(calculable);
+        yield new EmptyState();
+      }
+      default -> throw new IllegalStateException();
+    };
+  }
 }

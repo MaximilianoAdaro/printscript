@@ -14,11 +14,11 @@ import parser.state.ParserState;
 @NoArgsConstructor
 public class DeclarationState extends AbstractParserState {
 
-    @Override
-    public ParserState nextToken(Token token) {
-        return switch (token.getTokenType()) {
-            case IDENTIFIER -> new IdentifierState(token);
-            default -> throw new IllegalStateException("Unexpected value: " + token.getTokenType());
-        };
-    }
+  @Override
+  public ParserState nextToken(Token token) {
+    return switch (token.getTokenType()) {
+      case IDENTIFIER -> new IdentifierState(token);
+      default -> throw new IllegalStateException("Unexpected value: " + token.getTokenType());
+    };
+  }
 }

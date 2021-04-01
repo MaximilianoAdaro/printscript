@@ -10,15 +10,15 @@ import parser.node.interfaces.LiteralValue;
 @AllArgsConstructor
 public class StringLiteralValue implements LiteralValue {
 
-    private final String value;
+  private final String value;
 
-    @Override
-    public String getValue() {
-        return value;
-    }
+  @Override
+  public String getValue() {
+    return value;
+  }
 
-    @Override
-    public TypeValue getTypeValue() {
-        return TypeValue.STRING;
-    }
+  @Override
+  public TypeValue getTypeValue() {
+    return TypeValue.STRING;
+  }
 }

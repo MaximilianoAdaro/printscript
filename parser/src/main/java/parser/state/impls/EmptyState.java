@@ -16,14 +16,14 @@ import parser.state.impls.printStates.PrintState;
 @NoArgsConstructor
 public class EmptyState extends AbstractParserState {
 
-    @Override
-    public ParserState nextToken(Token token) {
-        return switch (token.getTokenType()) {
-            case LET -> new DeclarationState();
-            case IDENTIFIER -> new IdentifierAssignationState();
-            case PRINT -> new PrintState();
-            case END -> new EmptyState();
-            default -> throw new IllegalStateException("Unexpected value: " + token.getTokenType());
-        };
-    }
+  @Override
+  public ParserState nextToken(Token token) {
+    return switch (token.getTokenType()) {
+      case LET -> new DeclarationState();
+      case IDENTIFIER -> new IdentifierAssignationState();
+      case PRINT -> new PrintState();
+      case END -> new EmptyState();
+      default -> throw new IllegalStateException("Unexpected value: " + token.getTokenType());
+    };
+  }
 }

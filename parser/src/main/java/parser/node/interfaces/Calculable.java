@@ -1,11 +1,11 @@
 package parser.node.interfaces;
 
 import parser.node.Node;
-import parser.node.impl.operandNodes.OperandNode;
+import parser.node.impl.operandNodes.OperatorNode;
 
 public interface Calculable extends Node {
 
-    LiteralValue calculate();
+  LiteralValue calculate();
 
-    Calculable resolveTree(OperandNode operator, Calculable operand);
+  Calculable resolveTree(OperatorNode operator, Calculable operand);
 }

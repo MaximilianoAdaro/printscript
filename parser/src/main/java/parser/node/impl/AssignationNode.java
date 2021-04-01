@@ -15,11 +15,11 @@ import parser.node.visitor.NodeVisitor;
 @AllArgsConstructor
 public class AssignationNode implements Node {
 
-    private Calculable calculable;
-    private Declarational declarational;
+  private Calculable calculable;
+  private Declarational declarational;
 
-    @Override
-    public void accept(NodeVisitor nodeVisitor) {
-        nodeVisitor.visit(this);
-    }
+  @Override
+  public void accept(NodeVisitor nodeVisitor) {
+    nodeVisitor.visit(this);
+  }
 }

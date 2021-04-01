@@ -18,28 +18,28 @@ import parser.state.impls.EmptyState;
 @AllArgsConstructor
 public class TypeState extends AbstractParserState {
 
-    private Token token;
-    private TokenType tokenType;
+  private Token token;
+  private TokenType tokenType;
 
-    @Override
-    public ParserState nextToken(Token t) {
-        return switch (t.getTokenType()) {
-            case ASSIGNATION -> new AssignationState(getDeclarationNode());
-            case SEMICOLON -> {
-                node = getDeclarationNode();
-                yield new EmptyState();
-            }
-            default -> throw new IllegalStateException("Unexpected value: " + t.getTokenType());
+  @Override
+  public ParserState nextToken(Token t) {
+    return switch (t.getTokenType()) {
+      case ASSIGNATION -> new AssignationState(getDeclarationNode());
+      case SEMICOLON -> {
+        node = getDeclarationNode();
+        yield new EmptyState();
+      }
+      default -> throw new IllegalStateException("Unexpected value: " + t.getTokenType());
+    };
+  }
+
+  private DeclarationNode getDeclarationNode() {
+    TypeValue typeValue =
+        switch (tokenType) {
+          case STRING_TYPE -> TypeValue.STRING;
+          case NUMBER_TYPE -> TypeValue.NUMBER;
+          default -> throw new IllegalStateException("Unexpected value: " + tokenType);
         };
-    }
-
-    private DeclarationNode getDeclarationNode() {
-        TypeValue typeValue = switch (tokenType) {
-            case STRING_TYPE -> TypeValue.STRING;
-            case NUMBER_TYPE -> TypeValue.NUMBER;
-            default -> throw new IllegalStateException("Unexpected value: " + tokenType);
-        };
-        return new DeclarationNode(typeValue, new IdentifierNode(token.getValue()));
-    }
-
+    return new DeclarationNode(typeValue, new IdentifierNode(token.getValue()));
+  }
 }

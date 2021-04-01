@@ -9,24 +9,23 @@ import parser.node.impl.operandNodes.SumNode;
 
 public interface NodeVisitor {
 
-     void visit(DeclarationNode declarationNode);
+  void visit(DeclarationNode declarationNode);
 
-     void visit(IdentifierNode identifierNode);
+  void visit(IdentifierNode identifierNode);
 
-    void visit(PrintNode printNode);
+  void visit(PrintNode printNode);
 
-     void visit(AssignationNode assignationNode);
+  void visit(AssignationNode assignationNode);
 
-    void visit(SumNode sumNode);
+  void visit(SumNode sumNode);
 
-    void visit(MinusNode minusNode);
+  void visit(MinusNode minusNode);
 
-    void visit(DivisionNode divisionNode);
+  void visit(DivisionNode divisionNode);
 
-    void visit(MultiplyNode multiplyNode);
+  void visit(MultiplyNode multiplyNode);
 
-    void visit(LiteralNode literalNode);
+  void visit(LiteralNode literalNode);
 
-    void visit(EmptyNode emptyNode);
-
+  void visit(EmptyNode emptyNode);
 }

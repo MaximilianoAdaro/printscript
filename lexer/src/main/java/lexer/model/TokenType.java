@@ -1,27 +1,27 @@
 package lexer.model;
 
 public enum TokenType {
-    SEMICOLON,
-    COLON,
-    ASSIGNATION,
-    LEFT_PAREN,
-    RIGHT_PAREN,
+  SEMICOLON,
+  COLON,
+  ASSIGNATION,
+  LEFT_PAREN,
+  RIGHT_PAREN,
 
-    MINUS,
-    PLUS,
-    MULTIPLY,
-    DIVIDE,
+  MINUS,
+  PLUS,
+  MULTIPLY,
+  DIVIDE,
 
-    IDENTIFIER,
+  IDENTIFIER,
 
-    STRING,
-    NUMBER,
+  STRING,
+  NUMBER,
 
-    PRINT,
-    LET,
+  PRINT,
+  LET,
 
-    NUMBER_TYPE,
-    STRING_TYPE,
+  NUMBER_TYPE,
+  STRING_TYPE,
 
-    END
+  END
 }

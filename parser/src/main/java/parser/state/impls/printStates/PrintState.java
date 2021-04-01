@@ -14,11 +14,11 @@ import parser.state.ParserState;
 @NoArgsConstructor
 public class PrintState extends AbstractParserState {
 
-    @Override
-    public ParserState nextToken(Token token) {
-        return switch (token.getTokenType()) {
-            case LEFT_PAREN -> new LeftParenState();
-            default -> throw new IllegalStateException();
-        };
-    }
+  @Override
+  public ParserState nextToken(Token token) {
+    return switch (token.getTokenType()) {
+      case LEFT_PAREN -> new LeftParenState();
+      default -> throw new IllegalStateException();
+    };
+  }
 }

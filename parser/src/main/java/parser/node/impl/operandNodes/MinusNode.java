@@ -9,26 +9,26 @@ import parser.node.visitor.NodeVisitor;
 
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-public class MinusNode extends OperandNode {
+public class MinusNode extends OperatorNode {
 
-    @Builder
-    public MinusNode(Calculable rightNode, Calculable leftNode) {
-        super(rightNode, leftNode);
-    }
+  @Builder
+  public MinusNode(Calculable rightNode, Calculable leftNode) {
+    super(rightNode, leftNode);
+  }
 
-    @Override
-    public LiteralValue calculate() {
-//        return leftNode.calculate() - rightNode.calculate();
-        return null;
-    }
+  @Override
+  public LiteralValue calculate() {
+    //        return leftNode.calculate() - rightNode.calculate();
+    return null;
+  }
 
-    @Override
-    public void accept(NodeVisitor nodeVisitor) {
-        nodeVisitor.visit(this);
-    }
+  @Override
+  public void accept(NodeVisitor nodeVisitor) {
+    nodeVisitor.visit(this);
+  }
 
-    @Override
-    public Calculable resolveTree(OperandNode operator, Calculable operand) {
-        return resolveTreeAsSumAndMin(operator, operand);
-    }
+  @Override
+  public Calculable resolveTree(OperatorNode operator, Calculable operand) {
+    return resolveTreeAsSumAndMin(operator, operand);
+  }
 }

@@ -1,5 +1,3 @@
 package fileReader;
 
-public class FileReaderPSTest {
-
-}
+public class FileReaderPSTest {}

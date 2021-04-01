@@ -1,6 +1,5 @@
 package parser.node.impl;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,11 +14,11 @@ import parser.node.visitor.NodeVisitor;
 @AllArgsConstructor
 public class DeclarationNode implements Declarational {
 
-    private TypeValue typeValue;
-    private IdentifierNode identifierNode;
+  private TypeValue typeValue;
+  private IdentifierNode identifierNode;
 
-    @Override
-    public void accept(NodeVisitor nodeVisitor) {
-        nodeVisitor.visit(this);
-    }
+  @Override
+  public void accept(NodeVisitor nodeVisitor) {
+    nodeVisitor.visit(this);
+  }
 }

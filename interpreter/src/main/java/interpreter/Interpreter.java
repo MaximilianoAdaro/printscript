@@ -1,10 +1,9 @@
 package interpreter;
 
-import parser.node.Node;
-
 import java.util.List;
+import parser.node.Node;
 
 public interface Interpreter {
 
-    List<Node> interpret();
+  List<Node> interpret();
 }

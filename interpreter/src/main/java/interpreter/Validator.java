@@ -1,10 +1,9 @@
 package interpreter;
 
-import parser.node.Node;
-
 import java.util.List;
+import parser.node.Node;
 
 public interface Validator {
 
-    List<Node> validate();
+  List<Node> validate();
 }

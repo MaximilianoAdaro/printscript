@@ -1,10 +1,9 @@
 package lexer;
 
-import lexer.model.Token;
-
 import java.util.List;
+import lexer.model.Token;
 
 public interface Lexer {
 
-    List<Token> createTokens(String text);
+  List<Token> createTokens(String text);
 }

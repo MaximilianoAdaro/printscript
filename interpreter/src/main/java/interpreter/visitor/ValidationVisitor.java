@@ -1,5 +1,3 @@
 package interpreter.visitor;
 
-public class ValidationVisitor extends AbstractNodeVisitor {
-
-}
+public class ValidationVisitor extends AbstractNodeVisitor {}
