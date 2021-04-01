@@ -10,7 +10,7 @@ on:
     branches: [ master ]
 
 jobs:
-  check:
+  build:
 
     runs-on: ubuntu-latest
 
@@ -20,7 +20,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 15
+    - name: Cache Gradle packages
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-z
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew check
+      run: ./gradlew build
