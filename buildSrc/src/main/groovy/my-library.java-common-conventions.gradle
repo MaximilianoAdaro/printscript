@@ -28,7 +28,7 @@ test {
 check.dependsOn jacocoTestCoverageVerification
 
 
-task precommit {
+task formatAndTest {
     dependsOn tasks.googleJavaFormat, test, checkstyleMain, checkstyleTest
 }
 
@@ -59,7 +59,7 @@ jacocoTestCoverageVerification {
         rule {
             limit {
                 counter = 'LINE'
-                minimum = 0.8
+                minimum = 0.5
             }
         }
     }
