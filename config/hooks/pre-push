@@ -27,7 +27,7 @@ while read local_ref local_sha remote_ref remote_sha; do
 
   if [[ "$remote_ref" == *"$protected_branch" ]]; then
 
-    "$REPO_ROOT_DIR/gradlew" check
+    "$REPO_ROOT_DIR/gradlew" build
 
     # store the last exit code in a variable
     RESULT=$?
