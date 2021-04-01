@@ -1,16 +1,16 @@
 package cli;
 
-import static picocli.CommandLine.*;
-
-import fileReader.FileReaderPS;
 import interpreter.InterpreterImpl;
 import interpreter.ValidatorImpl;
-import java.io.File;
-import java.util.concurrent.Callable;
 import lexer.LexerImpl;
 import lombok.val;
 import parser.ParserImpl;
 import picocli.CommandLine;
+
+import java.io.File;
+import java.util.concurrent.Callable;
+
+import static picocli.CommandLine.*;
 
 @Command(
     name = "printscript",
@@ -31,7 +31,7 @@ public class App implements Callable<Integer> {
   }
 
   private void run() {
-    val text = FileReaderPS.readFile(file);
+    val text = FileReadePS.readFile(file);
     val tokens = LexerImpl.lex(text);
     //    System.out.println("tokens = " + tokens);
 
