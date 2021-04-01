@@ -23,12 +23,13 @@ dependencies {
 
 test {
     finalizedBy jacocoTestReport // report is always generated after tests run
-//    finalizedBy jacocoTestCoverageVerification
 }
 
+check.dependsOn jacocoTestCoverageVerification
 
-task compile {
-    dependsOn compileJava, compileTestJava, tasks.googleJavaFormat
+
+task precommit {
+    dependsOn tasks.googleJavaFormat, test, checkstyleMain, checkstyleTest
 }
 
 build.dependsOn(tasks.googleJavaFormat)
