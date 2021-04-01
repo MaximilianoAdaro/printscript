@@ -14,7 +14,6 @@ public class LexerImpl implements Lexer {
   private LexerState state = new EmptyState(new LexerContext());
 
   public static List<Token> lex(String text) {
-
     return new LexerImpl().createTokens(text);
   }
 
