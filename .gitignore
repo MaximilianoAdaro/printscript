@@ -13,7 +13,6 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 
-*.jar
 !gradle/wrapper/gradle-wrapper.jar
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
@@ -33,7 +32,6 @@ gradle-app.setting
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear
