@@ -21,11 +21,11 @@
 
 protected_branch='master'
 
+REPO_ROOT_DIR=$(git rev-parse --show-toplevel)
+
 while read local_ref local_sha remote_ref remote_sha; do
 
   if [[ "$remote_ref" == *"$protected_branch" ]]; then
-
-    REPO_ROOT_DIR=$(git rev-parse --show-toplevel)
 
     "$REPO_ROOT_DIR/gradlew" check
 
@@ -35,6 +35,15 @@ while read local_ref local_sha remote_ref remote_sha; do
     # return the './gradlew test' exit code
     exit $RESULT
 
+  else
+
+    "$REPO_ROOT_DIR/gradlew" formatAndTest
+
+    # store the last exit code in a variable
+    RESULT=$?
+
+    # return the './gradlew test' exit code
+    exit $RESULT
   fi
 
 done

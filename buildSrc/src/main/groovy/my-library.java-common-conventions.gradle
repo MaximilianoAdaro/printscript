@@ -28,7 +28,7 @@ test {
 check.dependsOn jacocoTestCoverageVerification
 
 
-task precommit {
+task formatAndTest {
     dependsOn tasks.googleJavaFormat, test, checkstyleMain, checkstyleTest
 }
 
