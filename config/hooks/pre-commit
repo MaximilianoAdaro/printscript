@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#set -e
-
 REPO_ROOT_DIR=$(git rev-parse --show-toplevel)
 
 files=$( (git diff --cached --name-only --diff-filter=ACMR | grep -Ei "\.java$") || true)
@@ -21,6 +19,7 @@ if [ -n "$files" ]; then
 
   # add formatted files to git
   git add $(echo "$files" | paste -s -d " ")
+
 fi
 
 exit 0
