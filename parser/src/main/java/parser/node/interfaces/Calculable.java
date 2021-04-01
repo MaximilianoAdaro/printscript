@@ -1,7 +1,7 @@
 package parser.node.interfaces;
 
 import parser.node.Node;
-import parser.node.impl.operandNodes.OperatorNode;
+import parser.node.impl.operatorNodes.OperatorNode;
 
 public interface Calculable extends Node {
 

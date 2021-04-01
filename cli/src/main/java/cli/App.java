@@ -5,6 +5,7 @@ import static picocli.CommandLine.*;
 import fileReader.FileReaderPS;
 import interpreter.InterpreterImpl;
 import interpreter.ValidatorImpl;
+import java.io.File;
 import java.util.concurrent.Callable;
 import lexer.LexerImpl;
 import lombok.val;
@@ -19,25 +20,23 @@ import picocli.CommandLine;
 public class App implements Callable<Integer> {
 
   @Option(names = "--validateOnly", description = "Validates the file.")
-  boolean validateOnly;
+  private boolean validateOnly;
 
-  @Parameters(description = "File to execute.")
-  String path;
+  @Parameters(description = "File to execute.", arity = "1")
+  private File file;
 
   public static void main(String[] args) {
     final var exitCode = new CommandLine(new App()).execute(args);
     System.exit(exitCode);
-
-    //      run("cli/src/main/resources/text.ps");
   }
 
   private void run() {
-    val text = FileReaderPS.readFile(path);
-    final var tokens = LexerImpl.lex(text);
-    System.out.println("tokens = " + tokens);
+    val text = FileReaderPS.readFile(file);
+    val tokens = LexerImpl.lex(text);
+    //    System.out.println("tokens = " + tokens);
 
-    final var nodes = ParserImpl.parse(tokens);
-    System.out.println(nodes);
+    val nodes = ParserImpl.parse(tokens);
+    nodes.forEach(System.out::println);
 
     // here validates
     ValidatorImpl.run(nodes);

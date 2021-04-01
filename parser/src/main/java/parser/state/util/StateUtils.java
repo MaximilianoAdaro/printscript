@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lexer.model.Token;
 import lombok.SneakyThrows;
-import parser.node.impl.operandNodes.OperatorNode;
+import parser.node.impl.operatorNodes.OperatorNode;
 import parser.node.interfaces.Calculable;
 
 public class StateUtils {

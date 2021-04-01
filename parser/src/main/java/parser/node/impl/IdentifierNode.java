@@ -2,7 +2,7 @@ package parser.node.impl;
 
 import lombok.Builder;
 import lombok.Data;
-import parser.node.impl.operandNodes.OperatorNode;
+import parser.node.impl.operatorNodes.OperatorNode;
 import parser.node.interfaces.Calculable;
 import parser.node.interfaces.Declarational;
 import parser.node.interfaces.LiteralValue;

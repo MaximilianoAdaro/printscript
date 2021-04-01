@@ -1,4 +1,4 @@
-package parser.node.impl.operandNodes;
+package parser.node.impl.operatorNodes;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

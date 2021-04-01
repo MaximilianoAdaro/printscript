@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import parser.node.impl.literalNodes.TypeValue;
-import parser.node.impl.operandNodes.OperatorNode;
+import parser.node.impl.operatorNodes.OperatorNode;
 import parser.node.interfaces.Calculable;
 import parser.node.interfaces.LiteralValue;
 import parser.node.visitor.NodeVisitor;

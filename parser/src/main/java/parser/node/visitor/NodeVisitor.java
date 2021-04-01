@@ -2,10 +2,10 @@ package parser.node.visitor;
 
 import parser.node.impl.*;
 import parser.node.impl.literalNodes.LiteralNode;
-import parser.node.impl.operandNodes.DivisionNode;
-import parser.node.impl.operandNodes.MinusNode;
-import parser.node.impl.operandNodes.MultiplyNode;
-import parser.node.impl.operandNodes.SumNode;
+import parser.node.impl.operatorNodes.DivisionNode;
+import parser.node.impl.operatorNodes.MinusNode;
+import parser.node.impl.operatorNodes.MultiplyNode;
+import parser.node.impl.operatorNodes.SumNode;
 
 public interface NodeVisitor {
 

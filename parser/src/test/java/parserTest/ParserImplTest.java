@@ -13,7 +13,7 @@ import parser.node.Node;
 import parser.node.impl.DeclarationNode;
 import parser.node.impl.literalNodes.LiteralNode;
 import parser.node.impl.literalNodes.TypeValue;
-import parser.node.impl.operandNodes.SumNode;
+import parser.node.impl.operatorNodes.SumNode;
 import parser.node.interfaces.Calculable;
 
 public class ParserImplTest {

@@ -5,10 +5,10 @@ import parser.node.impl.IdentifierNode;
 import parser.node.impl.literalNodes.LiteralNode;
 import parser.node.impl.literalNodes.NumberLiteralValue;
 import parser.node.impl.literalNodes.StringLiteralValue;
-import parser.node.impl.operandNodes.DivisionNode;
-import parser.node.impl.operandNodes.MinusNode;
-import parser.node.impl.operandNodes.MultiplyNode;
-import parser.node.impl.operandNodes.SumNode;
+import parser.node.impl.operatorNodes.DivisionNode;
+import parser.node.impl.operatorNodes.MinusNode;
+import parser.node.impl.operatorNodes.MultiplyNode;
+import parser.node.impl.operatorNodes.SumNode;
 import parser.node.interfaces.Calculable;
 
 public class CalculableUtils {

@@ -18,7 +18,7 @@ public class ColonState extends AbstractParserState {
   public ParserState nextToken(Token token) {
     return switch (token.getTokenType()) {
       case NUMBER_TYPE, STRING_TYPE -> new TypeState(this.token, token.getTokenType());
-      default -> null;
+      default -> throw new IllegalStateException();
     };
   }
 }

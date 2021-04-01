@@ -1,0 +1,2 @@
+let x: number = y+2*3+z/3*4*5;
+println(x);

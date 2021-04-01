@@ -12,9 +12,9 @@ import parser.node.Node;
 import parser.node.impl.AssignationNode;
 import parser.node.impl.DeclarationNode;
 import parser.node.impl.literalNodes.TypeValue;
-import parser.node.impl.operandNodes.DivisionNode;
-import parser.node.impl.operandNodes.MultiplyNode;
-import parser.node.impl.operandNodes.SumNode;
+import parser.node.impl.operatorNodes.DivisionNode;
+import parser.node.impl.operatorNodes.MultiplyNode;
+import parser.node.impl.operatorNodes.SumNode;
 import parser.node.interfaces.Calculable;
 import parser.node.interfaces.Declarational;
 

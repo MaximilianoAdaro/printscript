@@ -18,7 +18,7 @@ public class IdentifierState extends AbstractParserState {
   public ParserState nextToken(Token token) {
     return switch (token.getTokenType()) {
       case COLON -> new ColonState(this.token);
-      default -> null;
+      default -> throw new IllegalStateException();
     };
   }
 }
