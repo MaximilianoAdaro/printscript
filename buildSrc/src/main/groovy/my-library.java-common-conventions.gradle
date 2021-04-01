@@ -29,7 +29,7 @@ check.dependsOn jacocoTestCoverageVerification
 
 
 task precommit {
-    dependsOn tasks.googleJavaFormat, test
+    dependsOn tasks.googleJavaFormat, test, checkstyleMain, checkstyleTest
 }
 
 build.dependsOn(tasks.googleJavaFormat)
