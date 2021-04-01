@@ -84,3 +84,7 @@ task installGitHooks(type: Copy) {
 }
 
 build.dependsOn installGitHooks
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '6.8.3'
+}
