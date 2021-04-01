@@ -28,14 +28,23 @@ test {
 check.dependsOn jacocoTestCoverageVerification
 
 
-task formatAndTest {
-    dependsOn tasks.googleJavaFormat, test, checkstyleMain, checkstyleTest
+
+task format {
+    dependsOn tasks.googleJavaFormat
 }
 
-build.dependsOn(tasks.googleJavaFormat)
+task compileAndFormat {
+    dependsOn compileJava, compileTestJava, format, checkstyleMain, checkstyleTest
+}
+
+task formatAndTest {
+    dependsOn compileAndFormat, test
+}
+
+//build.dependsOn(tasks.googleJavaFormat)
 //check.dependsOn(tasks.googleJavaFormat)
 
-verifyGoogleJavaFormat.dependsOn(tasks.googleJavaFormat)
+//verifyGoogleJavaFormat.dependsOn(tasks.googleJavaFormat)
 
 googleJavaFormat {
     toolVersion = '1.9'
