@@ -1,4 +1,4 @@
-package interpreter;
+package interpreter.interpetation;
 
 import interpreter.visitor.InterpretationVisitor;
 import java.util.List;

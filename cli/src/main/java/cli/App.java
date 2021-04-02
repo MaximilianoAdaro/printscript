@@ -3,8 +3,8 @@ package cli;
 import static picocli.CommandLine.*;
 
 import fileReader.FileReaderPS;
-import interpreter.InterpreterImpl;
-import interpreter.ValidatorImpl;
+import interpreter.interpetation.InterpreterImpl;
+import interpreter.validation.ValidatorImpl;
 import java.io.File;
 import java.util.concurrent.Callable;
 import lexer.LexerImpl;
