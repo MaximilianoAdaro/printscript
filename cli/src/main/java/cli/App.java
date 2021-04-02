@@ -33,10 +33,7 @@ public class App implements Callable<Integer> {
   private void run() {
     val text = FileReaderPS.readFile(file);
     val tokens = LexerImpl.lex(text);
-    //    System.out.println("tokens = " + tokens);
-
     val nodes = ParserImpl.parse(tokens);
-    nodes.forEach(System.out::println);
 
     // here validates
     if (validateOnly) ValidatorImpl.run(nodes);
