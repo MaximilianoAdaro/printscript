@@ -17,7 +17,6 @@ public class StateUtils {
     return list;
   }
 
-  /** X = Y + 2 * 3 + Z / 3 * 4 * 5 */
   @SneakyThrows
   public static Calculable makeTree(List<Token> tokens) {
     if (tokens.isEmpty()) throw new RuntimeException("Cannot be empty");

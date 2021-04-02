@@ -29,7 +29,7 @@ public class IdentifiedPrintState extends AbstractParserState {
   @Override
   public ParserState nextToken(Token token) {
     return switch (token.getTokenType()) {
-      case PLUS, MINUS, MULTIPLY, DIVIDE -> new OperandPrintState(token, tokens);
+      case PLUS, MINUS, MULTIPLY, DIVIDE -> new OperatorPrintState(token, tokens);
       case RIGHT_PAREN -> new RightParenState(makeTree(tokens));
       default -> throw new IllegalStateException();
     };

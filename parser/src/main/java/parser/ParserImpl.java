@@ -2,6 +2,7 @@ package parser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import lexer.model.Token;
 import lombok.val;
 import parser.node.Node;
@@ -19,14 +20,23 @@ public class ParserImpl implements Parser {
 
   @Override
   public List<Node> createNodes(List<Token> tokens) {
-    tokens.forEach(this::consumeToken);
-    consumeToken(Token.end()); // last character, end of file
-    return nodes;
+    boolean canFinish = true;
+    for (Token token : tokens) {
+      canFinish = consumeToken(token);
+    }
+    if (canFinish) return nodes;
+    else throw new RuntimeException("CANNOT FINISH"); // todo: solve this
   }
 
-  private void consumeToken(Token t) {
+  private boolean consumeToken(Token t) {
+    boolean canFinish = false;
     val nextState = state.nextToken(t);
-    state.getNode().ifPresent(nodes::add);
+    Optional<Node> node = state.getNode();
+    if (node.isPresent()) {
+      nodes.add(node.get());
+      canFinish = true;
+    }
     state = nextState;
+    return canFinish;
   }
 }

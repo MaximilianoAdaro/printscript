@@ -20,7 +20,6 @@ import parser.node.interfaces.Declarational;
 
 public class MakeTreeTest {
 
-  /** sum 1 y sum 3 mult2 mult6 2 3 mult5 5 div4 4 z 3 */
   @Test
   public void makeTreeTest() {
     String text = "let x: number = y + 2 * 3 + z / 3 * 4 * 5;";

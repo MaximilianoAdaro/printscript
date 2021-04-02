@@ -8,8 +8,8 @@ import parser.node.impl.IdentifierNode;
 import parser.node.impl.literalNodes.TypeValue;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
-import parser.state.impls.AssignationState;
 import parser.state.impls.EmptyState;
+import parser.state.impls.assignationStates.AssignationState;
 
 @EqualsAndHashCode(callSuper = true)
 @Data

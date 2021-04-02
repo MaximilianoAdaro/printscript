@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
+import parser.state.impls.assignationStates.IdentifierAssignationState;
 import parser.state.impls.declarationStates.DeclarationState;
 import parser.state.impls.printStates.PrintState;
 
@@ -20,7 +21,7 @@ public class EmptyState extends AbstractParserState {
   public ParserState nextToken(Token token) {
     return switch (token.getTokenType()) {
       case LET -> new DeclarationState();
-      case IDENTIFIER -> new IdentifierAssignationState();
+      case IDENTIFIER -> new IdentifierAssignationState(token);
       case PRINT -> new PrintState();
       case END -> new EmptyState();
       default -> throw new IllegalStateException("Unexpected value: " + token.getTokenType());

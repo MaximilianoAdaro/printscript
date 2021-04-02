@@ -39,7 +39,7 @@ task formatAndTest {
     dependsOn compileAndFormat, test
 }
 
-//build.dependsOn(tasks.googleJavaFormat)
+build.dependsOn(tasks.googleJavaFormat)
 //check.dependsOn(tasks.googleJavaFormat)
 
 //verifyGoogleJavaFormat.dependsOn(tasks.googleJavaFormat)

@@ -21,7 +21,7 @@ public class NodeUtils {
   }
 
   // create AssignationNode
-  public static AssignationNode assignNode(Calculable calculable, Declarational declarational) {
+  public static AssignationNode assignNode(Declarational declarational, Calculable calculable) {
     return AssignationNode.builder().calculable(calculable).declarational(declarational).build();
   }
 
