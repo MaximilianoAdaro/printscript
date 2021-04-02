@@ -16,6 +16,7 @@ page at http://checkstyle.sourceforge.net/config.html -->
 
   <module name="NewlineAtEndOfFile">
     <property name="lineSeparator" value="lf"/>
+    <property name="severity" value="warning"/>
   </module>
 
   <module name="RegexpSingleline">
@@ -246,7 +247,7 @@ page at http://checkstyle.sourceforge.net/config.html -->
         LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_WHILE, LOR, LT, MINUS,
         MINUS_ASSIGN, MOD, MOD_ASSIGN, NOT_EQUAL, PLUS, PLUS_ASSIGN, QUESTION,
         SL, SL_ASSIGN, SR_ASSIGN, STAR, STAR_ASSIGN"/>
-      <property name="severity" value="error"/>
+      <property name="severity" value="warning"/>
     </module>
 
     <module name="WhitespaceAfter">
@@ -286,8 +287,8 @@ page at http://checkstyle.sourceforge.net/config.html -->
 
   <module name="LineLength">
     <!-- Checks if a line is too long. -->
-    <property name="max" value="${com.puppycrawl.tools.checkstyle.checks.sizes.LineLength.max}" default="100"/>
-    <property name="severity" value="error"/>
+    <property name="max" value="${com.puppycrawl.tools.checkstyle.checks.sizes.LineLength.max}" default="120"/>
+    <property name="severity" value="warning"/>
 
     <!--
       The default ignore pattern exempts the following elements:
