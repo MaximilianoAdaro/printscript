@@ -25,6 +25,7 @@ public class MakeTreeTest {
     String text = "let x: number = y + 2 * 3 + z / 3 * 4 * 5;";
     List<Token> tokens = LexerImpl.lex(text);
     List<Node> parse = ParserImpl.parse(tokens);
+
     assertThat(parse).hasSize(1);
     Node node = parse.get(0);
     assertThat(node).hasSameClassAs(new AssignationNode());

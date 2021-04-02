@@ -39,6 +39,10 @@ task formatAndTest {
     dependsOn compileAndFormat, test
 }
 
+task verifyAndTest {
+    dependsOn test, tasks.verifyGoogleJavaFormat, checkstyleMain, checkstyleTest
+}
+
 build.dependsOn(tasks.googleJavaFormat)
 //check.dependsOn(tasks.googleJavaFormat)
 
