@@ -1,10 +1,7 @@
-package parser.state.impls;
+package parser.state.impls.assignationStates;
 
 import lexer.model.Token;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import parser.node.impl.IdentifierNode;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
@@ -13,13 +10,16 @@ import parser.state.ParserState;
 @Data
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class IdentifierAssignationState extends AbstractParserState {
 
+  private Token token;
+
   @Override
-  public ParserState nextToken(Token token) {
-    return switch (token.getTokenType()) {
+  public ParserState nextToken(Token t) {
+    return switch (t.getTokenType()) {
       case ASSIGNATION -> new AssignationState(new IdentifierNode(token.getValue()));
-      default -> throw new IllegalStateException("Unexpected value: " + token.getTokenType());
+      default -> throw new IllegalStateException("Unexpected value: " + t.getTokenType());
     };
   }
 }

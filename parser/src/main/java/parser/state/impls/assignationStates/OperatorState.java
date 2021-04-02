@@ -1,4 +1,4 @@
-package parser.state.impls;
+package parser.state.impls.assignationStates;
 
 import static parser.state.util.StateUtils.addToList;
 
@@ -14,12 +14,12 @@ import parser.state.ParserState;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OperandState extends AbstractParserState {
+public class OperatorState extends AbstractParserState {
 
   private Declarational declarational;
   private List<Token> tokens;
 
-  public OperandState(Declarational declarational, Token token, List<Token> tokens) {
+  public OperatorState(Declarational declarational, Token token, List<Token> tokens) {
     this.declarational = declarational;
     this.tokens = addToList(tokens, token);
   }

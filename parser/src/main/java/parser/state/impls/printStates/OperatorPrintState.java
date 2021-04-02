@@ -13,11 +13,11 @@ import parser.state.ParserState;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OperandPrintState extends AbstractParserState {
+public class OperatorPrintState extends AbstractParserState {
 
   private List<Token> tokens;
 
-  public OperandPrintState(Token token, List<Token> tokens) {
+  public OperatorPrintState(Token token, List<Token> tokens) {
     this.tokens = addToList(tokens, token);
   }
 

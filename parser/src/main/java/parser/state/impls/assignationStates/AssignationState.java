@@ -1,11 +1,8 @@
-package parser.state.impls;
+package parser.state.impls.assignationStates;
 
-import static parser.state.util.StateUtils.makeTree;
-
-import java.util.List;
+import java.util.Collections;
 import lexer.model.Token;
 import lombok.*;
-import parser.node.impl.AssignationNode;
 import parser.node.interfaces.Declarational;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
@@ -15,19 +12,15 @@ import parser.state.ParserState;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ValueState extends AbstractParserState {
+public class AssignationState extends AbstractParserState {
 
   private Declarational declarational;
-  private List<Token> tokens;
 
   @Override
   public ParserState nextToken(Token token) {
     return switch (token.getTokenType()) {
-      case PLUS, MINUS, MULTIPLY, DIVIDE -> new OperandState(declarational, token, tokens);
-      case SEMICOLON -> {
-        node = new AssignationNode(makeTree(tokens), declarational);
-        yield new EmptyState();
-      }
+      case IDENTIFIER -> new IdentifiedState(declarational, Collections.singletonList(token));
+      case NUMBER, STRING -> new ValueState(declarational, Collections.singletonList(token));
       default -> throw new IllegalStateException("Unexpected value: " + token.getTokenType());
     };
   }
