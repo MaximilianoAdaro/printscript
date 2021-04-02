@@ -1,4 +1,4 @@
-package interpreter;
+package interpreter.interpetation;
 
 import java.util.List;
 import parser.node.Node;

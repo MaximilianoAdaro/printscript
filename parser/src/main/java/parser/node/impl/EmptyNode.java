@@ -15,12 +15,7 @@ import parser.node.visitor.NodeVisitor;
 public class EmptyNode implements Calculable {
 
   @Override
-  public void accept(NodeVisitor nodeVisitor) {
-    nodeVisitor.visit(this);
-  }
-
-  @Override
-  public LiteralValue calculate() {
+  public LiteralValue calculate(NodeVisitor nodeVisitor) {
     return new LiteralValue() {
       @Override
       public Object getValue() {
@@ -38,4 +33,7 @@ public class EmptyNode implements Calculable {
   public Calculable resolveTree(OperatorNode operator, Calculable operand) {
     throw new RuntimeException("Aca no puede llegar");
   }
+
+  @Override
+  public void accept(NodeVisitor nodeVisitor) {}
 }

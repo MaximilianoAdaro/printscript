@@ -19,9 +19,8 @@ public class DivisionNode extends OperatorNode {
   }
 
   @Override
-  public LiteralValue calculate() {
-    //        return leftNode.calculate() / rightNode.calculate();
-    return null;
+  public LiteralValue calculate(NodeVisitor nodeVisitor) {
+    return nodeVisitor.visit(this);
   }
 
   @Override

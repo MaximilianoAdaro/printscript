@@ -23,7 +23,7 @@ public class LiteralNode implements Calculable {
   }
 
   @Override
-  public LiteralValue calculate() {
+  public LiteralValue calculate(NodeVisitor nodeVisitor) {
     return literalValue;
   }
 

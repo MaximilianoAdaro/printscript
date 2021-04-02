@@ -19,9 +19,8 @@ public class SumNode extends OperatorNode {
   }
 
   @Override
-  public LiteralValue calculate() {
-    //        return leftNode.calculate() + rightNode.calculate();
-    return null;
+  public LiteralValue calculate(NodeVisitor visitor) {
+    return visitor.visit(this);
   }
 
   @Override

@@ -1,0 +1,5 @@
+let x: string = "El resultado es = ";
+let qwe: number = 0.1;
+let inf: number = 0.01;
+let num: number = 102.7 + 123 * qwe * 10 - 15 / inf;
+println(x + num);
