@@ -1,3 +1,9 @@
 package interpreter.visitor;
 
-public class InterpretationVisitor extends AbstractNodeVisitor {}
+import parser.node.impl.DeclarationNode;
+
+public class InterpretationVisitor extends AbstractNodeVisitor {
+
+  @Override
+  public void visit(DeclarationNode declarationNode) {}
+}
