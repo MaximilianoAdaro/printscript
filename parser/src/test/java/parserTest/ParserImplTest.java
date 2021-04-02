@@ -34,11 +34,11 @@ public class ParserImplTest {
 
     LiteralNode assignNodeLeft0 = literalNode(strValue("hello world"));
     DeclarationNode assignNodeRight0 = declNode(identifierNode("x"), TypeValue.STRING);
-    assertThat(nodes.get(0)).isEqualTo(assignNode(assignNodeLeft0, assignNodeRight0));
+    assertThat(nodes.get(0)).isEqualTo(assignNode(assignNodeRight0, assignNodeLeft0));
 
     LiteralNode assignNodeLeft1 = literalNode(numbValue(18.3));
     DeclarationNode assignNodeRight1 = declNode(identifierNode("y"), TypeValue.NUMBER);
-    assertThat(nodes.get(1)).isEqualTo(assignNode(assignNodeLeft1, assignNodeRight1));
+    assertThat(nodes.get(1)).isEqualTo(assignNode(assignNodeRight1, assignNodeLeft1));
 
     Calculable calculableNode = new SumNode(identifierNode("y"), identifierNode("x"));
     assertThat(nodes.get(2)).isEqualTo(printNode(calculableNode));
