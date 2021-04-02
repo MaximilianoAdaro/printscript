@@ -1,31 +1,33 @@
 package parser.node.visitor;
 
-import parser.node.impl.*;
+import parser.node.impl.AssignationNode;
+import parser.node.impl.DeclarationNode;
+import parser.node.impl.IdentifierNode;
+import parser.node.impl.PrintNode;
 import parser.node.impl.literalNodes.LiteralNode;
 import parser.node.impl.operatorNodes.DivisionNode;
 import parser.node.impl.operatorNodes.MinusNode;
 import parser.node.impl.operatorNodes.MultiplyNode;
 import parser.node.impl.operatorNodes.SumNode;
+import parser.node.interfaces.LiteralValue;
 
 public interface NodeVisitor {
 
   void visit(DeclarationNode declarationNode);
 
-  void visit(IdentifierNode identifierNode);
-
   void visit(PrintNode printNode);
 
   void visit(AssignationNode assignationNode);
 
-  void visit(SumNode sumNode);
+  LiteralValue visit(IdentifierNode identifierNode);
 
-  void visit(MinusNode minusNode);
+  LiteralValue visit(SumNode sumNode);
 
-  void visit(DivisionNode divisionNode);
+  LiteralValue visit(MinusNode minusNode);
 
-  void visit(MultiplyNode multiplyNode);
+  LiteralValue visit(DivisionNode divisionNode);
 
-  void visit(LiteralNode literalNode);
+  LiteralValue visit(MultiplyNode multiplyNode);
 
-  void visit(EmptyNode emptyNode);
+  LiteralValue visit(LiteralNode literalNode);
 }
