@@ -19,7 +19,7 @@ public class MinusNode extends OperatorNode {
   }
 
   @Override
-  public LiteralValue calculate() {
+  public LiteralValue calculate(NodeVisitor nodeVisitor) {
     //        return leftNode.calculate() - rightNode.calculate();
     return null;
   }

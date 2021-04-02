@@ -45,5 +45,6 @@ public class InterpretationVisitor extends AbstractNodeVisitor {
   @Override
   public void visit(AssignationNode assignationNode) {
     assignationNode.getDeclarational().accept(this);
+    final var value = assignationNode.getCalculable().calculate(this);
   }
 }

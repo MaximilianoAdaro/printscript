@@ -20,7 +20,7 @@ public class EmptyNode implements Calculable {
   }
 
   @Override
-  public LiteralValue calculate() {
+  public LiteralValue calculate(NodeVisitor nodeVisitor) {
     return new LiteralValue() {
       @Override
       public Object getValue() {
