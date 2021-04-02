@@ -5,5 +5,5 @@ import parser.node.Node;
 
 public interface Validator {
 
-  List<Node> validate();
+  void validate(List<Node> nodes);
 }

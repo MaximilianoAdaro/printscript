@@ -5,5 +5,5 @@ import parser.node.Node;
 
 public interface Interpreter {
 
-  List<Node> interpret();
+  void interpret(List<Node> nodes);
 }
