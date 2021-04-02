@@ -39,10 +39,12 @@ public class App implements Callable<Integer> {
     nodes.forEach(System.out::println);
 
     // here validates
-    ValidatorImpl.run(nodes);
-    if (validateOnly) return;
+    if (validateOnly) ValidatorImpl.run(nodes);
+    else InterpreterImpl.run(nodes);
 
-    InterpreterImpl.run(nodes);
+    //    ValidatorImpl.run(nodes);
+    //    if (validateOnly) return;
+    //    InterpreterImpl.run(nodes);
   }
 
   @Override

@@ -21,4 +21,9 @@ public class StringLiteralValue implements LiteralValue {
   public TypeValue getTypeValue() {
     return TypeValue.STRING;
   }
+
+  @Override
+  public String toString() {
+    return value;
+  }
 }

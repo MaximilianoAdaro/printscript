@@ -20,8 +20,7 @@ public class DivisionNode extends OperatorNode {
 
   @Override
   public LiteralValue calculate(NodeVisitor nodeVisitor) {
-    //        return leftNode.calculate() / rightNode.calculate();
-    return null;
+    return nodeVisitor.visit(this);
   }
 
   @Override

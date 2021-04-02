@@ -25,8 +25,7 @@ public class IdentifierNode implements Calculable, Declarational {
 
   @Override
   public LiteralValue calculate(NodeVisitor visitor) {
-    // todo: find in all assigment the value for this identity
-    return null;
+    return visitor.visit(this);
   }
 
   @Override
@@ -34,5 +33,10 @@ public class IdentifierNode implements Calculable, Declarational {
     operator.setLeftNode(this);
     operator.setRightNode(operand);
     return operator;
+  }
+
+  @Override
+  public IdentifierNode getIdentifierNode() {
+    return this;
   }
 }

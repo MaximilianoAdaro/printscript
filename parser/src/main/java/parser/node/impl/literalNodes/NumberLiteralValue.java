@@ -23,4 +23,9 @@ public class NumberLiteralValue implements LiteralValue {
   public TypeValue getTypeValue() {
     return TypeValue.NUMBER;
   }
+
+  @Override
+  public String toString() {
+    return "" + value + "";
+  }
 }
