@@ -44,6 +44,7 @@ task verifyAndTest {
 }
 
 build.dependsOn(tasks.googleJavaFormat)
+build.dependsOn(tasks.format)
 //check.dependsOn(tasks.googleJavaFormat)
 
 //verifyGoogleJavaFormat.dependsOn(tasks.googleJavaFormat)
@@ -72,7 +73,7 @@ jacocoTestCoverageVerification {
         rule {
             limit {
                 counter = 'LINE'
-                minimum = 0.5
+                minimum = 0.8
             }
         }
     }

@@ -6,9 +6,6 @@ import parser.node.impl.IdentifierNode;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class IdentifierAssignationState extends AbstractParserState {

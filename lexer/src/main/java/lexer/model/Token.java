@@ -12,8 +12,4 @@ public class Token {
   private final TokenType tokenType;
   private final String value;
   private final Position position;
-
-  public static Token end() {
-    return Token.builder().tokenType(TokenType.END).position(Position.empty()).value("").build();
-  }
 }

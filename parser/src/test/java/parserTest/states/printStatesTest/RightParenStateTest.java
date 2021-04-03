@@ -1,6 +1,7 @@
 package parserTest.states.printStatesTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static utils.NodeUtils.*;
 
 import java.util.List;
@@ -14,7 +15,14 @@ import parser.node.impl.PrintNode;
 public class RightParenStateTest {
 
   @Test
-  public void toLeftParenSate_fromLeftParen_shouldReturnPrintNode() {
+  public void toRightParenSate_whenThoRightParenFromLeftParen_shouldReturnPrintNode() {
+    String text = "println( ));";
+    List<Token> tokens = LexerImpl.lex(text);
+    assertThatThrownBy(() -> ParserImpl.parse(tokens)).isInstanceOf(RuntimeException.class);
+  }
+
+  @Test
+  public void toRightParenSate_fromLeftParen_shouldReturnPrintNode() {
     String text = "println( );";
     List<Token> tokens = LexerImpl.lex(text);
     List<Node> nodes = ParserImpl.parse(tokens);

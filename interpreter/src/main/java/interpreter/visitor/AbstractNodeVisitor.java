@@ -19,22 +19,24 @@ import parser.node.visitor.NodeVisitor;
 
 public abstract class AbstractNodeVisitor implements NodeVisitor {
 
-  static final Map<String, TypeValue> variables = new HashMap<>();
-  static final Map<String, LiteralValue> assignations = new HashMap<>();
+  private static final Map<String, TypeValue> variables = new HashMap<>();
+  private static final Map<String, LiteralValue> assignations = new HashMap<>();
 
   @Override
   public LiteralValue visit(IdentifierNode identifierNode) {
     final var variableName = identifierNode.getValue();
     if (!variables.containsKey(variableName))
       throw new RuntimeException("THE IDENTIFIER DOES NOT EXIST");
-    if (!assignations.containsKey(variableName)) throw new RuntimeException("IT IS NOT INITIATED");
+    if (!assignations.containsKey(variableName))
+      throw new RuntimeException("IT IS NOT INITIATED VARIABLE: " + variableName);
     return assignations.get(variableName);
   }
 
   @Override
   public void visit(DeclarationNode declarationNode) {
     final var variableName = declarationNode.getIdentifierNode().getValue();
-    if (variables.containsKey(variableName)) throw new RuntimeException("ALREADY EXISTS");
+    if (variables.containsKey(variableName))
+      throw new RuntimeException("ALREADY EXISTS VARIABLE: " + variableName);
     final var variableType = declarationNode.getTypeValue();
     variables.put(variableName, variableType);
   }

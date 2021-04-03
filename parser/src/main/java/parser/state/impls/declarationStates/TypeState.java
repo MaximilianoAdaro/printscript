@@ -11,9 +11,6 @@ import parser.state.ParserState;
 import parser.state.impls.EmptyState;
 import parser.state.impls.assignationStates.AssignationState;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class TypeState extends AbstractParserState {

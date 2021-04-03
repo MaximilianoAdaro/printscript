@@ -3,7 +3,7 @@ package parser.node.impl;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import parser.node.impl.literalNodes.TypeValue;
+import parser.node.impl.literalNodes.StringLiteralValue;
 import parser.node.impl.operatorNodes.OperatorNode;
 import parser.node.interfaces.Calculable;
 import parser.node.interfaces.LiteralValue;
@@ -16,17 +16,7 @@ public class EmptyNode implements Calculable {
 
   @Override
   public LiteralValue calculate(NodeVisitor nodeVisitor) {
-    return new LiteralValue() {
-      @Override
-      public Object getValue() {
-        return "";
-      }
-
-      @Override
-      public TypeValue getTypeValue() {
-        return TypeValue.STRING;
-      }
-    };
+    return new StringLiteralValue("");
   }
 
   @Override

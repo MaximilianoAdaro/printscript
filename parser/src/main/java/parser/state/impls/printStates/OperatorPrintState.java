@@ -8,9 +8,6 @@ import lombok.*;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class OperatorPrintState extends AbstractParserState {

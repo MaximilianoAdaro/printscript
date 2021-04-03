@@ -7,9 +7,6 @@ import parser.node.interfaces.Declarational;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class AssignationState extends AbstractParserState {
