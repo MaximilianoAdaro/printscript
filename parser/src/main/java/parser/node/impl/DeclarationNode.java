@@ -1,18 +1,16 @@
 package parser.node.impl;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import parser.node.impl.literalNodes.TypeValue;
-import parser.node.interfaces.Declarational;
+import parser.node.interfaces.DeclarationalNode;
 import parser.node.visitor.NodeVisitor;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DeclarationNode implements Declarational {
+public class DeclarationNode extends DeclarationalNode {
 
   private TypeValue typeValue;
   private IdentifierNode identifierNode;

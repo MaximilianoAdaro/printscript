@@ -3,7 +3,7 @@ package parser.state.impls.assignationStates;
 import java.util.Collections;
 import lexer.model.Token;
 import lombok.*;
-import parser.node.interfaces.Declarational;
+import parser.node.interfaces.DeclarationalNode;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
 
@@ -11,7 +11,7 @@ import parser.state.ParserState;
 @AllArgsConstructor
 public class AssignationState extends AbstractParserState {
 
-  private Declarational declarational;
+  private DeclarationalNode declarational;
 
   @Override
   public ParserState nextToken(Token token) {

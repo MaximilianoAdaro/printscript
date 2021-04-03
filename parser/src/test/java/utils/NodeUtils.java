@@ -10,7 +10,7 @@ import parser.node.impl.operatorNodes.MinusNode;
 import parser.node.impl.operatorNodes.MultiplyNode;
 import parser.node.impl.operatorNodes.SumNode;
 import parser.node.interfaces.Calculable;
-import parser.node.interfaces.Declarational;
+import parser.node.interfaces.DeclarationalNode;
 import parser.node.interfaces.LiteralValue;
 
 public class NodeUtils {
@@ -21,7 +21,7 @@ public class NodeUtils {
   }
 
   // create AssignationNode
-  public static AssignationNode assignNode(Declarational declarational, Calculable calculable) {
+  public static AssignationNode assignNode(DeclarationalNode declarational, Calculable calculable) {
     return AssignationNode.builder().calculable(calculable).declarational(declarational).build();
   }
 

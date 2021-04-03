@@ -13,7 +13,7 @@ import parser.node.impl.operatorNodes.DivisionNode;
 import parser.node.impl.operatorNodes.MinusNode;
 import parser.node.impl.operatorNodes.MultiplyNode;
 import parser.node.impl.operatorNodes.SumNode;
-import parser.node.interfaces.Declarational;
+import parser.node.interfaces.DeclarationalNode;
 import parser.node.interfaces.LiteralValue;
 import parser.node.visitor.NodeVisitor;
 
@@ -43,7 +43,7 @@ public abstract class AbstractNodeVisitor implements NodeVisitor {
 
   @Override
   public void visit(AssignationNode assignationNode) {
-    final Declarational declarational = assignationNode.getDeclarational();
+    final DeclarationalNode declarational = assignationNode.getDeclarational();
     declarational.accept(this);
     val literalValue = assignationNode.getCalculable().calculate(this);
     final IdentifierNode identifierNode = declarational.getIdentifierNode();

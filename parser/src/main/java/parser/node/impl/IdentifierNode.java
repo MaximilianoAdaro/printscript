@@ -2,15 +2,17 @@ package parser.node.impl;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import parser.node.impl.operatorNodes.OperatorNode;
 import parser.node.interfaces.Calculable;
-import parser.node.interfaces.Declarational;
+import parser.node.interfaces.DeclarationalNode;
 import parser.node.interfaces.LiteralValue;
 import parser.node.visitor.NodeVisitor;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
-public class IdentifierNode implements Calculable, Declarational {
+public class IdentifierNode extends DeclarationalNode implements Calculable {
 
   private final String value;
 

@@ -5,7 +5,7 @@ import static parser.state.util.StateUtils.addToList;
 import java.util.List;
 import lexer.model.Token;
 import lombok.*;
-import parser.node.interfaces.Declarational;
+import parser.node.interfaces.DeclarationalNode;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
 
@@ -13,10 +13,10 @@ import parser.state.ParserState;
 @AllArgsConstructor
 public class OperatorState extends AbstractParserState {
 
-  private Declarational declarational;
+  private DeclarationalNode declarational;
   private List<Token> tokens;
 
-  public OperatorState(Declarational declarational, Token token, List<Token> tokens) {
+  public OperatorState(DeclarationalNode declarational, Token token, List<Token> tokens) {
     this.declarational = declarational;
     this.tokens = addToList(tokens, token);
   }

@@ -1,19 +1,18 @@
 package parser.node.impl.literalNodes;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import parser.node.AbstractNode;
 import parser.node.impl.operatorNodes.OperatorNode;
 import parser.node.interfaces.Calculable;
 import parser.node.interfaces.LiteralValue;
 import parser.node.visitor.NodeVisitor;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LiteralNode implements Calculable {
+public class LiteralNode extends AbstractNode implements Calculable {
 
   private LiteralValue literalValue;
 

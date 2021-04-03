@@ -2,13 +2,16 @@ package parser.node.impl.operatorNodes;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import parser.node.AbstractNode;
 import parser.node.interfaces.Calculable;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class OperatorNode implements Calculable {
+public abstract class OperatorNode extends AbstractNode implements Calculable {
 
   private Calculable rightNode;
   private Calculable leftNode;

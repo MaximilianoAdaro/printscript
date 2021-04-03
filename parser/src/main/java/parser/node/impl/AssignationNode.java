@@ -1,22 +1,20 @@
 package parser.node.impl;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import parser.node.Node;
+import lombok.*;
+import parser.node.AbstractNode;
 import parser.node.interfaces.Calculable;
-import parser.node.interfaces.Declarational;
+import parser.node.interfaces.DeclarationalNode;
 import parser.node.visitor.NodeVisitor;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AssignationNode implements Node {
+public class AssignationNode extends AbstractNode {
 
   private Calculable calculable;
-  private Declarational declarational;
+  private DeclarationalNode declarational;
 
   @Override
   public void accept(NodeVisitor nodeVisitor) {

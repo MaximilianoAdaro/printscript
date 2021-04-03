@@ -6,7 +6,7 @@ import java.util.List;
 import lexer.model.Token;
 import lombok.*;
 import parser.node.impl.AssignationNode;
-import parser.node.interfaces.Declarational;
+import parser.node.interfaces.DeclarationalNode;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
 import parser.state.impls.EmptyState;
@@ -15,7 +15,7 @@ import parser.state.impls.EmptyState;
 @AllArgsConstructor
 public class IdentifiedState extends AbstractParserState {
 
-  private Declarational declarational;
+  private DeclarationalNode declarational;
   private List<Token> tokens;
 
   @Override
