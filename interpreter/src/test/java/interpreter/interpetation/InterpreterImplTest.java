@@ -1,5 +1,8 @@
 package interpreter.interpetation;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.ArrayList;
 import lexer.LexerImpl;
 import org.junit.Test;
 import parser.ParserImpl;
@@ -18,6 +21,10 @@ public class InterpreterImplTest {
             """;
     final var tokens = LexerImpl.lex(text);
     final var nodes = ParserImpl.parse(tokens);
-    InterpreterImpl.run(nodes);
+
+    final var prints = new ArrayList<String>();
+    InterpreterImpl.run(nodes, prints::add);
+
+    assertThat(prints).hasSize(1).containsExactly("El resultado es = -1274.3");
   }
 }
