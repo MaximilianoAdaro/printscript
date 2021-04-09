@@ -10,7 +10,7 @@ import lombok.val;
 import org.junit.Test;
 import parser.ParserImpl;
 import parser.node.Node;
-import parser.node.impl.DeclarationNode;
+import parser.node.impl.declarationNodes.DeclarationNode;
 import parser.node.impl.literalNodes.LiteralNode;
 import parser.node.impl.literalNodes.TypeValue;
 import parser.node.impl.operatorNodes.SumNode;

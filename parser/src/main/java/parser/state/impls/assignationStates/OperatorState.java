@@ -5,7 +5,7 @@ import static parser.state.util.StateUtils.addToList;
 import java.util.List;
 import lexer.model.Token;
 import lombok.*;
-import parser.node.interfaces.DeclarationalNode;
+import parser.node.impl.declarationNodes.DeclarationalNode;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
 

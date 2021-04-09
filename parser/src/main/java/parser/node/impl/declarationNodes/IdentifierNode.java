@@ -1,11 +1,10 @@
-package parser.node.impl;
+package parser.node.impl.declarationNodes;
 
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import parser.node.impl.operatorNodes.OperatorNode;
 import parser.node.interfaces.Calculable;
-import parser.node.interfaces.DeclarationalNode;
 import parser.node.interfaces.LiteralValue;
 import parser.node.visitor.NodeVisitor;
 

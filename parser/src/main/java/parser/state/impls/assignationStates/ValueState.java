@@ -6,7 +6,7 @@ import java.util.List;
 import lexer.model.Token;
 import lombok.*;
 import parser.node.impl.AssignationNode;
-import parser.node.interfaces.DeclarationalNode;
+import parser.node.impl.declarationNodes.DeclarationalNode;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
 import parser.state.impls.EmptyState;

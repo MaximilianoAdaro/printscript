@@ -1,8 +1,7 @@
-package parser.node.impl;
+package parser.node.impl.declarationNodes;
 
 import lombok.*;
 import parser.node.impl.literalNodes.TypeValue;
-import parser.node.interfaces.DeclarationalNode;
 import parser.node.visitor.NodeVisitor;
 
 @EqualsAndHashCode(callSuper = true)

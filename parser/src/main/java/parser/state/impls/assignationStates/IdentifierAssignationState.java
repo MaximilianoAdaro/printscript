@@ -2,7 +2,7 @@ package parser.state.impls.assignationStates;
 
 import lexer.model.Token;
 import lombok.*;
-import parser.node.impl.IdentifierNode;
+import parser.node.impl.declarationNodes.IdentifierNode;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
 

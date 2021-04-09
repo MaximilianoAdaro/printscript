@@ -44,7 +44,7 @@ task verifyAndTest {
 }
 
 build.dependsOn(tasks.googleJavaFormat)
-build.dependsOn(tasks.format)
+build.dependsOn(tasks.compileAndFormat)
 //check.dependsOn(tasks.googleJavaFormat)
 
 //verifyGoogleJavaFormat.dependsOn(tasks.googleJavaFormat)

@@ -3,7 +3,7 @@ package parser.state.impls.assignationStates;
 import java.util.Collections;
 import lexer.model.Token;
 import lombok.*;
-import parser.node.interfaces.DeclarationalNode;
+import parser.node.impl.declarationNodes.DeclarationalNode;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
 

@@ -12,7 +12,7 @@ import lexer.model.Token;
 import org.junit.Test;
 import parser.ParserImpl;
 import parser.node.Node;
-import parser.node.impl.DeclarationNode;
+import parser.node.impl.declarationNodes.DeclarationNode;
 
 public class TypeStateTest {
 

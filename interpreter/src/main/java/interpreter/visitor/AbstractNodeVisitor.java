@@ -5,15 +5,15 @@ import java.util.HashMap;
 import java.util.Map;
 import lombok.val;
 import parser.node.impl.AssignationNode;
-import parser.node.impl.DeclarationNode;
-import parser.node.impl.IdentifierNode;
+import parser.node.impl.declarationNodes.DeclarationNode;
+import parser.node.impl.declarationNodes.DeclarationalNode;
+import parser.node.impl.declarationNodes.IdentifierNode;
 import parser.node.impl.literalNodes.LiteralNode;
 import parser.node.impl.literalNodes.TypeValue;
 import parser.node.impl.operatorNodes.DivisionNode;
 import parser.node.impl.operatorNodes.MinusNode;
 import parser.node.impl.operatorNodes.MultiplyNode;
 import parser.node.impl.operatorNodes.SumNode;
-import parser.node.interfaces.DeclarationalNode;
 import parser.node.interfaces.LiteralValue;
 import parser.node.visitor.NodeVisitor;
 

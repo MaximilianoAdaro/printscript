@@ -1,6 +1,9 @@
 package utils;
 
 import parser.node.impl.*;
+import parser.node.impl.declarationNodes.DeclarationNode;
+import parser.node.impl.declarationNodes.DeclarationalNode;
+import parser.node.impl.declarationNodes.IdentifierNode;
 import parser.node.impl.literalNodes.LiteralNode;
 import parser.node.impl.literalNodes.NumberLiteralValue;
 import parser.node.impl.literalNodes.StringLiteralValue;
@@ -10,7 +13,6 @@ import parser.node.impl.operatorNodes.MinusNode;
 import parser.node.impl.operatorNodes.MultiplyNode;
 import parser.node.impl.operatorNodes.SumNode;
 import parser.node.interfaces.Calculable;
-import parser.node.interfaces.DeclarationalNode;
 import parser.node.interfaces.LiteralValue;
 
 public class NodeUtils {

@@ -1,7 +1,7 @@
 package parser.state.util;
 
 import lexer.model.Token;
-import parser.node.impl.IdentifierNode;
+import parser.node.impl.declarationNodes.IdentifierNode;
 import parser.node.impl.literalNodes.LiteralNode;
 import parser.node.impl.literalNodes.NumberLiteralValue;
 import parser.node.impl.literalNodes.StringLiteralValue;

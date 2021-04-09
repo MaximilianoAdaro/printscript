@@ -10,13 +10,13 @@ import org.junit.Test;
 import parser.ParserImpl;
 import parser.node.Node;
 import parser.node.impl.AssignationNode;
-import parser.node.impl.DeclarationNode;
+import parser.node.impl.declarationNodes.DeclarationNode;
+import parser.node.impl.declarationNodes.DeclarationalNode;
 import parser.node.impl.literalNodes.TypeValue;
 import parser.node.impl.operatorNodes.DivisionNode;
 import parser.node.impl.operatorNodes.MultiplyNode;
 import parser.node.impl.operatorNodes.SumNode;
 import parser.node.interfaces.Calculable;
-import parser.node.interfaces.Declarational;
 
 public class MakeTreeTest {
 
@@ -30,7 +30,7 @@ public class MakeTreeTest {
     Node node = parse.get(0);
     assertThat(node).hasSameClassAs(new AssignationNode());
 
-    Declarational declarational = ((AssignationNode) node).getDeclarational();
+    DeclarationalNode declarational = ((AssignationNode) node).getDeclarational();
     assertThat(declarational).hasSameClassAs(new DeclarationNode());
     DeclarationNode declarationNode = (DeclarationNode) declarational;
     assertThat(declarationNode.getTypeValue()).isEqualTo(TypeValue.NUMBER);
