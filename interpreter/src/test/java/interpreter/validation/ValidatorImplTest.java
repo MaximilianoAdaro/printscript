@@ -1,8 +1,8 @@
 package interpreter.validation;
 
-import lexer.LexerImpl;
+import lexer.Lexer;
 import org.junit.Test;
-import parser.ParserImpl;
+import parser.Parser;
 
 public class ValidatorImplTest {
 
@@ -16,8 +16,8 @@ public class ValidatorImplTest {
                     let y3: number = 102.7 + 123 * y1 * 10 - 15 / y2;
                     println(y + y3);
                     """;
-    final var tokens = LexerImpl.lex(text);
-    final var nodes = ParserImpl.parse(tokens);
-    ValidatorImpl.run(nodes);
+    final var tokens = Lexer.lex(text);
+    final var nodes = Parser.parse(tokens);
+    Validator.run(nodes);
   }
 }

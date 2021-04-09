@@ -5,10 +5,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static utils.NodeUtils.*;
 
 import java.util.List;
-import lexer.LexerImpl;
+import lexer.Lexer;
 import lexer.model.Token;
 import org.junit.Test;
-import parser.ParserImpl;
+import parser.Parser;
 import parser.node.Node;
 import parser.node.impl.AssignationNode;
 import parser.node.impl.literalNodes.TypeValue;
@@ -18,15 +18,15 @@ public class OperatorStateTest {
   @Test
   public void toOperatorSate_shouldThrowException() {
     String text = "let x: string = y - ;";
-    List<Token> tokens = LexerImpl.lex(text);
-    assertThatThrownBy(() -> ParserImpl.parse(tokens)).isInstanceOf(RuntimeException.class);
+    List<Token> tokens = Lexer.lex(text);
+    assertThatThrownBy(() -> Parser.parse(tokens)).isInstanceOf(RuntimeException.class);
   }
 
   @Test
   public void resolveOperator_whenComingFromDecl_shouldReturnAssignationNode() {
     String text = "let x: string = y - z;";
-    List<Token> tokens = LexerImpl.lex(text);
-    List<Node> parse = ParserImpl.parse(tokens);
+    List<Token> tokens = Lexer.lex(text);
+    List<Node> parse = Parser.parse(tokens);
     assertThat(parse).hasSize(1);
     Node nodeX = parse.get(0);
     assertThat(nodeX).hasSameClassAs(new AssignationNode());
@@ -40,8 +40,8 @@ public class OperatorStateTest {
   @Test
   public void resolveOperator_whenComingFromIdent_shouldReturnAssignationNode() {
     String text = "x = y * z;";
-    List<Token> tokens = LexerImpl.lex(text);
-    List<Node> parse = ParserImpl.parse(tokens);
+    List<Token> tokens = Lexer.lex(text);
+    List<Node> parse = Parser.parse(tokens);
     assertThat(parse).hasSize(1);
     Node nodeX = parse.get(0);
     assertThat(nodeX).hasSameClassAs(new AssignationNode());

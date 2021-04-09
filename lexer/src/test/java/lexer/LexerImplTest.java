@@ -15,7 +15,7 @@ import org.junit.Test;
 public class LexerImplTest {
 
   private List<Token> lex(String text) {
-    return LexerImpl.lex(text);
+    return Lexer.lex(text);
   }
 
   private void testWithExpected(String text, List<Token> expected) {
