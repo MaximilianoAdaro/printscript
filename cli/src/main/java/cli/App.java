@@ -3,13 +3,13 @@ package cli;
 import static picocli.CommandLine.*;
 
 import fileReader.FileReaderPS;
-import interpreter.interpetation.InterpreterImpl;
-import interpreter.validation.ValidatorImpl;
+import interpreter.interpetation.Interpreter;
+import interpreter.validation.Validator;
 import java.io.File;
 import java.util.concurrent.Callable;
-import lexer.LexerImpl;
+import lexer.Lexer;
 import lombok.val;
-import parser.ParserImpl;
+import parser.Parser;
 import picocli.CommandLine;
 
 @Command(
@@ -32,12 +32,12 @@ public class App implements Callable<Integer> {
 
   private void run() {
     val text = FileReaderPS.readFile(file);
-    val tokens = LexerImpl.lex(text);
-    val nodes = ParserImpl.parse(tokens);
+    val tokens = Lexer.lex(text);
+    val nodes = Parser.parse(tokens);
 
     // here validates
-    if (validateOnly) ValidatorImpl.run(nodes);
-    else InterpreterImpl.run(nodes, System.out::println);
+    if (validateOnly) Validator.run(nodes);
+    else Interpreter.run(nodes, System.out::println);
 
     //    ValidatorImpl.run(nodes);
     //    if (validateOnly) return;

@@ -4,10 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static utils.NodeUtils.*;
 
 import java.util.List;
-import lexer.LexerImpl;
+import lexer.Lexer;
 import lexer.model.Token;
 import org.junit.Test;
-import parser.ParserImpl;
+import parser.Parser;
 import parser.node.Node;
 import parser.node.impl.AssignationNode;
 import parser.node.impl.declarationNodes.DeclarationNode;
@@ -23,8 +23,8 @@ public class MakeTreeTest {
   @Test
   public void makeTreeTest() {
     String text = "let x: number = y + 2 * 3 + z / 3 * 4 * 5;";
-    List<Token> tokens = LexerImpl.lex(text);
-    List<Node> parse = ParserImpl.parse(tokens);
+    List<Token> tokens = Lexer.lex(text);
+    List<Node> parse = Parser.parse(tokens);
 
     assertThat(parse).hasSize(1);
     Node node = parse.get(0);
