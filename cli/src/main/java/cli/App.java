@@ -37,7 +37,7 @@ public class App implements Callable<Integer> {
 
     // here validates
     if (validateOnly) ValidatorImpl.run(nodes);
-    else InterpreterImpl.run(nodes);
+    else InterpreterImpl.run(nodes, System.out::println);
 
     //    ValidatorImpl.run(nodes);
     //    if (validateOnly) return;
