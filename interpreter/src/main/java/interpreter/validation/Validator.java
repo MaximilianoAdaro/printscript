@@ -16,5 +16,6 @@ public class Validator {
   private void validate(List<Node> nodes) {
     val visitor = new ValidationVisitor();
     nodes.forEach(n -> n.accept(visitor));
+    //
   }
 }
