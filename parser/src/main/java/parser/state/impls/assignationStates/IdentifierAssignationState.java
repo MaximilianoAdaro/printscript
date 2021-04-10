@@ -1,7 +1,9 @@
 package parser.state.impls.assignationStates;
 
 import lexer.model.Token;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import parser.exception.ParserException;
 import parser.node.impl.declarationNodes.IdentifierNode;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
@@ -16,7 +18,7 @@ public class IdentifierAssignationState extends AbstractParserState {
   public ParserState nextToken(Token t) {
     return switch (t.getTokenType()) {
       case ASSIGNATION -> new AssignationState(new IdentifierNode(token.getValue()));
-      default -> throw new IllegalStateException("Unexpected value: " + t.getTokenType());
+      default -> throw ParserException.unexpectedToken(token);
     };
   }
 }

@@ -4,7 +4,9 @@ import static parser.state.util.StateUtils.makeTree;
 
 import java.util.List;
 import lexer.model.Token;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import parser.exception.ParserException;
 import parser.node.impl.AssignationNode;
 import parser.node.impl.declarationNodes.DeclarationalNode;
 import parser.state.AbstractParserState;
@@ -26,7 +28,7 @@ public class ValueState extends AbstractParserState {
         node = new AssignationNode(makeTree(tokens), declarational);
         yield new EmptyState();
       }
-      default -> throw new IllegalStateException("Unexpected value: " + token.getTokenType());
+      default -> throw ParserException.unexpectedToken(token);
     };
   }
 }

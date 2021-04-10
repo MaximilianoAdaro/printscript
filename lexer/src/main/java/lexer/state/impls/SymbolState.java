@@ -3,6 +3,7 @@ package lexer.state.impls;
 import static lexer.utils.CharacterUtils.*;
 
 import java.util.Optional;
+import lexer.exception.LexerException;
 import lexer.model.Token;
 import lexer.model.TokenType;
 import lexer.state.AbstractLexerState;
@@ -28,7 +29,7 @@ public class SymbolState extends AbstractLexerState {
     if (isStringSymbol(c)) return new StringState(lexerContext.reset(), c);
     if (isLetter(c)) return new TextState(lexerContext.reset(c));
 
-    throw new IllegalStateException("Unexpected value: " + c);
+    throw LexerException.illegalText(c, lexerContext);
   }
 
   @Override
@@ -45,7 +46,7 @@ public class SymbolState extends AbstractLexerState {
       case "(" -> createToken(TokenType.LEFT_PAREN);
       case ")" -> createToken(TokenType.RIGHT_PAREN);
 
-      default -> throw new IllegalStateException("Unexpected value: " + c);
+      default -> throw LexerException.unidentifiedCharacter(c.charAt(0), lexerContext);
     };
   }
 }

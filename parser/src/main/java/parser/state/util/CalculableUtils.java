@@ -1,6 +1,7 @@
 package parser.state.util;
 
 import lexer.model.Token;
+import parser.exception.ParserException;
 import parser.node.impl.declarationNodes.IdentifierNode;
 import parser.node.impl.literalNodes.LiteralNode;
 import parser.node.impl.literalNodes.NumberLiteralValue;
@@ -22,7 +23,7 @@ public class CalculableUtils {
       case STRING -> new LiteralNode(new StringLiteralValue(token.getValue()));
       case NUMBER -> new LiteralNode(new NumberLiteralValue(Double.parseDouble(token.getValue())));
       case IDENTIFIER -> new IdentifierNode(token.getValue());
-      default -> throw new IllegalStateException("Unexpected value: " + token.getTokenType());
+      default -> throw ParserException.unexpectedToken(token);
     };
   }
 }

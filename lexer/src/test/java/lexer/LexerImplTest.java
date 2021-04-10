@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.Map;
+import lexer.exception.LexerException;
 import lexer.model.Token;
 import org.junit.Test;
 
@@ -215,7 +216,9 @@ public class LexerImplTest {
   @Test
   public void testNotDecimal() {
     final var s = "22342.234.23";
-    assertThatThrownBy(() -> lex(s)).isInstanceOf(IllegalStateException.class);
+    assertThatThrownBy(() -> lex(s))
+        .isInstanceOf(LexerException.class)
+        .hasMessage("Unexpected text at line: 1 between columns: ( 1, 9 ) -> 22342.234.");
   }
 
   @Test
@@ -224,6 +227,8 @@ public class LexerImplTest {
                 'hello
                 world'""";
 
-    assertThatThrownBy(() -> lex(s)).isInstanceOf(IllegalStateException.class);
+    assertThatThrownBy(() -> lex(s))
+        .isInstanceOf(LexerException.class)
+        .hasMessage("Unclosed string at line: 1 between columns: ( 1, 6 ) -> hello");
   }
 }

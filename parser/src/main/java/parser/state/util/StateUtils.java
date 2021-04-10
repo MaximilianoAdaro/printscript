@@ -5,7 +5,6 @@ import static parser.state.util.CalculableUtils.getNode;
 import java.util.ArrayList;
 import java.util.List;
 import lexer.model.Token;
-import lombok.SneakyThrows;
 import parser.node.impl.operatorNodes.OperatorNode;
 import parser.node.interfaces.Calculable;
 
@@ -17,7 +16,6 @@ public class StateUtils {
     return list;
   }
 
-  @SneakyThrows
   public static Calculable makeTree(List<Token> tokens) {
     if (tokens.isEmpty()) throw new RuntimeException("Cannot be empty");
     Calculable root = getNode(tokens.get(0));

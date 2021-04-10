@@ -2,6 +2,7 @@ package parser.state.impls.declarationStates;
 
 import lexer.model.Token;
 import lombok.NoArgsConstructor;
+import parser.exception.ParserException;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
 
@@ -12,7 +13,7 @@ public class DeclarationState extends AbstractParserState {
   public ParserState nextToken(Token token) {
     return switch (token.getTokenType()) {
       case IDENTIFIER -> new IdentifierState(token);
-      default -> throw new IllegalStateException("Unexpected value: " + token.getTokenType());
+      default -> throw ParserException.unexpectedToken(token);
     };
   }
 }

@@ -7,6 +7,7 @@ import lexer.Lexer;
 import lexer.model.Token;
 import org.junit.Test;
 import parser.Parser;
+import parser.exception.ParserException;
 
 public class ValuePrintStateTest {
 
@@ -14,6 +15,8 @@ public class ValuePrintStateTest {
   public void toValuePrintPrintSate_shouldThrowException() {
     String text = "println( 123 ;";
     List<Token> tokens = Lexer.lex(text);
-    assertThatThrownBy(() -> Parser.parse(tokens)).isInstanceOf(RuntimeException.class);
+    assertThatThrownBy(() -> Parser.parse(tokens))
+        .isInstanceOf(ParserException.class)
+        .hasMessage("Unexpected value at line 1 and column 14 -> ;");
   }
 }

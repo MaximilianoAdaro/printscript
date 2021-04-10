@@ -1,5 +1,7 @@
 package lexer.state.impls;
 
+import static lexer.exception.LexerException.illegalNewline;
+import static lexer.exception.LexerException.illegalText;
 import static lexer.utils.CharacterUtils.*;
 
 import java.util.Optional;
@@ -31,7 +33,7 @@ public class StringState extends AbstractLexerState {
   @Override
   public LexerState nextValue(char c) {
     if (!done) {
-      if (isNewline(c)) throw new IllegalStateException();
+      if (isNewline(c)) throw illegalNewline(c, lexerContext);
       if (isSameAsStart(c)) return new StringState(lexerContext.copy(), startSymbol, true);
       return new StringState(lexerContext.addCharacter(c), startSymbol);
     }
@@ -43,7 +45,7 @@ public class StringState extends AbstractLexerState {
     if (isNumber(c)) return new NumberState(lexerContext.reset(c));
     if (isLetter(c)) return new TextState(lexerContext.reset(c));
 
-    throw new IllegalStateException("Unexpected value: " + c);
+    throw illegalText(c, lexerContext);
   }
 
   @Override

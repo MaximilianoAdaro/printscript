@@ -9,6 +9,7 @@ import lexer.Lexer;
 import lexer.model.Token;
 import org.junit.Test;
 import parser.Parser;
+import parser.exception.ParserException;
 import parser.node.Node;
 import parser.node.impl.AssignationNode;
 import parser.node.impl.literalNodes.TypeValue;
@@ -19,7 +20,9 @@ public class OperatorStateTest {
   public void toOperatorSate_shouldThrowException() {
     String text = "let x: string = y - ;";
     List<Token> tokens = Lexer.lex(text);
-    assertThatThrownBy(() -> Parser.parse(tokens)).isInstanceOf(RuntimeException.class);
+    assertThatThrownBy(() -> Parser.parse(tokens))
+        .isInstanceOf(ParserException.class)
+        .hasMessage("Unexpected value at line 1 and column 21 -> ;");
   }
 
   @Test

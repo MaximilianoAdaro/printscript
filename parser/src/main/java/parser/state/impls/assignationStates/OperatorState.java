@@ -4,7 +4,9 @@ import static parser.state.util.StateUtils.addToList;
 
 import java.util.List;
 import lexer.model.Token;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import parser.exception.ParserException;
 import parser.node.impl.declarationNodes.DeclarationalNode;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
@@ -26,7 +28,7 @@ public class OperatorState extends AbstractParserState {
     return switch (token.getTokenType()) {
       case IDENTIFIER -> new IdentifiedState(declarational, addToList(tokens, token));
       case NUMBER, STRING -> new ValueState(declarational, addToList(tokens, token));
-      default -> throw new IllegalStateException("Unexpected value: " + token.getTokenType());
+      default -> throw ParserException.unexpectedToken(token);
     };
   }
 }

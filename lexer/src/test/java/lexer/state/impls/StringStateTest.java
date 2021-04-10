@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Optional;
+import lexer.exception.LexerException;
 import lexer.model.TokenType;
 import org.junit.Test;
 
@@ -17,7 +18,8 @@ public class StringStateTest {
             startSymbol -> {
               final var state = css(clc("'hello", cp(1, 1, 1, 6)), startSymbol, false);
               assertThatThrownBy(() -> state.nextValue('\n'))
-                  .isInstanceOf(IllegalStateException.class);
+                  .isInstanceOf(LexerException.class)
+                  .hasMessage("Unclosed string at line: 1 between columns: ( 1, 6 ) -> 'hello");
             });
   }
 

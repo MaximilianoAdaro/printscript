@@ -2,6 +2,7 @@ package parser.state.impls.printStates;
 
 import lexer.model.Token;
 import lombok.NoArgsConstructor;
+import parser.exception.ParserException;
 import parser.node.impl.EmptyNode;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
@@ -15,7 +16,7 @@ public class LeftParenState extends AbstractParserState {
       case IDENTIFIER -> new IdentifiedPrintState(token);
       case NUMBER, STRING -> new ValuePrintState(token);
       case RIGHT_PAREN -> new RightParenState(new EmptyNode());
-      default -> throw new IllegalStateException();
+      default -> throw ParserException.unexpectedToken(token);
     };
   }
 }
