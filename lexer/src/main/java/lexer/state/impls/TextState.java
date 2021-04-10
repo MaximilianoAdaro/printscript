@@ -3,6 +3,7 @@ package lexer.state.impls;
 import static lexer.utils.CharacterUtils.*;
 
 import java.util.Optional;
+import lexer.exception.LexerException;
 import lexer.model.Token;
 import lexer.model.TokenType;
 import lexer.state.AbstractLexerState;
@@ -31,7 +32,7 @@ public class TextState extends AbstractLexerState {
     if (isWhitespace(c)) return new EmptyState(lexerContext.reset());
     if (isAnySymbol(c)) return new SymbolState(lexerContext.reset(c));
 
-    throw new IllegalStateException("Unexpected value: " + c);
+    throw LexerException.illegalText(c, lexerContext);
   }
 
   @Override

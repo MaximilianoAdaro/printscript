@@ -8,5 +8,5 @@ import lombok.EqualsAndHashCode;
 @Data
 public abstract class AbstractNode implements Node {
 
-  private Position position;
+  private Position position = Position.builder().build();
 }

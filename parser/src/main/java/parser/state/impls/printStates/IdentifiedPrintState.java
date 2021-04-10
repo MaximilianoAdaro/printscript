@@ -5,7 +5,9 @@ import static parser.state.util.StateUtils.makeTree;
 
 import java.util.List;
 import lexer.model.Token;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import parser.exception.ParserException;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
 
@@ -28,7 +30,7 @@ public class IdentifiedPrintState extends AbstractParserState {
     return switch (token.getTokenType()) {
       case PLUS, MINUS, MULTIPLY, DIVIDE -> new OperatorPrintState(token, tokens);
       case RIGHT_PAREN -> new RightParenState(makeTree(tokens));
-      default -> throw new IllegalStateException();
+      default -> throw ParserException.unexpectedToken(token);
     };
   }
 }

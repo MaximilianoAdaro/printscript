@@ -3,8 +3,7 @@ package cli;
 import static picocli.CommandLine.*;
 
 import fileReader.FileReaderPS;
-import interpreter.interpetation.Interpreter;
-import interpreter.validation.Validator;
+import interpreter.Interpreter;
 import java.io.File;
 import java.util.concurrent.Callable;
 import lexer.Lexer;
@@ -36,7 +35,7 @@ public class App implements Callable<Integer> {
     val nodes = Parser.parse(tokens);
 
     // here validates
-    if (validateOnly) Validator.run(nodes);
+    if (validateOnly) Interpreter.run(nodes, __ -> {});
     else Interpreter.run(nodes, System.out::println);
 
     //    ValidatorImpl.run(nodes);

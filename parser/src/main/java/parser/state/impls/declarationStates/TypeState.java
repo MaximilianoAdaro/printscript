@@ -2,7 +2,9 @@ package parser.state.impls.declarationStates;
 
 import lexer.model.Token;
 import lexer.model.TokenType;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import parser.exception.ParserException;
 import parser.node.impl.declarationNodes.DeclarationNode;
 import parser.node.impl.declarationNodes.IdentifierNode;
 import parser.node.impl.literalNodes.TypeValue;
@@ -26,7 +28,7 @@ public class TypeState extends AbstractParserState {
         node = getDeclarationNode();
         yield new EmptyState();
       }
-      default -> throw new IllegalStateException("Unexpected value: " + t.getTokenType());
+      default -> throw ParserException.unexpectedToken(token);
     };
   }
 

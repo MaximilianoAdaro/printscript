@@ -9,6 +9,7 @@ import lexer.Lexer;
 import lexer.model.Token;
 import org.junit.Test;
 import parser.Parser;
+import parser.exception.ParserException;
 import parser.node.Node;
 import parser.node.impl.PrintNode;
 
@@ -18,7 +19,9 @@ public class RightParenStateTest {
   public void toRightParenSate_whenThoRightParenFromLeftParen_shouldReturnPrintNode() {
     String text = "println( ));";
     List<Token> tokens = Lexer.lex(text);
-    assertThatThrownBy(() -> Parser.parse(tokens)).isInstanceOf(RuntimeException.class);
+    assertThatThrownBy(() -> Parser.parse(tokens))
+        .isInstanceOf(ParserException.class)
+        .hasMessage("Unexpected value at line 1 and column 11 -> )");
   }
 
   @Test

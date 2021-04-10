@@ -1,5 +1,6 @@
 package lexer.state.impls;
 
+import static lexer.exception.LexerException.illegalText;
 import static lexer.utils.CharacterUtils.*;
 
 import java.util.Optional;
@@ -33,16 +34,14 @@ public class NumberState extends AbstractLexerState {
 
     if (isDot(c)) {
       if (!isDecimal) return new NumberState(lexerContext.addCharacter(c), true);
-      throw new IllegalStateException();
+      throw illegalText(c, lexerContext);
     }
     done = true;
     if (isAnySymbol(c)) return new SymbolState(lexerContext.reset(c));
-
     if (isNewline(c)) return new EmptyState(lexerContext.changeLine());
-
     if (isWhitespace(c)) return new EmptyState(lexerContext.reset());
 
-    throw new IllegalStateException("Unexpected value: " + c);
+    throw illegalText(c, lexerContext);
   }
 
   @Override

@@ -7,6 +7,7 @@ import lexer.Lexer;
 import lexer.model.Token;
 import org.junit.Test;
 import parser.Parser;
+import parser.exception.ParserException;
 
 public class OperatorPrintStateTest {
 
@@ -14,20 +15,26 @@ public class OperatorPrintStateTest {
   public void toOperatorPrintSate_whenComingFromIdent_shouldThrowException() {
     String text = "println( y - ;";
     List<Token> tokens = Lexer.lex(text);
-    assertThatThrownBy(() -> Parser.parse(tokens)).isInstanceOf(RuntimeException.class);
+    assertThatThrownBy(() -> Parser.parse(tokens))
+        .isInstanceOf(ParserException.class)
+        .hasMessage("Unexpected value at line 1 and column 14 -> ;");
   }
 
   @Test
   public void toOperatorPrintSate_whenComingFromValue_shouldThrowException() {
     String text = "println( 123 - ;";
     List<Token> tokens = Lexer.lex(text);
-    assertThatThrownBy(() -> Parser.parse(tokens)).isInstanceOf(RuntimeException.class);
+    assertThatThrownBy(() -> Parser.parse(tokens))
+        .isInstanceOf(ParserException.class)
+        .hasMessage("Unexpected value at line 1 and column 16 -> ;");
   }
 
   @Test
   public void toOperatorPrintSate_whenComingFromSeveralOperators_shouldThrowException() {
     String text = "println( 123 - 23 + s * w ;";
     List<Token> tokens = Lexer.lex(text);
-    assertThatThrownBy(() -> Parser.parse(tokens)).isInstanceOf(RuntimeException.class);
+    assertThatThrownBy(() -> Parser.parse(tokens))
+        .isInstanceOf(ParserException.class)
+        .hasMessage("Unexpected value at line 1 and column 27 -> ;");
   }
 }
