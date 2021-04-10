@@ -1,5 +1,6 @@
 package interpreter.visitor;
 
+import interpreter.exception.InterpreterException;
 import interpreter.utils.OperatorUtils;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +9,6 @@ import lombok.val;
 import parser.node.impl.AssignationNode;
 import parser.node.impl.PrintNode;
 import parser.node.impl.declarationNodes.DeclarationNode;
-import parser.node.impl.declarationNodes.DeclarationalNode;
 import parser.node.impl.declarationNodes.IdentifierNode;
 import parser.node.impl.literalNodes.LiteralNode;
 import parser.node.impl.literalNodes.TypeValue;
@@ -27,8 +27,8 @@ public class InterpretationVisitor implements NodeVisitor {
     this.stdOut = stdOut;
   }
 
-  private static final Map<String, TypeValue> variables = new HashMap<>();
-  private static final Map<String, LiteralValue> assignations = new HashMap<>();
+  private final Map<String, TypeValue> variables = new HashMap<>();
+  private final Map<String, LiteralValue> assignations = new HashMap<>();
 
   @Override
   public void visit(PrintNode printNode) {
@@ -39,19 +39,20 @@ public class InterpretationVisitor implements NodeVisitor {
   public void visit(DeclarationNode declarationNode) {
     final var variableName = declarationNode.getIdentifierNode().getValue();
     if (variables.containsKey(variableName))
-      throw new RuntimeException("ALREADY EXISTS VARIABLE: " + variableName);
+      throw InterpreterException.alreadyExists(declarationNode);
     final var variableType = declarationNode.getTypeValue();
     variables.put(variableName, variableType);
   }
 
   @Override
   public void visit(AssignationNode assignationNode) {
-    final DeclarationalNode declarational = assignationNode.getDeclarational();
+    final var declarational = assignationNode.getDeclarational();
     declarational.accept(this);
     val literalValue = assignationNode.getCalculable().calculate(this);
-    final IdentifierNode identifierNode = declarational.getIdentifierNode();
-    if (variables.get(identifierNode.getValue()) != literalValue.getTypeValue())
-      throw new RuntimeException("VERIFY TYPES");
+    final var identifierNode = declarational.getIdentifierNode();
+    final var varType = variables.get(identifierNode.getValue());
+    if (varType != literalValue.getTypeValue())
+      throw InterpreterException.invalidType(varType, literalValue, identifierNode);
     assignations.put(identifierNode.getValue(), literalValue);
   }
 
@@ -66,21 +67,21 @@ public class InterpretationVisitor implements NodeVisitor {
   public LiteralValue visit(MinusNode minusNode) {
     final var left = minusNode.getLeftNode().calculate(this);
     final var right = minusNode.getRightNode().calculate(this);
-    return OperatorUtils.calculateMinus(left, right);
+    return OperatorUtils.calculateMinus(left, right, minusNode);
   }
 
   @Override
   public LiteralValue visit(DivisionNode divisionNode) {
     final var left = divisionNode.getLeftNode().calculate(this);
     final var right = divisionNode.getRightNode().calculate(this);
-    return OperatorUtils.calculateDivision(left, right);
+    return OperatorUtils.calculateDivision(left, right, divisionNode);
   }
 
   @Override
   public LiteralValue visit(MultiplyNode multiplyNode) {
     final var left = multiplyNode.getLeftNode().calculate(this);
     final var right = multiplyNode.getRightNode().calculate(this);
-    return OperatorUtils.calculateMultiply(left, right);
+    return OperatorUtils.calculateMultiply(left, right, multiplyNode);
   }
 
   @Override
@@ -91,10 +92,9 @@ public class InterpretationVisitor implements NodeVisitor {
   @Override
   public LiteralValue visit(IdentifierNode identifierNode) {
     final var variableName = identifierNode.getValue();
-    if (!variables.containsKey(variableName))
-      throw new RuntimeException("THE IDENTIFIER DOES NOT EXIST");
+    if (!variables.containsKey(variableName)) throw InterpreterException.invalidVar(identifierNode);
     if (!assignations.containsKey(variableName))
-      throw new RuntimeException("IT IS NOT INITIATED VARIABLE: " + variableName);
+      throw InterpreterException.notInitVar(identifierNode);
     return assignations.get(variableName);
   }
 }
