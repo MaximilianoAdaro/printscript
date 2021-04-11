@@ -14,7 +14,7 @@ import picocli.CommandLine;
 @Command(
     name = "printscript",
     description = "Executes ps files",
-    version = "0.1.0_alpha",
+    version = "0.1.0_alpha  ",
     mixinStandardHelpOptions = true)
 public class App implements Callable<Integer> {
 
@@ -34,13 +34,8 @@ public class App implements Callable<Integer> {
     val tokens = Lexer.lex(text);
     val nodes = Parser.parse(tokens);
 
-    // here validates
     if (validateOnly) Interpreter.run(nodes, __ -> {});
     else Interpreter.run(nodes, System.out::println);
-
-    //    ValidatorImpl.run(nodes);
-    //    if (validateOnly) return;
-    //    InterpreterImpl.run(nodes);
   }
 
   @Override

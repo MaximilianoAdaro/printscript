@@ -19,6 +19,7 @@ public enum TokenType {
 
   PRINT,
   LET,
+  CONST,
 
   NUMBER_TYPE,
   STRING_TYPE,

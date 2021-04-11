@@ -70,6 +70,7 @@ public class TextStateTest {
     final var tokens =
         List.of(
             ct("let", TokenType.LET, cp(1, 1, 1, 3)),
+            ct("const", TokenType.CONST, cp(1, 1, 1, 5)),
             ct("println", TokenType.PRINT, cp(1, 1, 1, 7)),
             ct("number", TokenType.NUMBER_TYPE, cp(1, 1, 1, 6)),
             ct("string", TokenType.STRING_TYPE, cp(1, 1, 1, 6)),

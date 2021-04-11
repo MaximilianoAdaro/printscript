@@ -47,6 +47,7 @@ public class LexerImplTest {
             entry("563.48563", ct("563.48563", NUMBER, cp(1, 1, 1, 9))),
             entry("println", ct("println", PRINT, cp(1, 1, 1, 7))),
             entry("let", ct("let", LET, cp(1, 1, 1, 3))),
+            entry("const", ct("const", CONST, cp(1, 1, 1, 5))),
             entry("number", ct("number", NUMBER_TYPE, cp(1, 1, 1, 6))),
             entry("string", ct("string", STRING_TYPE, cp(1, 1, 1, 6))));
 

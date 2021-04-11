@@ -43,6 +43,7 @@ public class TextState extends AbstractLexerState {
 
     return switch (accumulator) {
       case "let" -> createToken(TokenType.LET);
+      case "const" -> createToken(TokenType.CONST);
       case "println" -> createToken(TokenType.PRINT);
       case "number" -> createToken(TokenType.NUMBER_TYPE);
       case "string" -> createToken(TokenType.STRING_TYPE);

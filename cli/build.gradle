@@ -1,8 +1,6 @@
 plugins {
     id 'application'
     id 'my-library.java-common-conventions'
-
-    id 'com.palantir.graal' version '0.6.0'
 }
 
 group 'org.example'
@@ -48,9 +46,4 @@ jacocoTestCoverageVerification {
             }
         }
     }
-}
-
-graal {
-    mainClass 'cli.App'
-    outputName 'printscript'
 }
