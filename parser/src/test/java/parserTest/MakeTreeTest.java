@@ -3,6 +3,7 @@ package parserTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static utils.NodeUtils.*;
 
+import fileReader.FileReaderPS;
 import java.util.List;
 import lexer.Lexer;
 import lexer.model.Token;
@@ -50,5 +51,26 @@ public class MakeTreeTest {
     MultiplyNode mult2 = multiplyNode(numbValueNode(2), numbValueNode(3));
     SumNode sum3 = sumNode(mult2, mult6);
     assertThat(rightRootNode).isEqualTo(sum3);
+  }
+
+  @Test
+  public void testBoolOp() {
+    final var text = "const x: boolean = 5 > 3;";
+    final var tokens = Lexer.lex(text);
+    final var nodes = Parser.parse(tokens);
+
+    final var expected = FileReaderPS.readFile("./src/test/resources/boolTests/testBoolOp.txt");
+    assertThat(nodes.toString()).isEqualTo(expected);
+  }
+
+  @Test
+  public void testBoolOpComplex() {
+    final var text = "const x: boolean = 5 * 3 + 10 <= 3 - 10 / 4;";
+    final var tokens = Lexer.lex(text);
+    final var nodes = Parser.parse(tokens);
+
+    final var expected =
+        FileReaderPS.readFile("./src/test/resources/boolTests/testBoolOpComplex.txt");
+    assertThat(nodes.toString()).isEqualTo(expected);
   }
 }

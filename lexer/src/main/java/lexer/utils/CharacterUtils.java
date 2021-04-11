@@ -13,7 +13,7 @@ public class CharacterUtils {
   }
 
   public static boolean isMathSymbol(Character c) {
-    return List.of('=', '+', '-', '*', '/').contains(c);
+    return List.of('=', '+', '-', '*', '/', '>', '<').contains(c);
   }
 
   public static boolean isSymbol(Character c) {

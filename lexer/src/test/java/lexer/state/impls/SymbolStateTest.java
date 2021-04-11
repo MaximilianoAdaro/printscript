@@ -3,8 +3,9 @@ package lexer.state.impls;
 import static lexer.model.TokenType.*;
 import static lexer.utils.TestUtils.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.entry;
 
-import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.junit.Test;
 
@@ -55,22 +56,6 @@ public class SymbolStateTest {
   }
 
   @Test
-  public void symbolShouldReturnSymbol() {
-    getSymbols()
-        .forEach(
-            c ->
-                getSymbols()
-                    .forEach(
-                        symbol -> {
-                          final var actual =
-                              csys(clc(c.toString(), cp(1, 1, 1, 1))).nextValue(symbol);
-                          final var expected = csys(clc(symbol.toString(), cp(1, 1, 2, 2)));
-
-                          assertThat(actual).isEqualTo(expected);
-                        }));
-  }
-
-  @Test
   public void stringSymbolShouldReturnString() {
     getSymbols()
         .forEach(
@@ -87,33 +72,57 @@ public class SymbolStateTest {
   }
 
   @Test
-  public void getTokenShouldNeverReturnEmpty() {
-    getSymbols()
-        .forEach(
-            symbol -> {
-              final var token = csys(clc(symbol.toString(), cp(1, 1, 1, 1))).getToken();
-              assertThat(token).isNotEmpty();
-            });
+  public void ifNextCharIsSymbolGetTokenShouldReturnEmpty() {
+    final var pos = cp(1, 1, 1, 1);
+    final var textWithToken =
+        Map.ofEntries(
+            entry(";", ct(";", SEMICOLON, pos)),
+            entry(":", ct(":", COLON, pos)),
+            entry("=", ct("=", ASSIGNATION, pos)),
+            entry("(", ct("(", LEFT_PAREN, pos)),
+            entry(")", ct(")", RIGHT_PAREN, pos)),
+            entry("-", ct("-", MINUS, pos)),
+            entry("+", ct("+", PLUS, pos)),
+            entry("*", ct("*", MULTIPLY, pos)),
+            entry("/", ct("/", DIVIDE, pos)),
+            entry(">", ct(">", GREATER, pos)),
+            entry(">=", ct(">=", GREATER_EQUAL, cp(1, 1, 1, 2))),
+            entry("<", ct("<", LESS, pos)),
+            entry("<=", ct("<=", LESS_EQUAL, cp(1, 1, 1, 2))));
+
+    textWithToken.forEach(
+        (text, token) -> {
+          final var state = csys(clc(text, token.getPosition()));
+          state.nextValue('*');
+          final var actual = state.getToken();
+          assertThat(actual).isEmpty();
+        });
   }
 
   @Test
   public void getTokenShouldReturnToken() {
     final var pos = cp(1, 1, 1, 1);
-    final var tokens =
-        List.of(
-            ct(";", SEMICOLON, pos),
-            ct(":", COLON, pos),
-            ct("=", ASSIGNATION, pos),
-            ct("(", LEFT_PAREN, pos),
-            ct(")", RIGHT_PAREN, pos),
-            ct("-", MINUS, pos),
-            ct("+", PLUS, pos),
-            ct("*", MULTIPLY, pos),
-            ct("/", DIVIDE, pos));
+    final var textWithToken =
+        Map.ofEntries(
+            entry(";", ct(";", SEMICOLON, pos)),
+            entry(":", ct(":", COLON, pos)),
+            entry("=", ct("=", ASSIGNATION, pos)),
+            entry("(", ct("(", LEFT_PAREN, pos)),
+            entry(")", ct(")", RIGHT_PAREN, pos)),
+            entry("-", ct("-", MINUS, pos)),
+            entry("+", ct("+", PLUS, pos)),
+            entry("*", ct("*", MULTIPLY, pos)),
+            entry("/", ct("/", DIVIDE, pos)),
+            entry(">", ct(">", GREATER, pos)),
+            entry(">=", ct(">=", GREATER_EQUAL, cp(1, 1, 1, 2))),
+            entry("<", ct("<", LESS, pos)),
+            entry("<=", ct("<=", LESS_EQUAL, cp(1, 1, 1, 2))));
 
-    tokens.forEach(
-        token -> {
-          final var actual = csys(clc(token.getValue(), pos)).getToken();
+    textWithToken.forEach(
+        (text, token) -> {
+          final var state = csys(clc(text, token.getPosition()));
+          state.nextValue(' ');
+          final var actual = state.getToken();
           final var expected = Optional.of(token);
           assertThat(actual).isNotEmpty().isEqualTo(expected);
         });

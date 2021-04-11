@@ -16,16 +16,25 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 public class SymbolState extends AbstractLexerState {
 
+  private boolean done = false;
+
   public SymbolState(LexerContext lexerContext) {
     super(lexerContext);
   }
 
   @Override
   public LexerState nextValue(char c) {
+
+    if (isSemicolon(c)) {
+      done = true;
+      return new SymbolState(lexerContext.reset(c));
+    }
+    if (isAnySymbol(c)) return new SymbolState(lexerContext.addCharacter(c));
+
+    done = true;
     if (isNewline(c)) return new EmptyState(lexerContext.changeLine());
     if (isWhitespace(c)) return new EmptyState(lexerContext.reset());
     if (isNumber(c)) return new NumberState(lexerContext.reset(c));
-    if (isAnySymbol(c)) return new SymbolState(lexerContext.reset(c));
     if (isStringSymbol(c)) return new StringState(lexerContext.reset(), c);
     if (isLetter(c)) return new TextState(lexerContext.reset(c));
 
@@ -34,6 +43,8 @@ public class SymbolState extends AbstractLexerState {
 
   @Override
   public Optional<Token> getToken() {
+    if (!done) return Optional.empty();
+
     final var c = lexerContext.getAccumulator();
     return switch (c) {
       case "*" -> createToken(TokenType.MULTIPLY);
@@ -45,8 +56,12 @@ public class SymbolState extends AbstractLexerState {
       case ";" -> createToken(TokenType.SEMICOLON);
       case "(" -> createToken(TokenType.LEFT_PAREN);
       case ")" -> createToken(TokenType.RIGHT_PAREN);
+      case ">" -> createToken(TokenType.GREATER);
+      case ">=" -> createToken(TokenType.GREATER_EQUAL);
+      case "<" -> createToken(TokenType.LESS);
+      case "<=" -> createToken(TokenType.LESS_EQUAL);
 
-      default -> throw LexerException.unidentifiedCharacter(c.charAt(0), lexerContext);
+      default -> throw LexerException.illegalText(' ', lexerContext);
     };
   }
 }

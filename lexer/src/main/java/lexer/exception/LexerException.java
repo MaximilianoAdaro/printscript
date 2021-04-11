@@ -14,7 +14,7 @@ public class LexerException extends RuntimeException {
         "Unexpected value"
             + " at line: "
             + position.getLineStart()
-            + "and column: "
+            + " and column: "
             + position.getColumnStart()
             + " -> "
             + c);

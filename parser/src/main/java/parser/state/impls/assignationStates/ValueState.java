@@ -23,7 +23,8 @@ public class ValueState extends AbstractParserState {
   @Override
   public ParserState nextToken(Token token) {
     return switch (token.getTokenType()) {
-      case PLUS, MINUS, MULTIPLY, DIVIDE -> new OperatorState(declarational, token, tokens);
+      case PLUS, MINUS, MULTIPLY, DIVIDE, GREATER, GREATER_EQUAL, LESS, LESS_EQUAL -> new OperatorState(
+          declarational, token, tokens);
       case SEMICOLON -> {
         node = new AssignationNode(makeTree(tokens), declarational);
         yield new EmptyState();

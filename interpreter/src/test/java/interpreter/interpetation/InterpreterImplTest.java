@@ -24,12 +24,74 @@ public class InterpreterImplTest {
             let x3: number = 102.7 + 123 * x1 * 10 - 15 / x2;
             println(x + x3);
             """;
+    final var expected = "El resultado es = -1274.3";
+
+    shouldPrintExpected(text, expected);
+  }
+
+  private void shouldPrintExpected(String text, String expected) {
     final var nodes = getNodes(text);
 
     final var prints = new ArrayList<String>();
     Interpreter.run(nodes, prints::add);
 
-    assertThat(prints).hasSize(1).containsExactly("El resultado es = -1274.3");
+    assertThat(prints).hasSize(1).containsExactly(expected);
+  }
+
+  @Test
+  public void testBoolGreater() {
+    final var text =
+        """
+                const x: string = "El resultado es = ";
+                const bool: boolean = 3 * 5 > 4 - 3;
+                println(x + bool);
+                """;
+    final var expected = "El resultado es = true";
+
+    shouldPrintExpected(text, expected);
+  }
+
+  @Test
+  public void testBoolGreaterEqual() {
+    final var text =
+        """
+                const x: string = "El resultado es = ";
+                const bool: boolean = 3 * 5 >= 4 - 3;
+                println(x + bool);
+                """;
+    final var expected = "El resultado es = true";
+
+    shouldPrint(text, expected);
+  }
+
+  @Test
+  public void testBoolLess() {
+    final var text =
+        """
+                const x: string = "El resultado es = ";
+                const bool: boolean = 3 * 5 < 4 - 3;
+                println(x + bool);
+                """;
+    final var expected = "El resultado es = false";
+
+    shouldPrint(text, expected);
+  }
+
+  @Test
+  public void testBoolLessEqual() {
+    final var text =
+        """
+                const x: string = "El resultado es = ";
+                const bool: boolean = 2 - 1 <= 4 - 3;
+                println(x + bool);
+                """;
+    final var expected = "El resultado es = true";
+
+    shouldPrint(text, expected);
+  }
+
+  private void shouldPrint(String text, String expected) {
+    shouldPrintExpected(text, expected);
   }
 
   @Test

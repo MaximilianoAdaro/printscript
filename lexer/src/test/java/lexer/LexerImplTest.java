@@ -38,6 +38,10 @@ public class LexerImplTest {
             entry("+", ct("+", PLUS, cp(1, 1, 1, 1))),
             entry("*", ct("*", MULTIPLY, cp(1, 1, 1, 1))),
             entry("/", ct("/", DIVIDE, cp(1, 1, 1, 1))),
+            entry(">=", ct(">=", GREATER_EQUAL, cp(1, 1, 1, 2))),
+            entry(">", ct(">", GREATER, cp(1, 1, 1, 1))),
+            entry("<=", ct("<=", LESS_EQUAL, cp(1, 1, 1, 2))),
+            entry("<", ct("<", LESS, cp(1, 1, 1, 1))),
             entry("identifier", ct("identifier", IDENTIFIER, cp(1, 1, 1, 10))),
             entry("variable", ct("variable", IDENTIFIER, cp(1, 1, 1, 8))),
             entry("'This is a string'", ct("This is a string", STRING, cp(1, 1, 1, 17))),
@@ -203,14 +207,6 @@ public class LexerImplTest {
   }
 
   @Test
-  public void testRandom() {
-    final var s = "**";
-    final var expected =
-        List.of(ct("*", MULTIPLY, cp(1, 1, 1, 1)), ct("*", MULTIPLY, cp(1, 1, 2, 2)));
-    testWithExpected(s, expected);
-  }
-
-  @Test
   public void testDecimal() {
     final var s = "22342.23423";
     final var expected = List.of(ct("22342.23423", NUMBER, cp(1, 1, 1, 11)));
@@ -220,7 +216,8 @@ public class LexerImplTest {
   @Test
   public void testConstKeyword() {
     final var s = "const x = 2;";
-    final var expected = List.of(
+    final var expected =
+        List.of(
             ct("const", CONST, cp(1, 1, 1, 5)),
             ct("x", IDENTIFIER, cp(1, 1, 7, 7)),
             ct("=", ASSIGNATION, cp(1, 1, 9, 9)),
@@ -231,30 +228,31 @@ public class LexerImplTest {
 
   @Test
   public void testBoolean() {
-    final var textWithExpected = Map.ofEntries(
-            entry("const x: boolean = true;",
-                    List.of(
-                            ct("const", CONST, cp(1, 1, 1, 5)),
-                            ct("x", IDENTIFIER, cp(1, 1, 7, 7)),
-                            ct(":", COLON, cp(1, 1, 8, 8)),
-                            ct("boolean", BOOLEAN_TYPE, cp(1, 1, 10, 16)),
-                            ct("=", ASSIGNATION, cp(1, 1, 18, 18)),
-                            ct("true", BOOLEAN, cp(1, 1, 20, 23)),
-                            ct(";", SEMICOLON, cp(1, 1, 24, 24)))),
-            entry("const x: boolean = false;",
-                    List.of(
-                            ct("const", CONST, cp(1, 1, 1, 5)),
-                            ct("x", IDENTIFIER, cp(1, 1, 7, 7)),
-                            ct(":", COLON, cp(1, 1, 8, 8)),
-                            ct("boolean", BOOLEAN_TYPE, cp(1, 1, 10, 16)),
-                            ct("=", ASSIGNATION, cp(1, 1, 18, 18)),
-                            ct("false", BOOLEAN, cp(1, 1, 20, 24)),
-                            ct(";", SEMICOLON, cp(1, 1, 25, 25))))
+    final var textWithExpected =
+        Map.ofEntries(
+            entry(
+                "const x: boolean = true;",
+                List.of(
+                    ct("const", CONST, cp(1, 1, 1, 5)),
+                    ct("x", IDENTIFIER, cp(1, 1, 7, 7)),
+                    ct(":", COLON, cp(1, 1, 8, 8)),
+                    ct("boolean", BOOLEAN_TYPE, cp(1, 1, 10, 16)),
+                    ct("=", ASSIGNATION, cp(1, 1, 18, 18)),
+                    ct("true", BOOLEAN, cp(1, 1, 20, 23)),
+                    ct(";", SEMICOLON, cp(1, 1, 24, 24)))),
+            entry(
+                "const x: boolean = false;",
+                List.of(
+                    ct("const", CONST, cp(1, 1, 1, 5)),
+                    ct("x", IDENTIFIER, cp(1, 1, 7, 7)),
+                    ct(":", COLON, cp(1, 1, 8, 8)),
+                    ct("boolean", BOOLEAN_TYPE, cp(1, 1, 10, 16)),
+                    ct("=", ASSIGNATION, cp(1, 1, 18, 18)),
+                    ct("false", BOOLEAN, cp(1, 1, 20, 24)),
+                    ct(";", SEMICOLON, cp(1, 1, 25, 25)))));
 
-    );
     textWithExpected.forEach(this::testWithExpected);
   }
-
 
   @Test
   public void testNotDecimal() {

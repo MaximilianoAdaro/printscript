@@ -13,6 +13,7 @@ public class DeclarationNode extends DeclarationalNode {
 
   private TypeValue typeValue;
   private IdentifierNode identifierNode;
+  private boolean isConst;
 
   @Override
   public void accept(NodeVisitor nodeVisitor) {

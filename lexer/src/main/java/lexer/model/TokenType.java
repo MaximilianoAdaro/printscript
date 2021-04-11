@@ -11,6 +11,10 @@ public enum TokenType {
   PLUS,
   MULTIPLY,
   DIVIDE,
+  GREATER_EQUAL,
+  GREATER,
+  LESS_EQUAL,
+  LESS,
 
   IDENTIFIER,
 

@@ -1,31 +1,29 @@
 package parser.node.impl.literalNodes;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import parser.node.interfaces.LiteralValue;
 
 @Data
 @Builder
-public class NumberLiteralValue implements LiteralValue {
+@AllArgsConstructor
+public class BooleanLiteralValue implements LiteralValue {
 
-  private final double value;
-
-  public NumberLiteralValue(double value) {
-    this.value = value;
-  }
+  private final boolean value;
 
   @Override
-  public Double getValue() {
+  public Object getValue() {
     return value;
   }
 
   @Override
   public TypeValue getTypeValue() {
-    return TypeValue.NUMBER;
+    return TypeValue.BOOLEAN;
   }
 
   @Override
   public String toString() {
-    return Double.toString(value);
+    return Boolean.toString(value);
   }
 }

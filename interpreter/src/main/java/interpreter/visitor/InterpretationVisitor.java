@@ -5,6 +5,7 @@ import interpreter.utils.OperatorUtils;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
+import lombok.AllArgsConstructor;
 import lombok.val;
 import parser.node.impl.AssignationNode;
 import parser.node.impl.PrintNode;
@@ -12,20 +13,14 @@ import parser.node.impl.declarationNodes.DeclarationNode;
 import parser.node.impl.declarationNodes.IdentifierNode;
 import parser.node.impl.literalNodes.LiteralNode;
 import parser.node.impl.literalNodes.TypeValue;
-import parser.node.impl.operatorNodes.DivisionNode;
-import parser.node.impl.operatorNodes.MinusNode;
-import parser.node.impl.operatorNodes.MultiplyNode;
-import parser.node.impl.operatorNodes.SumNode;
+import parser.node.impl.operatorNodes.*;
 import parser.node.interfaces.LiteralValue;
 import parser.node.visitor.NodeVisitor;
 
+@AllArgsConstructor
 public class InterpretationVisitor implements NodeVisitor {
 
   private final Consumer<String> stdOut;
-
-  public InterpretationVisitor(Consumer<String> stdOut) {
-    this.stdOut = stdOut;
-  }
 
   private final Map<String, TypeValue> variables = new HashMap<>();
   private final Map<String, LiteralValue> assignations = new HashMap<>();
@@ -75,6 +70,34 @@ public class InterpretationVisitor implements NodeVisitor {
     final var left = divisionNode.getLeftNode().calculate(this);
     final var right = divisionNode.getRightNode().calculate(this);
     return OperatorUtils.calculateDivision(left, right, divisionNode);
+  }
+
+  @Override
+  public LiteralValue visit(GreaterNode greaterNode) {
+    final var left = greaterNode.getLeftNode().calculate(this);
+    final var right = greaterNode.getRightNode().calculate(this);
+    return OperatorUtils.calculateGreater(left, right, greaterNode);
+  }
+
+  @Override
+  public LiteralValue visit(GreaterEqualNode greaterEqualNode) {
+    final var left = greaterEqualNode.getLeftNode().calculate(this);
+    final var right = greaterEqualNode.getRightNode().calculate(this);
+    return OperatorUtils.calculateGreaterEqual(left, right, greaterEqualNode);
+  }
+
+  @Override
+  public LiteralValue visit(LessNode lessNode) {
+    final var left = lessNode.getLeftNode().calculate(this);
+    final var right = lessNode.getRightNode().calculate(this);
+    return OperatorUtils.calculateLess(left, right, lessNode);
+  }
+
+  @Override
+  public LiteralValue visit(LessEqualNode lessEqualNode) {
+    final var left = lessEqualNode.getLeftNode().calculate(this);
+    final var right = lessEqualNode.getRightNode().calculate(this);
+    return OperatorUtils.calculateLessEqual(left, right, lessEqualNode);
   }
 
   @Override

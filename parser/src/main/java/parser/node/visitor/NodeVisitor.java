@@ -5,10 +5,7 @@ import parser.node.impl.PrintNode;
 import parser.node.impl.declarationNodes.DeclarationNode;
 import parser.node.impl.declarationNodes.IdentifierNode;
 import parser.node.impl.literalNodes.LiteralNode;
-import parser.node.impl.operatorNodes.DivisionNode;
-import parser.node.impl.operatorNodes.MinusNode;
-import parser.node.impl.operatorNodes.MultiplyNode;
-import parser.node.impl.operatorNodes.SumNode;
+import parser.node.impl.operatorNodes.*;
 import parser.node.interfaces.LiteralValue;
 
 public interface NodeVisitor {
@@ -26,6 +23,14 @@ public interface NodeVisitor {
   LiteralValue visit(MinusNode minusNode);
 
   LiteralValue visit(DivisionNode divisionNode);
+
+  LiteralValue visit(GreaterNode greaterNode);
+
+  LiteralValue visit(GreaterEqualNode greaterEqualNode);
+
+  LiteralValue visit(LessNode lessNode);
+
+  LiteralValue visit(LessEqualNode lessEqualNode);
 
   LiteralValue visit(MultiplyNode multiplyNode);
 
