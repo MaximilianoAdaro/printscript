@@ -8,6 +8,7 @@ import parser.node.impl.literalNodes.*;
 import parser.node.impl.operatorNodes.*;
 import parser.node.interfaces.Calculable;
 import parser.node.interfaces.LiteralValue;
+import parser.node.visitor.NodeVisitor;
 
 public class NodeUtils {
 
@@ -114,5 +115,9 @@ public class NodeUtils {
   // create LessEqualNode
   public static LessEqualNode lessEqualNode(Calculable calculableL, Calculable calculableR) {
     return LessEqualNode.builder().leftNode(calculableL).rightNode(calculableR).build();
+  }
+
+  public static NodeVisitor emptyNodeVisitor() {
+    return new EmptyNodeVisitor();
   }
 }

@@ -56,21 +56,36 @@ public class MakeTreeTest {
   @Test
   public void testBoolOp() {
     final var text = "const x: boolean = 5 > 3;";
-    final var tokens = Lexer.lex(text);
-    final var nodes = Parser.parse(tokens);
-
-    final var expected = FileReaderPS.readFile("./src/test/resources/boolTests/testBoolOp.txt");
-    assertThat(nodes.toString()).isEqualTo(expected);
+    final var expectedPath = "./src/test/resources/boolTests/testBoolOp.txt";
+    shouldReturnExpectedInFile(text, expectedPath);
   }
 
   @Test
   public void testBoolOpComplex() {
     final var text = "const x: boolean = 5 * 3 + 10 <= 3 - 10 / 4;";
+    final var expectedPath = "./src/test/resources/boolTests/testBoolOpComplex.txt";
+    shouldReturnExpectedInFile(text, expectedPath);
+  }
+
+  @Test
+  public void testBoolOpComplex2() {
+    final var text = "const x: boolean = 5 * 3 + 10 < 3 - 10 / 4;";
+    final var expectedPath = "./src/test/resources/boolTests/testBoolOpComplex2.txt";
+    shouldReturnExpectedInFile(text, expectedPath);
+  }
+
+  @Test
+  public void testBoolOpComplex3() {
+    final var text = "const x: boolean = 5 * 3 + 10 >= 3 - 10 / 4;";
+    final var expectedPath = "./src/test/resources/boolTests/testBoolOpComplex3.txt";
+    shouldReturnExpectedInFile(text, expectedPath);
+  }
+
+  private void shouldReturnExpectedInFile(String text, String expectedPath) {
     final var tokens = Lexer.lex(text);
     final var nodes = Parser.parse(tokens);
 
-    final var expected =
-        FileReaderPS.readFile("./src/test/resources/boolTests/testBoolOpComplex.txt");
+    final var expected = FileReaderPS.readFile(expectedPath);
     assertThat(nodes.toString()).isEqualTo(expected);
   }
 }
