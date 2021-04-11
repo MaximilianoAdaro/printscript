@@ -47,6 +47,8 @@ public class TextState extends AbstractLexerState {
       case "println" -> createToken(TokenType.PRINT);
       case "number" -> createToken(TokenType.NUMBER_TYPE);
       case "string" -> createToken(TokenType.STRING_TYPE);
+      case "boolean" -> createToken(TokenType.BOOLEAN_TYPE);
+      case "true", "false" -> createToken(TokenType.BOOLEAN);
       default -> createToken(TokenType.IDENTIFIER);
     };
   }

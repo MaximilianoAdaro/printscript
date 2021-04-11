@@ -48,8 +48,11 @@ public class LexerImplTest {
             entry("println", ct("println", PRINT, cp(1, 1, 1, 7))),
             entry("let", ct("let", LET, cp(1, 1, 1, 3))),
             entry("const", ct("const", CONST, cp(1, 1, 1, 5))),
+            entry("true", ct("true", BOOLEAN, cp(1, 1, 1, 4))),
+            entry("false", ct("false", BOOLEAN, cp(1, 1, 1, 5))),
             entry("number", ct("number", NUMBER_TYPE, cp(1, 1, 1, 6))),
-            entry("string", ct("string", STRING_TYPE, cp(1, 1, 1, 6))));
+            entry("string", ct("string", STRING_TYPE, cp(1, 1, 1, 6))),
+            entry("boolean", ct("boolean", BOOLEAN_TYPE, cp(1, 1, 1, 7))));
 
     expectedTokens.forEach((value, token) -> testWithExpected(value, List.of(token)));
   }
@@ -213,6 +216,45 @@ public class LexerImplTest {
     final var expected = List.of(ct("22342.23423", NUMBER, cp(1, 1, 1, 11)));
     testWithExpected(s, expected);
   }
+
+  @Test
+  public void testConstKeyword() {
+    final var s = "const x = 2;";
+    final var expected = List.of(
+            ct("const", CONST, cp(1, 1, 1, 5)),
+            ct("x", IDENTIFIER, cp(1, 1, 7, 7)),
+            ct("=", ASSIGNATION, cp(1, 1, 9, 9)),
+            ct("2", NUMBER, cp(1, 1, 11, 11)),
+            ct(";", SEMICOLON, cp(1, 1, 12, 12)));
+    testWithExpected(s, expected);
+  }
+
+  @Test
+  public void testBoolean() {
+    final var textWithExpected = Map.ofEntries(
+            entry("const x: boolean = true;",
+                    List.of(
+                            ct("const", CONST, cp(1, 1, 1, 5)),
+                            ct("x", IDENTIFIER, cp(1, 1, 7, 7)),
+                            ct(":", COLON, cp(1, 1, 8, 8)),
+                            ct("boolean", BOOLEAN_TYPE, cp(1, 1, 10, 16)),
+                            ct("=", ASSIGNATION, cp(1, 1, 18, 18)),
+                            ct("true", BOOLEAN, cp(1, 1, 20, 23)),
+                            ct(";", SEMICOLON, cp(1, 1, 24, 24)))),
+            entry("const x: boolean = false;",
+                    List.of(
+                            ct("const", CONST, cp(1, 1, 1, 5)),
+                            ct("x", IDENTIFIER, cp(1, 1, 7, 7)),
+                            ct(":", COLON, cp(1, 1, 8, 8)),
+                            ct("boolean", BOOLEAN_TYPE, cp(1, 1, 10, 16)),
+                            ct("=", ASSIGNATION, cp(1, 1, 18, 18)),
+                            ct("false", BOOLEAN, cp(1, 1, 20, 24)),
+                            ct(";", SEMICOLON, cp(1, 1, 25, 25))))
+
+    );
+    textWithExpected.forEach(this::testWithExpected);
+  }
+
 
   @Test
   public void testNotDecimal() {
