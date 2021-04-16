@@ -4,7 +4,6 @@ import interpreter.VariableManager;
 import interpreter.VariableManager.ValueType;
 import interpreter.exception.InterpreterException;
 import interpreter.utils.OperatorUtils;
-
 import java.util.function.Consumer;
 import lombok.AllArgsConstructor;
 import lombok.val;

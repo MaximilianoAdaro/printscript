@@ -6,7 +6,6 @@ import parser.node.impl.declarationNodes.DeclarationNode;
 import parser.node.impl.declarationNodes.IdentifierNode;
 import parser.node.impl.literalNodes.TypeValue;
 import parser.node.impl.operatorNodes.OperatorNode;
-import parser.node.interfaces.Calculable;
 import parser.node.interfaces.LiteralValue;
 
 public class InterpreterException extends RuntimeException {

@@ -1,10 +1,9 @@
 package interpreter;
 
+import java.util.*;
 import lombok.Data;
 import parser.node.impl.literalNodes.TypeValue;
 import parser.node.interfaces.LiteralValue;
-
-import java.util.*;
 
 public class VariableManager {
 
