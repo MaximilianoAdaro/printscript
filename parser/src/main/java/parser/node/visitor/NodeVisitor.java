@@ -1,6 +1,7 @@
 package parser.node.visitor;
 
 import parser.node.impl.AssignationNode;
+import parser.node.impl.ConditionNode;
 import parser.node.impl.PrintNode;
 import parser.node.impl.declarationNodes.DeclarationNode;
 import parser.node.impl.declarationNodes.IdentifierNode;
@@ -15,6 +16,8 @@ public interface NodeVisitor {
   void visit(PrintNode printNode);
 
   void visit(AssignationNode assignationNode);
+
+  void visit(ConditionNode conditionNode);
 
   LiteralValue visit(IdentifierNode identifierNode);
 

@@ -1,6 +1,7 @@
 package utils;
 
 import parser.node.impl.AssignationNode;
+import parser.node.impl.ConditionNode;
 import parser.node.impl.PrintNode;
 import parser.node.impl.declarationNodes.DeclarationNode;
 import parser.node.impl.declarationNodes.IdentifierNode;
@@ -18,6 +19,9 @@ public class EmptyNodeVisitor implements NodeVisitor {
 
   @Override
   public void visit(AssignationNode assignationNode) {}
+
+  @Override
+  public void visit(ConditionNode conditionNode) {}
 
   @Override
   public LiteralValue visit(IdentifierNode identifierNode) {

@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 import lombok.AllArgsConstructor;
 import lombok.val;
 import parser.node.impl.AssignationNode;
+import parser.node.impl.ConditionNode;
 import parser.node.impl.PrintNode;
 import parser.node.impl.declarationNodes.DeclarationNode;
 import parser.node.impl.declarationNodes.IdentifierNode;
@@ -53,6 +54,9 @@ public class InterpretationVisitor implements NodeVisitor {
       throw InterpreterException.invalidType(varType.typeValue, literalValue, identifierNode);
     assignations.put(propertyName, literalValue);
   }
+
+  @Override
+  public void visit(ConditionNode conditionNode) {}
 
   @Override
   public LiteralValue visit(SumNode sumNode) {
