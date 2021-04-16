@@ -22,7 +22,7 @@ public class InterpretationVisitor implements NodeVisitor {
 
   private final Consumer<String> stdOut;
 
-  private final Map<String, TypeValue> variables = new HashMap<>();
+  private final Map<String, ValueType> variables = new HashMap<>();
   private final Map<String, LiteralValue> assignations = new HashMap<>();
 
   @Override
@@ -36,7 +36,7 @@ public class InterpretationVisitor implements NodeVisitor {
     if (variables.containsKey(variableName))
       throw InterpreterException.alreadyExists(declarationNode);
     final var variableType = declarationNode.getTypeValue();
-    variables.put(variableName, variableType);
+    variables.put(variableName, new ValueType(variableType, declarationNode.isConst()));
   }
 
   @Override
@@ -45,10 +45,13 @@ public class InterpretationVisitor implements NodeVisitor {
     declarational.accept(this);
     val literalValue = assignationNode.getCalculable().calculate(this);
     final var identifierNode = declarational.getIdentifierNode();
-    final var varType = variables.get(identifierNode.getValue());
-    if (varType != literalValue.getTypeValue())
-      throw InterpreterException.invalidType(varType, literalValue, identifierNode);
-    assignations.put(identifierNode.getValue(), literalValue);
+    final String propertyName = identifierNode.getValue();
+    final var varType = variables.get(propertyName);
+    if (declarational instanceof IdentifierNode && varType.isConst)
+      throw InterpreterException.isConst(assignationNode, propertyName, literalValue);
+    if (varType.typeValue != literalValue.getTypeValue())
+      throw InterpreterException.invalidType(varType.typeValue, literalValue, identifierNode);
+    assignations.put(propertyName, literalValue);
   }
 
   @Override
@@ -119,5 +122,11 @@ public class InterpretationVisitor implements NodeVisitor {
     if (!assignations.containsKey(variableName))
       throw InterpreterException.notInitVar(identifierNode);
     return assignations.get(variableName);
+  }
+
+  @AllArgsConstructor
+  private static class ValueType {
+    TypeValue typeValue;
+    boolean isConst;
   }
 }

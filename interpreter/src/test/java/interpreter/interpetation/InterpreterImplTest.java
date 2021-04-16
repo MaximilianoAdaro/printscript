@@ -129,7 +129,18 @@ public class InterpreterImplTest {
                let y: number = 8 * "hello";
                 """;
 
-    testException(text, "Invalid operation with number 8.0 and string hello one line 0");
+    testException(text, "Invalid operation with number 8.0 and string hello on line 0");
+  }
+
+  @Test
+  public void invalidConstOp() {
+    final var text =
+        """
+               const y: number = 8;
+               y = 10;
+                """;
+
+    testException(text, "Cannot reassign constant y with value 10.0 on line 0");
   }
 
   private void testException(String text, String s) {

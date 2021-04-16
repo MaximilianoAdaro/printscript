@@ -1,5 +1,6 @@
 package interpreter.exception;
 
+import parser.node.impl.AssignationNode;
 import parser.node.impl.declarationNodes.DeclarationNode;
 import parser.node.impl.declarationNodes.IdentifierNode;
 import parser.node.impl.literalNodes.TypeValue;
@@ -66,7 +67,18 @@ public class InterpreterException extends RuntimeException {
             + getStringType(right.getTypeValue())
             + " "
             + right.getValue()
-            + " one line "
+            + " on line "
+            + node.getPosition().getLineStart());
+  }
+
+  public static InterpreterException isConst(
+      AssignationNode node, String propertyName, LiteralValue literalValue) {
+    return new InterpreterException(
+        "Cannot reassign constant "
+            + propertyName
+            + " with value "
+            + literalValue.getValue()
+            + " on line "
             + node.getPosition().getLineStart());
   }
 }

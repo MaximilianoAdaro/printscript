@@ -38,13 +38,6 @@ public class StateUtils {
     return getBoolOpNode(booleanOp.get(), left, right);
   }
 
-  @AllArgsConstructor
-  static class SplitBool {
-    final List<Token> left;
-    final Optional<List<Token>> right;
-    final Optional<Token> booleanOp;
-  }
-
   private static SplitBool splitInBooleanOperator(List<Token> tokens) {
     final var indexes =
         Stream.of(
@@ -57,7 +50,12 @@ public class StateUtils {
     if (indexes.length < 3) return new SplitBool(tokens, Optional.empty(), Optional.empty());
 
     if (indexes.length > 3) {
+
       final var invalid = tokens.get(indexes[2]);
+
+      if (indexes.length > 4) throw new RuntimeException("");
+      else invalid.getPosition();
+
       throw ParserException.unexpectedToken(invalid);
     }
 
@@ -91,5 +89,12 @@ public class StateUtils {
   private static Calculable resolveTree(
       Calculable rootTree, Calculable operator, Calculable operand) {
     return rootTree.resolveTree((OperatorNode) operator, operand);
+  }
+
+  @AllArgsConstructor
+  static class SplitBool {
+    final List<Token> left;
+    final Optional<List<Token>> right;
+    final Optional<Token> booleanOp;
   }
 }
