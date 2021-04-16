@@ -1,10 +1,12 @@
 package interpreter.exception;
 
 import parser.node.impl.AssignationNode;
+import parser.node.impl.ConditionNode;
 import parser.node.impl.declarationNodes.DeclarationNode;
 import parser.node.impl.declarationNodes.IdentifierNode;
 import parser.node.impl.literalNodes.TypeValue;
 import parser.node.impl.operatorNodes.OperatorNode;
+import parser.node.interfaces.Calculable;
 import parser.node.interfaces.LiteralValue;
 
 public class InterpreterException extends RuntimeException {
@@ -80,5 +82,14 @@ public class InterpreterException extends RuntimeException {
             + literalValue.getValue()
             + " on line "
             + node.getPosition().getLineStart());
+  }
+
+  public static InterpreterException expectedBool(
+      LiteralValue literalValue, ConditionNode condition) {
+    return new InterpreterException(
+        "Expected boolean but found "
+            + literalValue.getTypeValue()
+            + " on line "
+            + condition.getPosition().getLineStart());
   }
 }

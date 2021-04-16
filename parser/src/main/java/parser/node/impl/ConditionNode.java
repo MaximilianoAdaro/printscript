@@ -1,13 +1,12 @@
 package parser.node.impl;
 
+import java.util.List;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import parser.node.AbstractNode;
 import parser.node.Node;
 import parser.node.interfaces.Calculable;
 import parser.node.visitor.NodeVisitor;
-
-import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
