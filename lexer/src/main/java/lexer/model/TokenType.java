@@ -6,6 +6,8 @@ public enum TokenType {
   ASSIGNATION,
   LEFT_PAREN,
   RIGHT_PAREN,
+  LEFT_CURLY_BRACES,
+  RIGHT_CURLY_BRACES,
 
   MINUS,
   PLUS,
@@ -25,6 +27,8 @@ public enum TokenType {
   PRINT,
   LET,
   CONST,
+  IF,
+  ELSE,
 
   NUMBER_TYPE,
   STRING_TYPE,

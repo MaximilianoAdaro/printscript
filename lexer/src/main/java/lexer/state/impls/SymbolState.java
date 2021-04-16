@@ -2,6 +2,7 @@ package lexer.state.impls;
 
 import static lexer.utils.CharacterUtils.*;
 
+import java.util.List;
 import java.util.Optional;
 import lexer.exception.LexerException;
 import lexer.model.Token;
@@ -25,13 +26,13 @@ public class SymbolState extends AbstractLexerState {
   @Override
   public LexerState nextValue(char c) {
 
-    if (isSemicolon(c)) {
-      done = true;
-      return new SymbolState(lexerContext.reset(c));
+    if (List.of("<", ">").contains(lexerContext.getAccumulator())) {
+      if (isEqual(c)) return new SymbolState(lexerContext.addCharacter(c));
     }
-    if (isAnySymbol(c)) return new SymbolState(lexerContext.addCharacter(c));
 
     done = true;
+    if (isAnySymbol(c)) return new SymbolState(lexerContext.reset(c));
+    if (isSemicolon(c)) return new SymbolState(lexerContext.reset(c));
     if (isNewline(c)) return new EmptyState(lexerContext.changeLine());
     if (isWhitespace(c)) return new EmptyState(lexerContext.reset());
     if (isNumber(c)) return new NumberState(lexerContext.reset(c));
@@ -56,6 +57,8 @@ public class SymbolState extends AbstractLexerState {
       case ";" -> createToken(TokenType.SEMICOLON);
       case "(" -> createToken(TokenType.LEFT_PAREN);
       case ")" -> createToken(TokenType.RIGHT_PAREN);
+      case "{" -> createToken(TokenType.LEFT_CURLY_BRACES);
+      case "}" -> createToken(TokenType.RIGHT_CURLY_BRACES);
       case ">" -> createToken(TokenType.GREATER);
       case ">=" -> createToken(TokenType.GREATER_EQUAL);
       case "<" -> createToken(TokenType.LESS);

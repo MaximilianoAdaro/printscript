@@ -1,0 +1,15 @@
+// const x: boolean = true;                                        map -> x
+
+if (x) {                                                         map2
+    const w: number = 5;                                         map2 -> w
+    if (w > 3) {                                                map3
+         const a: number = 2;                                   map3 -> a
+     } else {                                                   map2 => map4
+        const a: boolean = x;                                    map4 -> a
+     }
+}                                                                map
+
+const x = 3;
+
+const a: number = 6;
+

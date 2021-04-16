@@ -7,6 +7,7 @@ import static lexer.utils.TestUtils.ct;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import fileReader.FileReaderPS;
 import java.util.List;
 import java.util.Map;
 import lexer.exception.LexerException;
@@ -34,6 +35,8 @@ public class LexerImplTest {
             entry("=", ct("=", ASSIGNATION, cp(1, 1, 1, 1))),
             entry("(", ct("(", LEFT_PAREN, cp(1, 1, 1, 1))),
             entry(")", ct(")", RIGHT_PAREN, cp(1, 1, 1, 1))),
+            entry("{", ct("{", LEFT_CURLY_BRACES, cp(1, 1, 1, 1))),
+            entry("}", ct("}", RIGHT_CURLY_BRACES, cp(1, 1, 1, 1))),
             entry("-", ct("-", MINUS, cp(1, 1, 1, 1))),
             entry("+", ct("+", PLUS, cp(1, 1, 1, 1))),
             entry("*", ct("*", MULTIPLY, cp(1, 1, 1, 1))),
@@ -56,7 +59,9 @@ public class LexerImplTest {
             entry("false", ct("false", BOOLEAN, cp(1, 1, 1, 5))),
             entry("number", ct("number", NUMBER_TYPE, cp(1, 1, 1, 6))),
             entry("string", ct("string", STRING_TYPE, cp(1, 1, 1, 6))),
-            entry("boolean", ct("boolean", BOOLEAN_TYPE, cp(1, 1, 1, 7))));
+            entry("boolean", ct("boolean", BOOLEAN_TYPE, cp(1, 1, 1, 7))),
+            entry("if", ct("if", IF, cp(1, 1, 1, 2))),
+            entry("else", ct("else", ELSE, cp(1, 1, 1, 4))));
 
     expectedTokens.forEach((value, token) -> testWithExpected(value, List.of(token)));
   }
@@ -271,5 +276,22 @@ public class LexerImplTest {
     assertThatThrownBy(() -> lex(s))
         .isInstanceOf(LexerException.class)
         .hasMessage("Unclosed string at line: 1 between columns: ( 1, 6 ) -> hello");
+  }
+
+  @Test
+  public void testIfElse() {
+    final var text =
+        """
+            if (true) {
+                println();
+            } else {
+                println();
+            }""";
+
+    final var expected = FileReaderPS.readFile("./src/test/resources/ifelsetest/ifelse.txt");
+
+    final var actual = lex(text).toString();
+
+    assertThat(actual).isEqualTo(expected);
   }
 }
