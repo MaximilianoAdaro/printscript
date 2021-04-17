@@ -7,6 +7,7 @@ import static utils.NodeUtils.*;
 
 import java.util.List;
 import lexer.Lexer;
+import lexer.model.Position;
 import lexer.model.Token;
 import org.junit.Test;
 import parser.Parser;
@@ -23,7 +24,7 @@ public class IdentifiedStateTest {
     List<Node> parse = Parser.parse(tokens);
     assertThat(parse).hasSize(1);
     Node nodeX = parse.get(0);
-    assertThat(nodeX).hasSameClassAs(new AssignationNode());
+    assertThat(nodeX).hasSameClassAs(new AssignationNode(Position.empty()));
     assertThat(nodeX)
         .isEqualTo(assignNode(declNode(identifierNode("x"), STRING), identifierNode("y")));
   }
@@ -36,7 +37,7 @@ public class IdentifiedStateTest {
     List<Node> parse = Parser.parse(tokens);
     assertThat(parse).hasSize(1);
     Node nodeX = parse.get(0);
-    assertThat(nodeX).hasSameClassAs(new AssignationNode());
+    assertThat(nodeX).hasSameClassAs(new AssignationNode(Position.empty()));
     assertThat(nodeX)
         .isEqualTo(assignNode(declNode(identifierNode("x"), NUMBER), identifierNode("y")));
   }
@@ -49,7 +50,7 @@ public class IdentifiedStateTest {
     List<Node> parse = Parser.parse(tokens);
     assertThat(parse).hasSize(1);
     Node nodeX = parse.get(0);
-    assertThat(nodeX).hasSameClassAs(new AssignationNode());
+    assertThat(nodeX).hasSameClassAs(new AssignationNode(Position.empty()));
     assertThat(nodeX).isEqualTo(assignNode(identifierNode("x"), identifierNode("y")));
   }
 }

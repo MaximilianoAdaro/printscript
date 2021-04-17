@@ -15,7 +15,7 @@ public class LeftParenState extends AbstractParserState {
     return switch (token.getTokenType()) {
       case IDENTIFIER -> new IdentifiedPrintState(token);
       case NUMBER, STRING -> new ValuePrintState(token);
-      case RIGHT_PAREN -> new RightParenState(new EmptyNode());
+      case RIGHT_PAREN -> new RightParenState(new EmptyNode(token.getPosition()));
       default -> throw ParserException.unexpectedToken(token);
     };
   }

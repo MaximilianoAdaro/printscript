@@ -17,7 +17,8 @@ public class IdentifierAssignationState extends AbstractParserState {
   @Override
   public ParserState nextToken(Token t) {
     return switch (t.getTokenType()) {
-      case ASSIGNATION -> new AssignationState(new IdentifierNode(token.getValue()));
+      case ASSIGNATION -> new AssignationState(
+          new IdentifierNode(token.getPosition(), token.getValue()));
       default -> throw ParserException.unexpectedToken(token);
     };
   }

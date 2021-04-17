@@ -6,6 +6,7 @@ import static utils.NodeUtils.*;
 import fileReader.FileReaderPS;
 import java.util.List;
 import lexer.Lexer;
+import lexer.model.Position;
 import lexer.model.Token;
 import org.junit.Test;
 import parser.Parser;
@@ -29,16 +30,16 @@ public class MakeTreeTest {
 
     assertThat(parse).hasSize(1);
     Node node = parse.get(0);
-    assertThat(node).hasSameClassAs(new AssignationNode());
+    assertThat(node).hasSameClassAs(new AssignationNode(Position.empty()));
 
     DeclarationalNode declarational = ((AssignationNode) node).getDeclarational();
-    assertThat(declarational).hasSameClassAs(new DeclarationNode());
+    assertThat(declarational).hasSameClassAs(new DeclarationNode(Position.empty()));
     DeclarationNode declarationNode = (DeclarationNode) declarational;
     assertThat(declarationNode.getTypeValue()).isEqualTo(TypeValue.NUMBER);
     assertThat(declarationNode.getIdentifierNode()).isEqualTo(identifierNode("x"));
 
     Calculable calculable = ((AssignationNode) node).getCalculable();
-    assertThat(calculable).hasSameClassAs(new SumNode());
+    assertThat(calculable).hasSameClassAs(new SumNode(Position.empty()));
     SumNode sumNode = (SumNode) calculable;
 
     Calculable leftRootNode = sumNode.getLeftNode();

@@ -1,5 +1,6 @@
 package parser.state.impls.declarationStates;
 
+import lexer.model.Position;
 import lexer.model.Token;
 import lexer.model.TokenType;
 import lombok.AllArgsConstructor;
@@ -26,17 +27,17 @@ public class TypeState extends AbstractParserState {
   @Override
   public ParserState nextToken(Token t) {
     return switch (t.getTokenType()) {
-      case ASSIGNATION -> new AssignationState(getDeclarationNode());
+      case ASSIGNATION -> new AssignationState(getDeclarationNode(t.getPosition()));
       case SEMICOLON -> {
         if (isConst) throw ParserException.unexpectedToken(t);
-        node = getDeclarationNode();
+        node = getDeclarationNode(t.getPosition());
         yield new EmptyState();
       }
       default -> throw ParserException.unexpectedToken(token);
     };
   }
 
-  private DeclarationNode getDeclarationNode() {
+  private DeclarationNode getDeclarationNode(Position position) {
     TypeValue typeValue =
         switch (tokenType) {
           case STRING_TYPE -> TypeValue.STRING;
@@ -44,6 +45,7 @@ public class TypeState extends AbstractParserState {
           case BOOLEAN_TYPE -> TypeValue.BOOLEAN;
           default -> throw new IllegalStateException("Unexpected value: " + tokenType);
         };
-    return new DeclarationNode(typeValue, new IdentifierNode(token.getValue()), isConst);
+    return new DeclarationNode(
+        position, typeValue, new IdentifierNode(position, token.getValue()), isConst);
   }
 }
