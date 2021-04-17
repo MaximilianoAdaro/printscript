@@ -1,13 +1,13 @@
-// const x: boolean = true;                                        map -> x
+const x: boolean = true;
 
-if (x) {                                                         map2
-    const w: number = 5;                                         map2 -> w
-    if (w > 3) {                                                map3
-         const a: number = 2;                                   map3 -> a
-     } else {                                                   map2 => map4
-        const a: boolean = x;                                    map4 -> a
+if (x) {
+    const w: number = 5;
+    if (w > 3) {
+         const a: number = 2;
+     } else {
+        const a: boolean = x;
      }
-}                                                                map
+}
 
 const x = 3;
 
