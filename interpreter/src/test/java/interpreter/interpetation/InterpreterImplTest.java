@@ -100,7 +100,7 @@ public class InterpreterImplTest {
                let x: string = 4;
                 """;
 
-    testException(text, "number 4.0 can't be assigned to variable x of type string on line 0");
+    testException(text, "number 4.0 can't be assigned to variable x of type string on line 1");
   }
 
   @Test
@@ -109,7 +109,7 @@ public class InterpreterImplTest {
                x = 4;
                 """;
 
-    testException(text, "Variable with name x doesn't exist on line 0");
+    testException(text, "Variable with name x doesn't exist on line 1");
   }
 
   @Test
@@ -120,7 +120,7 @@ public class InterpreterImplTest {
                let x: number = y;
                 """;
 
-    testException(text, "Variable with name y is not initialized on line 0");
+    testException(text, "Variable with name y is not initialized on line 2");
   }
 
   @Test
@@ -129,7 +129,7 @@ public class InterpreterImplTest {
                let y: number = 8 * "hello";
                 """;
 
-    testException(text, "Invalid operation with number 8.0 and string hello on line 0");
+    testException(text, "Invalid operation with number 8.0 and string hello on line 1");
   }
 
   @Test
@@ -140,7 +140,7 @@ public class InterpreterImplTest {
                y = 10;
                 """;
 
-    testException(text, "Cannot reassign constant y with value 10.0 on line 0");
+    testException(text, "Cannot reassign constant y with value 10.0 on line 2");
   }
 
   private void testException(String text, String s) {

@@ -1,5 +1,6 @@
 package parser.node.impl.literalNodes;
 
+import lexer.model.Position;
 import lombok.*;
 import parser.node.AbstractNode;
 import parser.node.impl.operatorNodes.OperatorNode;
@@ -7,14 +8,21 @@ import parser.node.interfaces.Calculable;
 import parser.node.interfaces.LiteralValue;
 import parser.node.visitor.NodeVisitor;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class LiteralNode extends AbstractNode implements Calculable {
 
   private LiteralValue literalValue;
+
+  @Builder
+  public LiteralNode(Position position, LiteralValue literalValue) {
+    super(position);
+    this.literalValue = literalValue;
+  }
+
+  public LiteralNode(Position position) {
+    super(position);
+  }
 
   @Override
   public void accept(NodeVisitor nodeVisitor) {

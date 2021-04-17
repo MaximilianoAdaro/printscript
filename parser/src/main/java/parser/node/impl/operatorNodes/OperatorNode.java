@@ -1,20 +1,27 @@
 package parser.node.impl.operatorNodes;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lexer.model.Position;
+import lombok.*;
 import parser.node.AbstractNode;
 import parser.node.interfaces.Calculable;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
+@ToString(callSuper = true)
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public abstract class OperatorNode extends AbstractNode implements Calculable {
 
   private Calculable rightNode;
   private Calculable leftNode;
+
+  public OperatorNode(Position position, Calculable rightNode, Calculable leftNode) {
+    super(position);
+    this.rightNode = rightNode;
+    this.leftNode = leftNode;
+  }
+
+  public OperatorNode(Position position) {
+    super(position);
+  }
 
   public Calculable resolveTreeAsSumAndMin(OperatorNode operator, Calculable operand) {
     this.setRightNode(this.getRightNode().resolveTree(operator, operand));

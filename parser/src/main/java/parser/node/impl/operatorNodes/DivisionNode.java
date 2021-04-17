@@ -1,21 +1,23 @@
 package parser.node.impl.operatorNodes;
 
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lexer.model.Position;
+import lombok.*;
 import parser.node.interfaces.Calculable;
 import parser.node.interfaces.LiteralValue;
 import parser.node.visitor.NodeVisitor;
 
-@EqualsAndHashCode(callSuper = true)
-@NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
+@Data
 public class DivisionNode extends OperatorNode {
 
+  public DivisionNode(Position position) {
+    super(position);
+  }
+
   @Builder
-  public DivisionNode(Calculable rightNode, Calculable leftNode) {
-    super(rightNode, leftNode);
+  public DivisionNode(Position position, Calculable rightNode, Calculable leftNode) {
+    super(position, rightNode, leftNode);
   }
 
   @Override
