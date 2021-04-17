@@ -1,8 +1,7 @@
-if (5 > 2) {
-        println(3);
-                   } else {
-                      println(5);
-                   }
-
-                   let x: number = 3;
-                   println(x);
+let x: number;
+if (true) {
+    x = 3;
+} else {
+    x = 4;
+}
+println(x);

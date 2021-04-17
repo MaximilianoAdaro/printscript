@@ -3,10 +3,8 @@ package parserTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static utils.NodeUtils.*;
 
-import java.io.File;
-import java.util.List;
-
 import fileReader.FileReaderPS;
+import java.util.List;
 import lexer.Lexer;
 import lexer.model.Position;
 import lexer.model.Token;
@@ -49,11 +47,10 @@ public class ParserImplTest {
     assertThat(nodes.get(2)).isEqualTo(printNode(calculableNode));
   }
 
-
   @Test
   public void testIfElse() {
     val text =
-            """
+        """
                    if (5 > 2) {
                       println(3);
                    } else {
@@ -66,6 +63,5 @@ public class ParserImplTest {
     final var expected = FileReaderPS.readFile("./src/test/resources/ifelse/ifelsetest.txt");
 
     assertThat(nodes.toString()).isEqualTo(expected);
-
   }
 }

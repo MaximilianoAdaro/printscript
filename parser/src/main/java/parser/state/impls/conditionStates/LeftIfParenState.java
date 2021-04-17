@@ -13,7 +13,7 @@ public class LeftIfParenState extends AbstractParserState {
   public ParserState nextToken(Token token) {
     return switch (token.getTokenType()) {
       case IDENTIFIER -> new IdentifiedIfState(token);
-      case NUMBER, STRING -> new ValueIfState(token);
+      case NUMBER, STRING, BOOLEAN -> new ValueIfState(token);
       default -> throw ParserException.unexpectedToken(token);
     };
   }

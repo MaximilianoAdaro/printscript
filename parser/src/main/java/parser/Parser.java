@@ -3,7 +3,6 @@ package parser;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import lexer.model.Position;
 import lexer.model.Token;
 import lexer.model.TokenType;

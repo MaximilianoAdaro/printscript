@@ -144,6 +144,20 @@ public class InterpreterImplTest {
     testException(text, "Cannot reassign constant y with value 10.0 on line 2");
   }
 
+//  @Test
+//  public void testIfElse() {
+//    final var text = """
+//            let x: number;
+//            if (true) {
+//                x = 3;
+//            } else {
+//                x = 4;
+//            }
+//            println(x);""";
+//
+//    shouldPrint(text, "3");
+//  }
+
   private void testException(String text, String s) {
     final var nodes = getNodes(text);
 
