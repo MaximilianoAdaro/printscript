@@ -5,5 +5,6 @@ import lombok.ToString;
 @ToString
 public enum TypeValue {
   NUMBER,
-  STRING
+  STRING,
+  BOOLEAN
 }

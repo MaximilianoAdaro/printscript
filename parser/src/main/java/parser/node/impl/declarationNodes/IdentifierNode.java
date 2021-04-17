@@ -1,22 +1,27 @@
 package parser.node.impl.declarationNodes;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lexer.model.Position;
+import lombok.*;
 import parser.node.impl.operatorNodes.OperatorNode;
 import parser.node.interfaces.Calculable;
 import parser.node.interfaces.LiteralValue;
 import parser.node.visitor.NodeVisitor;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
+@ToString(callSuper = true)
 @Data
-@Builder
 public class IdentifierNode extends DeclarationalNode implements Calculable {
 
-  private final String value;
+  private String value;
 
-  public IdentifierNode(String value) {
+  @Builder
+  public IdentifierNode(Position position, String value) {
+    super(position);
     this.value = value;
+  }
+
+  public IdentifierNode(Position position) {
+    super(position);
   }
 
   @Override

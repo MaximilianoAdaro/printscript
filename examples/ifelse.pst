@@ -1,0 +1,15 @@
+const x: boolean = true;
+
+if (x) {
+    const w: number = 5;
+    if (w > 3) {
+         const a: number = 2;
+     } else {
+        const a: boolean = x;
+     }
+}
+
+const x = 3;
+
+const a: number = 6;
+

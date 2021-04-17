@@ -5,6 +5,7 @@ import static utils.NodeUtils.*;
 
 import java.util.List;
 import lexer.Lexer;
+import lexer.model.Position;
 import lexer.model.Token;
 import lombok.val;
 import org.junit.Test;
@@ -40,7 +41,8 @@ public class ParserImplTest {
     DeclarationNode assignNodeRight1 = declNode(identifierNode("y"), TypeValue.NUMBER);
     assertThat(nodes.get(1)).isEqualTo(assignNode(assignNodeRight1, assignNodeLeft1));
 
-    Calculable calculableNode = new SumNode(identifierNode("y"), identifierNode("x"));
+    Calculable calculableNode =
+        new SumNode(Position.empty(), identifierNode("y"), identifierNode("x"));
     assertThat(nodes.get(2)).isEqualTo(printNode(calculableNode));
   }
 }

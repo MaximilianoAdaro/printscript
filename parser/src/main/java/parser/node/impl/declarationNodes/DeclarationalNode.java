@@ -1,12 +1,16 @@
 package parser.node.impl.declarationNodes;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lexer.model.Position;
+import lombok.*;
 import parser.node.AbstractNode;
 
 @EqualsAndHashCode(callSuper = false)
-@Data
+@ToString(callSuper = true)
 public abstract class DeclarationalNode extends AbstractNode {
+
+  public DeclarationalNode(Position position) {
+    super(position);
+  }
 
   public abstract IdentifierNode getIdentifierNode();
 }

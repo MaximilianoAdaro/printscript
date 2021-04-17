@@ -1,18 +1,16 @@
 package parser.node.impl.literalNodes;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import parser.node.interfaces.LiteralValue;
 
 @Data
 @Builder
+@AllArgsConstructor
 public class NumberLiteralValue implements LiteralValue {
 
   private final double value;
-
-  public NumberLiteralValue(double value) {
-    this.value = value;
-  }
 
   @Override
   public Double getValue() {
@@ -26,6 +24,6 @@ public class NumberLiteralValue implements LiteralValue {
 
   @Override
   public String toString() {
-    return "" + value + "";
+    return Double.toString(value);
   }
 }

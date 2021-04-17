@@ -19,7 +19,8 @@ public class AssignationState extends AbstractParserState {
   public ParserState nextToken(Token token) {
     return switch (token.getTokenType()) {
       case IDENTIFIER -> new IdentifiedState(declarational, Collections.singletonList(token));
-      case NUMBER, STRING -> new ValueState(declarational, Collections.singletonList(token));
+      case NUMBER, STRING, BOOLEAN -> new ValueState(
+          declarational, Collections.singletonList(token));
       default -> throw ParserException.unexpectedToken(token);
     };
   }

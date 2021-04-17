@@ -3,6 +3,7 @@ package lexer.state.impls;
 import static lexer.utils.CharacterUtils.*;
 
 import java.util.Optional;
+import lexer.LexerConfig;
 import lexer.exception.LexerException;
 import lexer.model.Token;
 import lexer.model.TokenType;
@@ -10,9 +11,7 @@ import lexer.state.AbstractLexerState;
 import lexer.state.LexerState;
 import lexer.state.context.LexerContext;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
-@ToString
 @EqualsAndHashCode(callSuper = true)
 public class TextState extends AbstractLexerState {
 
@@ -41,12 +40,8 @@ public class TextState extends AbstractLexerState {
 
     final var accumulator = lexerContext.getAccumulator();
 
-    return switch (accumulator) {
-      case "let" -> createToken(TokenType.LET);
-      case "println" -> createToken(TokenType.PRINT);
-      case "number" -> createToken(TokenType.NUMBER_TYPE);
-      case "string" -> createToken(TokenType.STRING_TYPE);
-      default -> createToken(TokenType.IDENTIFIER);
-    };
+    final var keywords = LexerConfig.getConfig().getKeywords();
+    final var tokenType = keywords.getOrDefault(accumulator, TokenType.IDENTIFIER);
+    return createToken(tokenType);
   }
 }

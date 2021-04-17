@@ -7,6 +7,7 @@ import interpreter.Interpreter;
 import java.io.File;
 import java.util.concurrent.Callable;
 import lexer.Lexer;
+import lexer.config.VersionsConfig;
 import lombok.val;
 import parser.Parser;
 import picocli.CommandLine;
@@ -14,12 +15,15 @@ import picocli.CommandLine;
 @Command(
     name = "printscript",
     description = "Executes ps files",
-    version = "0.1.0_alpha",
+    version = "1.1",
     mixinStandardHelpOptions = true)
 public class App implements Callable<Integer> {
 
-  @Option(names = "--validateOnly", description = "Validates the file.")
+  @Option(names = "--validateOnly", description = "Validates the file only.")
   private boolean validateOnly;
+
+  @Option(names = "--use", description = "Interprets the file according to this version")
+  private String version;
 
   @Parameters(description = "File to execute.", arity = "1")
   private File file;
@@ -31,16 +35,11 @@ public class App implements Callable<Integer> {
 
   private void run() {
     val text = FileReaderPS.readFile(file);
-    val tokens = Lexer.lex(text);
+    val tokens = Lexer.lex(text, VersionsConfig.getConfig(version));
     val nodes = Parser.parse(tokens);
 
-    // here validates
     if (validateOnly) Interpreter.run(nodes, __ -> {});
     else Interpreter.run(nodes, System.out::println);
-
-    //    ValidatorImpl.run(nodes);
-    //    if (validateOnly) return;
-    //    InterpreterImpl.run(nodes);
   }
 
   @Override

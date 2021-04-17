@@ -20,7 +20,7 @@ public class RightParenState extends AbstractParserState {
   public ParserState nextToken(Token token) {
     return switch (token.getTokenType()) {
       case SEMICOLON -> {
-        node = new PrintNode(calculable);
+        node = new PrintNode(token.getPosition(), calculable);
         yield new EmptyState();
       }
       default -> throw ParserException.unexpectedToken(token);

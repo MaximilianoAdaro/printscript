@@ -7,9 +7,7 @@ import lexer.state.AbstractLexerState;
 import lexer.state.LexerState;
 import lexer.state.context.LexerContext;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
-@ToString
 @EqualsAndHashCode(callSuper = true)
 public class EmptyState extends AbstractLexerState {
 

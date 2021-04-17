@@ -1,21 +1,26 @@
 package parser.node.impl.operatorNodes;
 
+import lexer.model.Position;
 import lombok.Builder;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 import parser.node.interfaces.Calculable;
 import parser.node.interfaces.LiteralValue;
 import parser.node.visitor.NodeVisitor;
 
-@EqualsAndHashCode(callSuper = true)
-@NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
+@Data
 public class SumNode extends OperatorNode {
 
   @Builder
-  public SumNode(Calculable rightNode, Calculable leftNode) {
-    super(rightNode, leftNode);
+  public SumNode(Position position, Calculable rightNode, Calculable leftNode) {
+    super(position, rightNode, leftNode);
+  }
+
+  public SumNode(Position position) {
+    super(position);
   }
 
   @Override

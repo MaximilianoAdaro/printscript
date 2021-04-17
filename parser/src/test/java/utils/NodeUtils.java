@@ -4,16 +4,11 @@ import parser.node.impl.*;
 import parser.node.impl.declarationNodes.DeclarationNode;
 import parser.node.impl.declarationNodes.DeclarationalNode;
 import parser.node.impl.declarationNodes.IdentifierNode;
-import parser.node.impl.literalNodes.LiteralNode;
-import parser.node.impl.literalNodes.NumberLiteralValue;
-import parser.node.impl.literalNodes.StringLiteralValue;
-import parser.node.impl.literalNodes.TypeValue;
-import parser.node.impl.operatorNodes.DivisionNode;
-import parser.node.impl.operatorNodes.MinusNode;
-import parser.node.impl.operatorNodes.MultiplyNode;
-import parser.node.impl.operatorNodes.SumNode;
+import parser.node.impl.literalNodes.*;
+import parser.node.impl.operatorNodes.*;
 import parser.node.interfaces.Calculable;
 import parser.node.interfaces.LiteralValue;
+import parser.node.visitor.NodeVisitor;
 
 public class NodeUtils {
 
@@ -30,6 +25,16 @@ public class NodeUtils {
   // create DeclarationNode
   public static DeclarationNode declNode(IdentifierNode identifierNode, TypeValue typeValue) {
     return DeclarationNode.builder().identifierNode(identifierNode).typeValue(typeValue).build();
+  }
+
+  // create DeclarationNode
+  public static DeclarationNode declNode(
+      IdentifierNode identifierNode, TypeValue typeValue, boolean isConst) {
+    return DeclarationNode.builder()
+        .identifierNode(identifierNode)
+        .typeValue(typeValue)
+        .isConst(isConst)
+        .build();
   }
 
   // create IdentifierNode
@@ -67,6 +72,11 @@ public class NodeUtils {
     return StringLiteralValue.builder().value(value).build();
   }
 
+  // create StringLiteralValue
+  public static BooleanLiteralValue boolValue(boolean value) {
+    return BooleanLiteralValue.builder().value(value).build();
+  }
+
   // create DivisionNode
   public static DivisionNode divisionNode(Calculable calculableL, Calculable calculableR) {
     return DivisionNode.builder().leftNode(calculableL).rightNode(calculableR).build();
@@ -85,5 +95,29 @@ public class NodeUtils {
   // create MinusNode
   public static MinusNode minusNode(Calculable calculableL, Calculable calculableR) {
     return MinusNode.builder().leftNode(calculableL).rightNode(calculableR).build();
+  }
+
+  // create GreaterNode
+  public static GreaterNode greaterNode(Calculable calculableL, Calculable calculableR) {
+    return GreaterNode.builder().leftNode(calculableL).rightNode(calculableR).build();
+  }
+
+  // create GreaterEqualNode
+  public static GreaterEqualNode greaterEqualNode(Calculable calculableL, Calculable calculableR) {
+    return GreaterEqualNode.builder().leftNode(calculableL).rightNode(calculableR).build();
+  }
+
+  // create LessNode
+  public static LessNode lessNode(Calculable calculableL, Calculable calculableR) {
+    return LessNode.builder().leftNode(calculableL).rightNode(calculableR).build();
+  }
+
+  // create LessEqualNode
+  public static LessEqualNode lessEqualNode(Calculable calculableL, Calculable calculableR) {
+    return LessEqualNode.builder().leftNode(calculableL).rightNode(calculableR).build();
+  }
+
+  public static NodeVisitor emptyNodeVisitor() {
+    return new EmptyNodeVisitor();
   }
 }

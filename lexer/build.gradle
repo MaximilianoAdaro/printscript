@@ -3,6 +3,10 @@ plugins {
     id 'my-library.java-common-conventions'
 }
 
+dependencies {
+    implementation project(":filereader")
+}
+
 group 'edu.uni.austral.ingsist'
 version '1.0'
 
