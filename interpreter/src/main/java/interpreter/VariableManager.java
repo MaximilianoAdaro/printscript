@@ -53,6 +53,10 @@ public class VariableManager {
   }
 
   public void assignVar(String name, LiteralValue literalValue) {
-    assignations.get(assignations.size() - 1).put(name, literalValue);
+    int index = 0;
+    for (int i = 0; i < declarations.size(); i++) {
+      if (declarations.get(i).containsKey(name)) index = i;
+    }
+    assignations.get(index).put(name, literalValue);
   }
 }

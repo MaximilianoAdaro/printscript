@@ -44,7 +44,7 @@ public class InterpretationVisitor implements NodeVisitor {
   @Override
   public void visit(AssignationNode assignationNode) {
     final var declarational = assignationNode.getDeclarational();
-    declarational.accept(this);
+    if (declarational instanceof DeclarationNode) declarational.accept(this);
     val literalValue = assignationNode.getCalculable().calculate(this);
     final var identifierNode = declarational.getIdentifierNode();
     final String propertyName = identifierNode.getValue();
