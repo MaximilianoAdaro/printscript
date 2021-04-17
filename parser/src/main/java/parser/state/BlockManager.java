@@ -1,10 +1,9 @@
 package parser.state;
 
-import parser.node.Node;
-import parser.node.interfaces.Calculable;
-
 import java.util.ArrayList;
 import java.util.List;
+import parser.node.Node;
+import parser.node.interfaces.Calculable;
 
 public class BlockManager {
 

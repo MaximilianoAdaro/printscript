@@ -4,7 +4,6 @@ import static java.util.Map.entry;
 import static java.util.Map.ofEntries;
 
 import java.util.Map;
-import java.util.Optional;
 
 public class VersionsConfig {
 
