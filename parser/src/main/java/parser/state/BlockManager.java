@@ -49,7 +49,6 @@ public class BlockManager {
   }
 
   public static void openElseBlock() {
-    blocks = new Blocks();
     previousBlockType = blockType;
     blockType = BlockType.ELSE;
   }

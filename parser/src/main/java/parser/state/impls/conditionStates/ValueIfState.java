@@ -27,7 +27,7 @@ public class ValueIfState extends AbstractParserState {
   @Override
   public ParserState nextToken(Token token) {
     return switch (token.getTokenType()) {
-      case PLUS, MINUS, MULTIPLY, DIVIDE -> new OperatorIfState(token, tokens);
+      case PLUS, MINUS, MULTIPLY, DIVIDE, GREATER, GREATER_EQUAL, LESS, LESS_EQUAL -> new OperatorIfState(token, tokens);
       case RIGHT_PAREN -> new RightIfParenState(makeTree(tokens));
       default -> throw ParserException.unexpectedToken(token);
     };

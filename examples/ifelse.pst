@@ -1,10 +1,8 @@
+if (5 > 2) {
+        println(3);
+                   } else {
+                      println(5);
+                   }
 
-const x : boolean = 5 > 3;
-
-if (x) {
-    println("Entered this");
-} else {
-    println("Entered else");
-}
-
-println("Outside");
+                   let x: number = 3;
+                   println(x);

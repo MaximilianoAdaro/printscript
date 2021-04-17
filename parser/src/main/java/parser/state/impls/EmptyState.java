@@ -30,6 +30,7 @@ public class EmptyState extends AbstractParserState {
         if (!BlockManager.isInsideBlock()) throw ParserException.unexpectedToken(token);
         yield new RightCurlyBraceState();
       }
+      case EOF -> new EmptyState();
       default -> throw ParserException.unexpectedToken(token);
     };
   }

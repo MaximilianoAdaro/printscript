@@ -5,6 +5,7 @@ import parser.exception.ParserException;
 import parser.state.AbstractParserState;
 import parser.state.BlockManager;
 import parser.state.ParserState;
+import parser.state.impls.EmptyState;
 import parser.state.impls.assignationStates.IdentifierAssignationState;
 import parser.state.impls.declarationStates.DeclarationState;
 import parser.state.impls.printStates.PrintState;
@@ -33,6 +34,10 @@ public class RightCurlyBraceState extends AbstractParserState {
       case PRINT -> {
         createNode(token);
         yield new PrintState();
+      }
+      case EOF -> {
+        createNode(token);
+        yield new EmptyState();
       }
       case IF -> {
         createNode(token);
