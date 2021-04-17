@@ -2,7 +2,6 @@ package parser.state;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import lexer.model.Position;
 import parser.node.Node;
 import parser.node.impl.ConditionNode;
@@ -10,7 +9,7 @@ import parser.node.interfaces.Calculable;
 
 public class BlockManager {
 
-  class Blocks {
+  static class Blocks {
     List<Node> ifTrue = new ArrayList<>();
     List<Node> ifFalse = new ArrayList<>();
   }
@@ -44,11 +43,13 @@ public class BlockManager {
   }
 
   public static void openIfBlock() {
+    blocks = new Blocks();
     previousBlockType = blockType;
     blockType = BlockType.IF;
   }
 
   public static void openElseBlock() {
+    blocks = new Blocks();
     previousBlockType = blockType;
     blockType = BlockType.ELSE;
   }

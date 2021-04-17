@@ -1,15 +1,10 @@
-const x: boolean = true;
+
+const x : boolean = 5 > 3;
 
 if (x) {
-    const w: number = 5;
-    if (w > 3) {
-         const a: number = 2;
-     } else {
-        const a: boolean = x;
-     }
+    println("Entered this");
+} else {
+    println("Entered else");
 }
 
-const x = 3;
-
-const a: number = 6;
-
+println("Outside");
