@@ -3,8 +3,8 @@ plugins {
     id 'my-library.java-common-conventions'
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+group 'edu.uni.austral.ingsist'
+version '1.0'
 
 dependencies {
     implementation project(":lexer")
