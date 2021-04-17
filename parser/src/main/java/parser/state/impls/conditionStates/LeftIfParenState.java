@@ -15,7 +15,6 @@ public class LeftIfParenState extends AbstractParserState {
     return switch (token.getTokenType()) {
       case IDENTIFIER -> new IdentifiedIfState(token);
       case NUMBER, STRING -> new ValueIfState(token);
-      case RIGHT_PAREN -> new RightIfParenState(new EmptyNode());
       default -> throw ParserException.unexpectedToken(token);
     };
   }

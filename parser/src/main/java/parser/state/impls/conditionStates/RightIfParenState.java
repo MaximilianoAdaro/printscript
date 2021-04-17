@@ -1,30 +1,31 @@
 package parser.state.impls.conditionStates;
 
-import static parser.state.util.CalculableUtils.BLOCK_COUNTER;
-
 import lexer.model.Token;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
 import parser.exception.ParserException;
 import parser.node.interfaces.Calculable;
 import parser.state.AbstractParserState;
+import parser.state.BlockManager;
 import parser.state.ParserState;
 import parser.state.impls.EmptyState;
 
-@NoArgsConstructor
-@AllArgsConstructor
+// @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+//@AllArgsConstructor
 public class RightIfParenState extends AbstractParserState {
 
-  private Calculable calculable;
+    public RightIfParenState(Calculable calculable) {
+        BlockManager.setCondition(calculable);
+    }
 
-  @Override
+    @Override
   public ParserState nextToken(Token token) {
-    switch (token.getTokenType()) {
+    return switch (token.getTokenType()) {
       case LEFT_CURLY_BRACES -> {
-        BLOCK_COUNTER++;
-        return new EmptyState();
+        BlockManager.openBlock();
+        yield new EmptyState();
       }
       default -> throw ParserException.unexpectedToken(token);
-    }
+    };
   }
 }

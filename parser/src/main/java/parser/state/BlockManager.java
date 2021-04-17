@@ -14,15 +14,27 @@ public class BlockManager {
     blocks.get(blocks.size() - 1).add(node);
   }
 
-  private static boolean isInScope() {
+  public static void setCondition(Calculable condition) {
+    conditions.add(condition);
+  }
+
+  public static boolean isInScope() {
     return !blocks.isEmpty();
   }
 
-  public static void newBlock() {
+  public static void openBlock() {
     blocks.add(new ArrayList<>());
   }
 
-  public static void endBlock() {
+  public static void closeBlock() {
     blocks.remove(blocks.size() - 1);
+  }
+
+  public static boolean canHaveIf() {
+    return false;
+  }
+
+  public static boolean canHaveElse() {
+    return false;
   }
 }
