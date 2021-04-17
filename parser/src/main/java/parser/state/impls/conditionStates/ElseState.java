@@ -13,7 +13,7 @@ public class ElseState extends AbstractParserState {
   public ParserState nextToken(Token token) {
     return switch (token.getTokenType()) {
       case LEFT_CURLY_BRACES -> {
-        BlockManager.openBlock();
+        BlockManager.openElseBlock();
         yield new EmptyState();
       }
       default -> throw ParserException.unexpectedToken(token);

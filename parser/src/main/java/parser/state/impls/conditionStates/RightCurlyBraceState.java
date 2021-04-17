@@ -3,14 +3,51 @@ package parser.state.impls.conditionStates;
 import lexer.model.Token;
 import parser.exception.ParserException;
 import parser.state.AbstractParserState;
+import parser.state.BlockManager;
 import parser.state.ParserState;
+import parser.state.impls.assignationStates.IdentifierAssignationState;
+import parser.state.impls.declarationStates.DeclarationState;
+import parser.state.impls.printStates.PrintState;
 
 public class RightCurlyBraceState extends AbstractParserState {
+
+  public RightCurlyBraceState() {
+    BlockManager.closeBlock();
+  }
+
   @Override
   public ParserState nextToken(Token token) {
     return switch (token.getTokenType()) {
-      case ELSE -> new ElseState();
+      case LET -> {
+        createNode();
+        yield new DeclarationState(false);
+      }
+      case CONST -> {
+        createNode();
+        yield new DeclarationState(true);
+      }
+      case IDENTIFIER -> {
+        createNode();
+        yield new IdentifierAssignationState(token);
+      }
+      case PRINT -> {
+        createNode();
+        yield new PrintState();
+      }
+      case IF -> {
+        createNode();
+        if (!BlockManager.canHaveIf()) throw ParserException.unexpectedToken(token);
+        yield new IfState();
+      }
+      case ELSE -> {
+        if (!BlockManager.canHaveElse()) throw ParserException.unexpectedToken(token);
+        yield new ElseState();
+      }
       default -> throw ParserException.unexpectedToken(token);
     };
+  }
+
+  private void createNode() {
+    node = BlockManager.getConditionNode();
   }
 }

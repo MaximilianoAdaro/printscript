@@ -1,33 +1,42 @@
 package parser.state;
 
-import java.util.ArrayList;
 import java.util.List;
 import parser.node.Node;
 import parser.node.interfaces.Calculable;
 
 public class BlockManager {
 
-  private static final List<Calculable> conditions = new ArrayList<>();
-  private static final List<List<Node>> blocks = new ArrayList<>();
+  public static void openElseBlock() {}
 
-  public static void addToBlock(Node node) {
-    blocks.get(blocks.size() - 1).add(node);
+  public static Node getConditionNode() {
+    return null;
   }
 
-  public static void setCondition(Calculable condition) {
-    conditions.add(condition);
+  class Blocks {
+    List<Node> ifTrue;
+    List<Node> ifFalse;
+  }
+
+  private static Calculable condition;
+  private static Blocks blocks;
+
+  public static void addToBlock(Node node) {}
+
+  public static void setCondition(Calculable calculable) {
+    condition = calculable;
   }
 
   public static boolean isInsideBlock() {
-    return !blocks.isEmpty();
+    //    return !blocks.isEmpty();
+    return true;
   }
 
-  public static void openBlock() {
-    blocks.add(new ArrayList<>());
+  public static void openIfBlock() {
+    //    blocks.add(new ArrayList<>());
   }
 
   public static void closeBlock() {
-    blocks.remove(blocks.size() - 1);
+    //    blocks.remove(blocks.size() - 1);
   }
 
   public static boolean canHaveIf() {

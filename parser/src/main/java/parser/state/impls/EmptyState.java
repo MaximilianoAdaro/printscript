@@ -7,8 +7,8 @@ import parser.state.AbstractParserState;
 import parser.state.BlockManager;
 import parser.state.ParserState;
 import parser.state.impls.assignationStates.IdentifierAssignationState;
-import parser.state.impls.conditionStates.ElseState;
 import parser.state.impls.conditionStates.IfState;
+import parser.state.impls.conditionStates.RightCurlyBraceState;
 import parser.state.impls.declarationStates.DeclarationState;
 import parser.state.impls.printStates.PrintState;
 
@@ -26,14 +26,9 @@ public class EmptyState extends AbstractParserState {
         if (!BlockManager.canHaveIf()) throw ParserException.unexpectedToken(token);
         yield new IfState();
       }
-      case ELSE -> {
-        if (!BlockManager.canHaveElse()) throw ParserException.unexpectedToken(token);
-        yield new ElseState();
-      }
       case RIGHT_CURLY_BRACES -> {
         if (!BlockManager.isInsideBlock()) throw ParserException.unexpectedToken(token);
-        BlockManager.closeBlock();
-        yield new EmptyState();
+        yield new RightCurlyBraceState();
       }
       default -> throw ParserException.unexpectedToken(token);
     };

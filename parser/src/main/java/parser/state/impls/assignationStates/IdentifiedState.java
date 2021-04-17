@@ -27,7 +27,8 @@ public class IdentifiedState extends AbstractParserState {
       case PLUS, MINUS, MULTIPLY, DIVIDE, GREATER, GREATER_EQUAL, LESS_EQUAL, LESS -> new OperatorState(
           declarational, token, tokens);
       case SEMICOLON -> {
-        final var assignationNode = new AssignationNode(token.getPosition(), makeTree(tokens), declarational);
+        final var assignationNode =
+            new AssignationNode(token.getPosition(), makeTree(tokens), declarational);
         if (BlockManager.isInsideBlock()) BlockManager.addToBlock(assignationNode);
         else node = assignationNode;
         yield new EmptyState();

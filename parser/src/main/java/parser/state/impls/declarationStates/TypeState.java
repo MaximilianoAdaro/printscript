@@ -27,8 +27,8 @@ public class TypeState extends AbstractParserState {
 
   @Override
   public ParserState nextToken(Token t) {
-      final var declarationNode = getDeclarationNode(t.getPosition());
-      return switch (t.getTokenType()) {
+    final var declarationNode = getDeclarationNode(t.getPosition());
+    return switch (t.getTokenType()) {
       case ASSIGNATION -> new AssignationState(declarationNode);
       case SEMICOLON -> {
         if (isConst) throw ParserException.unexpectedToken(t);
