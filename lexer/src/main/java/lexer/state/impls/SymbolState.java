@@ -4,9 +4,9 @@ import static lexer.utils.CharacterUtils.*;
 
 import java.util.List;
 import java.util.Optional;
+import lexer.LexerConfig;
 import lexer.exception.LexerException;
 import lexer.model.Token;
-import lexer.model.TokenType;
 import lexer.state.AbstractLexerState;
 import lexer.state.LexerState;
 import lexer.state.context.LexerContext;
@@ -28,6 +28,8 @@ public class SymbolState extends AbstractLexerState {
       if (isEqual(c)) return new SymbolState(lexerContext.addCharacter(c));
     }
 
+    //    Lexer.config.getSymbols()
+
     done = true;
     if (isAnySymbol(c)) return new SymbolState(lexerContext.reset(c));
     if (isSemicolon(c)) return new SymbolState(lexerContext.reset(c));
@@ -45,24 +47,12 @@ public class SymbolState extends AbstractLexerState {
     if (!done) return Optional.empty();
 
     final var c = lexerContext.getAccumulator();
-    return switch (c) {
-      case "*" -> createToken(TokenType.MULTIPLY);
-      case "/" -> createToken(TokenType.DIVIDE);
-      case "+" -> createToken(TokenType.PLUS);
-      case "-" -> createToken(TokenType.MINUS);
-      case "=" -> createToken(TokenType.ASSIGNATION);
-      case ":" -> createToken(TokenType.COLON);
-      case ";" -> createToken(TokenType.SEMICOLON);
-      case "(" -> createToken(TokenType.LEFT_PAREN);
-      case ")" -> createToken(TokenType.RIGHT_PAREN);
-      case "{" -> createToken(TokenType.LEFT_CURLY_BRACES);
-      case "}" -> createToken(TokenType.RIGHT_CURLY_BRACES);
-      case ">" -> createToken(TokenType.GREATER);
-      case ">=" -> createToken(TokenType.GREATER_EQUAL);
-      case "<" -> createToken(TokenType.LESS);
-      case "<=" -> createToken(TokenType.LESS_EQUAL);
+    final var symbols = LexerConfig.getConfig().getSymbols();
 
-      default -> throw LexerException.illegalText(' ', lexerContext);
-    };
+    final var tokenType =
+        Optional.ofNullable(symbols.get(c))
+            .orElseThrow(() -> LexerException.illegalText(' ', lexerContext));
+
+    return createToken(tokenType);
   }
 }

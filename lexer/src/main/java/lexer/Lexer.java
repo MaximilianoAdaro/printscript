@@ -3,6 +3,7 @@ package lexer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+import lexer.config.TokenConfig;
 import lexer.model.Token;
 import lexer.state.LexerState;
 import lexer.state.context.LexerContext;
@@ -16,6 +17,11 @@ public class Lexer {
   private Lexer() {}
 
   public static List<Token> lex(String text) {
+    return new Lexer().createTokens(text);
+  }
+
+  public static List<Token> lex(String text, TokenConfig config) {
+    LexerConfig.setConfig(config);
     return new Lexer().createTokens(text);
   }
 
