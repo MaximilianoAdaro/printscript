@@ -1,12 +1,11 @@
 plugins {
     id 'application'
     id 'my-library.java-common-conventions'
-
     id 'com.palantir.graal' version '0.6.0'
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+group 'edu.austral.ingsist'
+version '1.0'
 
 repositories {
     mavenCentral()
@@ -27,16 +26,11 @@ compileTestJava {
 }
 
 application {
-    mainClass = 'cli.App'
+    mainClass = 'edu.austral.ingsis.printscript'
 }
 
-jar {
-    manifest {
-        attributes(
-                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-                'Main-Class': 'cli.App'
-        )
-    }
+configurations {
+    compile
 }
 
 jacocoTestCoverageVerification {
@@ -50,7 +44,14 @@ jacocoTestCoverageVerification {
     }
 }
 
-graal {
-    mainClass 'cli.App'
-    outputName 'printscript'
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'edu.austral.ingsis.printscript'
+        )
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }

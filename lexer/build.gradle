@@ -3,6 +3,6 @@ plugins {
     id 'my-library.java-common-conventions'
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+group 'edu.austral.ingsist'
+version '1.0'
 
