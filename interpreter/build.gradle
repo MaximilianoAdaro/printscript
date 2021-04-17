@@ -3,7 +3,7 @@ plugins {
     id 'my-library.java-common-conventions'
 }
 
-group 'edu.austral.ingsist'
+group 'edu.uni.austral.ingsist'
 version '1.0'
 
 dependencies {

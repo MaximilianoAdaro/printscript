@@ -4,7 +4,7 @@ plugins {
     id 'com.palantir.graal' version '0.6.0'
 }
 
-group 'edu.austral.ingsist'
+group 'edu.uni.austral.ingsist'
 version '1.0'
 
 repositories {
@@ -18,7 +18,7 @@ dependencies {
     implementation project(":lexer")
     implementation project(":parser")
     implementation project(":interpreter")
-    implementation project(":fileReader")
+    implementation project(":filereader")
 }
 
 compileTestJava {
@@ -26,7 +26,7 @@ compileTestJava {
 }
 
 application {
-    mainClass = 'edu.austral.ingsis.printscript'
+    mainClass = 'edu.uni.austral.ingsis.printscript'
 }
 
 configurations {
@@ -48,7 +48,7 @@ jar {
     manifest {
         attributes(
                 'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-                'Main-Class': 'edu.austral.ingsis.printscript'
+                'Main-Class': 'edu.uni.austral.ingsis.printscript'
         )
     }
     from {
