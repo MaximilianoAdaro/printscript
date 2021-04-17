@@ -3,49 +3,69 @@ package parser.state;
 import java.util.ArrayList;
 import java.util.List;
 import parser.node.Node;
+import parser.node.impl.ConditionNode;
 import parser.node.interfaces.Calculable;
 
 public class BlockManager {
 
   class Blocks {
-
     List<Node> ifTrue = new ArrayList<>();
     List<Node> ifFalse = new ArrayList<>();
   }
 
+  enum BlockType {
+    NONE,
+    IF,
+    ELSE,
+  }
+
   private static Calculable condition;
   private static Blocks blocks;
+  private static BlockType blockType = BlockType.NONE;
+  private static BlockType previousBlockType = BlockType.NONE;
 
-  public static void addToBlock(Node node) {}
+  public static void addToBlock(Node node) {
+    switch (blockType) {
+      case IF -> blocks.ifTrue.add(node);
+      case ELSE -> blocks.ifFalse.add(node);
+      case NONE -> {
+      }
+    }
+  }
 
   public static void setCondition(Calculable calculable) {
     condition = calculable;
   }
 
-  public static void openElseBlock() {}
-
-  public static Node getConditionNode() {
-    return null;
-  }
-
   public static boolean isInsideBlock() {
-    //    return !blocks.isEmpty();
-    return false;
+    return blockType != BlockType.NONE;
   }
 
   public static void openIfBlock() {
-    //    blocks.add(new ArrayList<>());
+    previousBlockType = blockType;
+    blockType = BlockType.IF;
+  }
+
+  public static void openElseBlock() {
+    previousBlockType = blockType;
+    blockType = BlockType.ELSE;
   }
 
   public static void closeBlock() {
-    //    blocks.remove(blocks.size() - 1);
+    previousBlockType = blockType;
+    blockType = BlockType.NONE;
   }
 
   public static boolean canHaveIf() {
-    return false;
+    return !isInsideBlock();
   }
 
   public static boolean canHaveElse() {
-    return false;
+    return !isInsideBlock() && previousBlockType == BlockType.IF;
+  }
+
+  public static Node getConditionNode() {
+//    return new ConditionNode();
+    return null;
   }
 }
