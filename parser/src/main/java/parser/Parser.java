@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import lexer.model.Token;
 import lombok.val;
+import parser.exception.ParserException;
 import parser.node.Node;
 import parser.state.ParserState;
 import parser.state.impls.EmptyState;
@@ -26,7 +27,7 @@ public class Parser {
       canFinish = consumeToken(token);
     }
     if (canFinish) return nodes;
-    else throw new RuntimeException("CANNOT FINISH"); // todo: solve this
+    else throw ParserException.unexpectedToken(tokens.get(tokens.size() - 1));
   }
 
   private boolean consumeToken(Token t) {
