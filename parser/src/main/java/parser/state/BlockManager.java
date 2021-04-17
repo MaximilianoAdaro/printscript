@@ -1,20 +1,16 @@
 package parser.state;
 
+import java.util.ArrayList;
 import java.util.List;
 import parser.node.Node;
 import parser.node.interfaces.Calculable;
 
 public class BlockManager {
 
-  public static void openElseBlock() {}
-
-  public static Node getConditionNode() {
-    return null;
-  }
-
   class Blocks {
-    List<Node> ifTrue;
-    List<Node> ifFalse;
+
+    List<Node> ifTrue = new ArrayList<>();
+    List<Node> ifFalse = new ArrayList<>();
   }
 
   private static Calculable condition;
@@ -26,9 +22,15 @@ public class BlockManager {
     condition = calculable;
   }
 
+  public static void openElseBlock() {}
+
+  public static Node getConditionNode() {
+    return null;
+  }
+
   public static boolean isInsideBlock() {
     //    return !blocks.isEmpty();
-    return true;
+    return false;
   }
 
   public static void openIfBlock() {
