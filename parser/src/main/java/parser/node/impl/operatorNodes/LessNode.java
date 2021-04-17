@@ -1,19 +1,23 @@
 package parser.node.impl.operatorNodes;
 
+import lexer.model.Position;
 import lombok.*;
 import parser.node.interfaces.Calculable;
 import parser.node.interfaces.LiteralValue;
 import parser.node.visitor.NodeVisitor;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 @Data
-@AllArgsConstructor
 public class LessNode extends OperatorNode {
 
   @Builder
-  public LessNode(Calculable rightNode, Calculable leftNode) {
-    super(rightNode, leftNode);
+  public LessNode(Position position, Calculable rightNode, Calculable leftNode) {
+    super(position, rightNode, leftNode);
+  }
+
+  public LessNode(Position position) {
+    super(position);
   }
 
   @Override

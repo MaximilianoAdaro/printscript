@@ -16,15 +16,16 @@ public class CalculableUtils {
 
   static Calculable getNode(Token token) {
     return switch (token.getTokenType()) {
-      case PLUS -> new SumNode();
-      case MINUS -> new MinusNode();
-      case MULTIPLY -> new MultiplyNode();
-      case DIVIDE -> new DivisionNode();
-      case STRING -> new LiteralNode(new StringLiteralValue(token.getValue()));
-      case NUMBER -> new LiteralNode(new NumberLiteralValue(Double.parseDouble(token.getValue())));
+      case PLUS -> new SumNode(token.getPosition());
+      case MINUS -> new MinusNode(token.getPosition());
+      case MULTIPLY -> new MultiplyNode(token.getPosition());
+      case DIVIDE -> new DivisionNode(token.getPosition());
+      case STRING -> new LiteralNode(token.getPosition(), new StringLiteralValue(token.getValue()));
+      case NUMBER -> new LiteralNode(
+          token.getPosition(), new NumberLiteralValue(Double.parseDouble(token.getValue())));
       case BOOLEAN -> new LiteralNode(
-          new BooleanLiteralValue(Boolean.parseBoolean(token.getValue())));
-      case IDENTIFIER -> new IdentifierNode(token.getValue());
+          token.getPosition(), new BooleanLiteralValue(Boolean.parseBoolean(token.getValue())));
+      case IDENTIFIER -> new IdentifierNode(token.getPosition(), token.getValue());
       default -> throw ParserException.unexpectedToken(token);
     };
   }

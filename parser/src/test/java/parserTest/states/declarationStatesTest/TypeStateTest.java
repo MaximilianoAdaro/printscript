@@ -8,6 +8,7 @@ import static utils.NodeUtils.identifierNode;
 
 import java.util.List;
 import lexer.Lexer;
+import lexer.model.Position;
 import lexer.model.Token;
 import org.junit.Test;
 import parser.Parser;
@@ -23,7 +24,7 @@ public class TypeStateTest {
     List<Node> parse = Parser.parse(tokens);
     assertThat(parse).hasSize(1);
     Node nodeX = parse.get(0);
-    assertThat(nodeX).hasSameClassAs(new DeclarationNode());
+    assertThat(nodeX).hasSameClassAs(new DeclarationNode(Position.empty()));
 
     assertThat(nodeX).isEqualTo(declNode(identifierNode("x"), STRING));
   }
@@ -35,7 +36,7 @@ public class TypeStateTest {
     List<Node> parse = Parser.parse(tokens);
     assertThat(parse).hasSize(1);
     Node nodeY = parse.get(0);
-    assertThat(nodeY).hasSameClassAs(new DeclarationNode());
+    assertThat(nodeY).hasSameClassAs(new DeclarationNode(Position.empty()));
     assertThat(nodeY).isEqualTo(declNode(identifierNode("y"), NUMBER));
   }
 }
