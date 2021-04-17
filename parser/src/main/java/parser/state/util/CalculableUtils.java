@@ -12,6 +12,8 @@ import parser.node.interfaces.Calculable;
 
 public class CalculableUtils {
 
+  public static int BLOCK_COUNTER = 0;
+
   static Calculable getNode(Token token) {
     return switch (token.getTokenType()) {
       case PLUS -> new SumNode();

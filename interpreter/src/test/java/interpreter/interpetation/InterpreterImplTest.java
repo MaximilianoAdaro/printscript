@@ -30,7 +30,8 @@ public class InterpreterImplTest {
   }
 
   private void shouldPrintExpected(String text, String expected) {
-    final var nodes = getNodes(text);
+    final var tokens = Lexer.lex(text);
+    final var nodes = Parser.parse(tokens);
 
     final var prints = new ArrayList<String>();
     Interpreter.run(nodes, prints::add);
