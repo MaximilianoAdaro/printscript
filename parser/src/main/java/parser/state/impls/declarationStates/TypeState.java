@@ -11,6 +11,7 @@ import parser.node.impl.declarationNodes.DeclarationNode;
 import parser.node.impl.declarationNodes.IdentifierNode;
 import parser.node.impl.literalNodes.TypeValue;
 import parser.state.AbstractParserState;
+import parser.state.BlockManager;
 import parser.state.ParserState;
 import parser.state.impls.EmptyState;
 import parser.state.impls.assignationStates.AssignationState;
@@ -26,11 +27,13 @@ public class TypeState extends AbstractParserState {
 
   @Override
   public ParserState nextToken(Token t) {
-    return switch (t.getTokenType()) {
-      case ASSIGNATION -> new AssignationState(getDeclarationNode(t.getPosition()));
+      final var declarationNode = getDeclarationNode(t.getPosition());
+      return switch (t.getTokenType()) {
+      case ASSIGNATION -> new AssignationState(declarationNode);
       case SEMICOLON -> {
         if (isConst) throw ParserException.unexpectedToken(t);
-        node = getDeclarationNode(t.getPosition());
+        if (BlockManager.isInsideBlock()) BlockManager.addToBlock(declarationNode);
+        else node = declarationNode;
         yield new EmptyState();
       }
       default -> throw ParserException.unexpectedToken(token);

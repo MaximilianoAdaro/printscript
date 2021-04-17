@@ -3,7 +3,6 @@ package parser.state.impls.conditionStates;
 import lexer.model.Token;
 import lombok.NoArgsConstructor;
 import parser.exception.ParserException;
-import parser.node.impl.EmptyNode;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
 

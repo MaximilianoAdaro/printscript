@@ -23,7 +23,7 @@ public class EmptyState extends AbstractParserState {
       case IDENTIFIER -> new IdentifierAssignationState(token);
       case PRINT -> new PrintState();
       case IF -> {
-        if (!BlockManager.canHaveIf()) throw  ParserException.unexpectedToken(token);
+        if (!BlockManager.canHaveIf()) throw ParserException.unexpectedToken(token);
         yield new IfState();
       }
       case ELSE -> {
@@ -31,7 +31,7 @@ public class EmptyState extends AbstractParserState {
         yield new ElseState();
       }
       case RIGHT_CURLY_BRACES -> {
-        if (!BlockManager.isInScope()) throw ParserException.unexpectedToken(token);
+        if (!BlockManager.isInsideBlock()) throw ParserException.unexpectedToken(token);
         BlockManager.closeBlock();
         yield new EmptyState();
       }

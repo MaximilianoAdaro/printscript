@@ -10,7 +10,7 @@ public class BlockManager {
   private static final List<Calculable> conditions = new ArrayList<>();
   private static final List<List<Node>> blocks = new ArrayList<>();
 
-  public static void addToScope(Node node) {
+  public static void addToBlock(Node node) {
     blocks.get(blocks.size() - 1).add(node);
   }
 
@@ -18,7 +18,7 @@ public class BlockManager {
     conditions.add(condition);
   }
 
-  public static boolean isInScope() {
+  public static boolean isInsideBlock() {
     return !blocks.isEmpty();
   }
 

@@ -1,7 +1,5 @@
 package parser.state.impls.conditionStates;
 
-import static parser.state.util.CalculableUtils.BLOCK_COUNTER;
-
 import lexer.model.Token;
 import parser.exception.ParserException;
 import parser.state.AbstractParserState;

@@ -11,14 +11,14 @@ import parser.state.impls.EmptyState;
 
 // @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-//@AllArgsConstructor
+// @AllArgsConstructor
 public class RightIfParenState extends AbstractParserState {
 
-    public RightIfParenState(Calculable calculable) {
-        BlockManager.setCondition(calculable);
-    }
+  public RightIfParenState(Calculable calculable) {
+    BlockManager.setCondition(calculable);
+  }
 
-    @Override
+  @Override
   public ParserState nextToken(Token token) {
     return switch (token.getTokenType()) {
       case LEFT_CURLY_BRACES -> {
