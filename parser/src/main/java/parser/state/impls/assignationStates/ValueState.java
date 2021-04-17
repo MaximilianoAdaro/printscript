@@ -10,6 +10,7 @@ import parser.exception.ParserException;
 import parser.node.impl.AssignationNode;
 import parser.node.impl.declarationNodes.DeclarationalNode;
 import parser.state.AbstractParserState;
+import parser.state.BlockManager;
 import parser.state.ParserState;
 import parser.state.impls.EmptyState;
 
@@ -26,7 +27,10 @@ public class ValueState extends AbstractParserState {
       case PLUS, MINUS, MULTIPLY, DIVIDE, GREATER, GREATER_EQUAL, LESS, LESS_EQUAL -> new OperatorState(
           declarational, token, tokens);
       case SEMICOLON -> {
-        node = new AssignationNode(token.getPosition(), makeTree(tokens), declarational);
+        final var assignationNode =
+            new AssignationNode(token.getPosition(), makeTree(tokens), declarational);
+        if (BlockManager.isInsideBlock()) BlockManager.addToBlock(assignationNode);
+        else node = assignationNode;
         yield new EmptyState();
       }
       default -> throw ParserException.unexpectedToken(token);

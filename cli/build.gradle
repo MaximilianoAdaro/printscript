@@ -26,7 +26,7 @@ compileTestJava {
 }
 
 application {
-    mainClass = 'edu.uni.austral.ingsis.printscript'
+    mainClass = 'cli.App'
 }
 
 configurations {
@@ -48,7 +48,7 @@ jar {
     manifest {
         attributes(
                 'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-                'Main-Class': 'edu.uni.austral.ingsis.printscript'
+                'Main-Class': 'cli.App'
         )
     }
     from {

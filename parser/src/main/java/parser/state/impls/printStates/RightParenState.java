@@ -7,6 +7,7 @@ import parser.exception.ParserException;
 import parser.node.impl.PrintNode;
 import parser.node.interfaces.Calculable;
 import parser.state.AbstractParserState;
+import parser.state.BlockManager;
 import parser.state.ParserState;
 import parser.state.impls.EmptyState;
 
@@ -20,7 +21,9 @@ public class RightParenState extends AbstractParserState {
   public ParserState nextToken(Token token) {
     return switch (token.getTokenType()) {
       case SEMICOLON -> {
-        node = new PrintNode(token.getPosition(), calculable);
+        final var printNode = new PrintNode(token.getPosition(), calculable);
+        if (BlockManager.isInsideBlock()) BlockManager.addToBlock(printNode);
+        else node = printNode;
         yield new EmptyState();
       }
       default -> throw ParserException.unexpectedToken(token);

@@ -1,15 +1,7 @@
-const x: boolean = true;
-
-if (x) {
-    const w: number = 5;
-    if (w > 3) {
-         const a: number = 2;
-     } else {
-        const a: boolean = x;
-     }
+let x: number;
+if (true) {
+    x = 3;
+} else {
+    x = 4;
 }
-
-const x = 3;
-
-const a: number = 6;
-
+println(x);

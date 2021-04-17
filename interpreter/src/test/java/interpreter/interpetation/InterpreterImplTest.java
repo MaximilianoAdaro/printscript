@@ -30,7 +30,8 @@ public class InterpreterImplTest {
   }
 
   private void shouldPrintExpected(String text, String expected) {
-    final var nodes = getNodes(text);
+    final var tokens = Lexer.lex(text);
+    final var nodes = Parser.parse(tokens);
 
     final var prints = new ArrayList<String>();
     Interpreter.run(nodes, prints::add);
@@ -141,6 +142,21 @@ public class InterpreterImplTest {
                 """;
 
     testException(text, "Cannot reassign constant y with value 10.0 on line 2");
+  }
+
+  @Test
+  public void testIfElse() {
+    final var text =
+        """
+              let x: number;
+              if (true) {
+                  x = 3;
+              } else {
+                  x = 4;
+              }
+              println(x);""";
+
+    shouldPrint(text, "3.0");
   }
 
   private void testException(String text, String s) {

@@ -1,21 +1,19 @@
-package parser.state.impls.printStates;
+package parser.state.impls.conditionStates;
 
 import lexer.model.Token;
 import lombok.NoArgsConstructor;
 import parser.exception.ParserException;
-import parser.node.impl.EmptyNode;
 import parser.state.AbstractParserState;
 import parser.state.ParserState;
 
 @NoArgsConstructor
-public class LeftParenState extends AbstractParserState {
+public class LeftIfParenState extends AbstractParserState {
 
   @Override
   public ParserState nextToken(Token token) {
     return switch (token.getTokenType()) {
-      case IDENTIFIER -> new IdentifiedPrintState(token);
-      case NUMBER, STRING, BOOLEAN -> new ValuePrintState(token);
-      case RIGHT_PAREN -> new RightParenState(new EmptyNode(token.getPosition()));
+      case IDENTIFIER -> new IdentifiedIfState(token);
+      case NUMBER, STRING, BOOLEAN -> new ValueIfState(token);
       default -> throw ParserException.unexpectedToken(token);
     };
   }

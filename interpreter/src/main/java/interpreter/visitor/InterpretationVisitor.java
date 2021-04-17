@@ -1,12 +1,13 @@
 package interpreter.visitor;
 
+import interpreter.VariableManager;
+import interpreter.VariableManager.ValueType;
 import interpreter.exception.InterpreterException;
 import interpreter.utils.OperatorUtils;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Consumer;
 import lombok.AllArgsConstructor;
 import lombok.val;
+import parser.node.Node;
 import parser.node.impl.AssignationNode;
 import parser.node.impl.ConditionNode;
 import parser.node.impl.PrintNode;
@@ -23,8 +24,7 @@ public class InterpretationVisitor implements NodeVisitor {
 
   private final Consumer<String> stdOut;
 
-  private final Map<String, ValueType> variables = new HashMap<>();
-  private final Map<String, LiteralValue> assignations = new HashMap<>();
+  private final VariableManager variableManager = new VariableManager();
 
   @Override
   public void visit(PrintNode printNode) {
@@ -34,29 +34,43 @@ public class InterpretationVisitor implements NodeVisitor {
   @Override
   public void visit(DeclarationNode declarationNode) {
     final var variableName = declarationNode.getIdentifierNode().getValue();
-    if (variables.containsKey(variableName))
+    if (variableManager.isDeclared(variableName))
       throw InterpreterException.alreadyExists(declarationNode);
     final var variableType = declarationNode.getTypeValue();
-    variables.put(variableName, new ValueType(variableType, declarationNode.isConst()));
+    variableManager.declareVar(
+        variableName, new ValueType(variableType, declarationNode.isConst()));
   }
 
   @Override
   public void visit(AssignationNode assignationNode) {
     final var declarational = assignationNode.getDeclarational();
-    declarational.accept(this);
+    if (declarational instanceof DeclarationNode) declarational.accept(this);
     val literalValue = assignationNode.getCalculable().calculate(this);
     final var identifierNode = declarational.getIdentifierNode();
     final String propertyName = identifierNode.getValue();
-    final var varType = variables.get(propertyName);
-    if (declarational instanceof IdentifierNode && varType.isConst)
+    final var varType =
+        variableManager
+            .getValueType(propertyName)
+            .orElseThrow(() -> InterpreterException.invalidVar(identifierNode));
+    if (declarational instanceof IdentifierNode && varType.isConst())
       throw InterpreterException.isConst(assignationNode, propertyName, literalValue);
-    if (varType.typeValue != literalValue.getTypeValue())
-      throw InterpreterException.invalidType(varType.typeValue, literalValue, identifierNode);
-    assignations.put(propertyName, literalValue);
+    if (varType.getTypeValue() != literalValue.getTypeValue())
+      throw InterpreterException.invalidType(varType.getTypeValue(), literalValue, identifierNode);
+    variableManager.assignVar(propertyName, literalValue);
   }
 
   @Override
-  public void visit(ConditionNode conditionNode) {}
+  public void visit(ConditionNode conditionNode) {
+    final var literalValue = conditionNode.getCondition().calculate(this);
+    if (!literalValue.getTypeValue().equals(TypeValue.BOOLEAN))
+      throw InterpreterException.expectedBool(literalValue, conditionNode);
+
+    final Consumer<Node> nodeConsumer = n -> n.accept(this);
+    variableManager.newScope();
+    if (literalValue.getValue().equals(true)) conditionNode.getIfTrue().forEach(nodeConsumer);
+    else conditionNode.getIfFalse().forEach(nodeConsumer);
+    variableManager.endScope();
+  }
 
   @Override
   public LiteralValue visit(SumNode sumNode) {
@@ -122,15 +136,10 @@ public class InterpretationVisitor implements NodeVisitor {
   @Override
   public LiteralValue visit(IdentifierNode identifierNode) {
     final var variableName = identifierNode.getValue();
-    if (!variables.containsKey(variableName)) throw InterpreterException.invalidVar(identifierNode);
-    if (!assignations.containsKey(variableName))
-      throw InterpreterException.notInitVar(identifierNode);
-    return assignations.get(variableName);
-  }
-
-  @AllArgsConstructor
-  private static class ValueType {
-    TypeValue typeValue;
-    boolean isConst;
+    if (!variableManager.isDeclared(variableName))
+      throw InterpreterException.invalidVar(identifierNode);
+    return variableManager
+        .getLiteralValue(variableName)
+        .orElseThrow(() -> InterpreterException.notInitVar(identifierNode));
   }
 }
