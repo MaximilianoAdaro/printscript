@@ -19,23 +19,23 @@ public class RightCurlyBraceState extends AbstractParserState {
   public ParserState nextToken(Token token) {
     return switch (token.getTokenType()) {
       case LET -> {
-        createNode();
+        createNode(token);
         yield new DeclarationState(false);
       }
       case CONST -> {
-        createNode();
+        createNode(token);
         yield new DeclarationState(true);
       }
       case IDENTIFIER -> {
-        createNode();
+        createNode(token);
         yield new IdentifierAssignationState(token);
       }
       case PRINT -> {
-        createNode();
+        createNode(token);
         yield new PrintState();
       }
       case IF -> {
-        createNode();
+        createNode(token);
         if (!BlockManager.canHaveIf()) throw ParserException.unexpectedToken(token);
         yield new IfState();
       }
@@ -47,7 +47,7 @@ public class RightCurlyBraceState extends AbstractParserState {
     };
   }
 
-  private void createNode() {
-    node = BlockManager.getConditionNode();
+  private void createNode(Token token) {
+    node = BlockManager.getConditionNode(token.getPosition());
   }
 }

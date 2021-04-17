@@ -2,6 +2,8 @@ package parser.state;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import lexer.model.Position;
 import parser.node.Node;
 import parser.node.impl.ConditionNode;
 import parser.node.interfaces.Calculable;
@@ -64,8 +66,7 @@ public class BlockManager {
     return !isInsideBlock() && previousBlockType == BlockType.IF;
   }
 
-  public static Node getConditionNode() {
-//    return new ConditionNode();
-    return null;
+  public static Node getConditionNode(Position position) {
+    return new ConditionNode(position, condition, blocks.ifTrue, blocks.ifFalse);
   }
 }
