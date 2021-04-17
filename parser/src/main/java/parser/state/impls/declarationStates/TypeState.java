@@ -29,7 +29,9 @@ public class TypeState extends AbstractParserState {
       case ASSIGNATION -> new AssignationState(getDeclarationNode());
       case SEMICOLON -> {
         if (isConst) throw ParserException.unexpectedToken(t);
-        node = getDeclarationNode();
+//          final var declarationNode = getDeclarationNode();
+//          if (isInBlock()) add(declarationNode);
+          node = getDeclarationNode();
         yield new EmptyState();
       }
       default -> throw ParserException.unexpectedToken(token);

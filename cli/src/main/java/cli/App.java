@@ -5,6 +5,7 @@ import static picocli.CommandLine.*;
 import fileReader.FileReaderPS;
 import interpreter.Interpreter;
 import java.io.File;
+import java.util.Optional;
 import java.util.concurrent.Callable;
 import lexer.Lexer;
 import lexer.config.VersionsConfig;
@@ -35,7 +36,8 @@ public class App implements Callable<Integer> {
 
   private void run() {
     val text = FileReaderPS.readFile(file);
-    val tokens = Lexer.lex(text, VersionsConfig.getConfig(version));
+    val tokens =
+        Lexer.lex(text, VersionsConfig.getConfig(Optional.ofNullable(version).orElse("1.1")));
     val nodes = Parser.parse(tokens);
 
     if (validateOnly) Interpreter.run(nodes, __ -> {});
