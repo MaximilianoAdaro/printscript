@@ -7,6 +7,7 @@ import interpreter.Interpreter;
 import java.io.File;
 import java.util.Optional;
 import java.util.concurrent.Callable;
+import java.util.function.Consumer;
 import lexer.Lexer;
 import lexer.config.VersionsConfig;
 import lombok.val;
@@ -42,6 +43,14 @@ public class App implements Callable<Integer> {
 
     if (validateOnly) Interpreter.run(nodes, __ -> {});
     else Interpreter.run(nodes, System.out::println);
+  }
+
+  public static void run(File file, String version, Consumer<String> stdOut) {
+    val text = FileReaderPS.readFile(file);
+    val tokens =
+        Lexer.lex(text, VersionsConfig.getConfig(Optional.ofNullable(version).orElse("1.1")));
+    val nodes = Parser.parse(tokens);
+    Interpreter.run(nodes, stdOut);
   }
 
   @Override
