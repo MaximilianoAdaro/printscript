@@ -45,7 +45,7 @@ public class App implements Callable<Integer> {
     else Interpreter.run(nodes, System.out::println);
   }
 
-  public void run(File file, String version, Consumer<String> stdOut) {
+  public static void run(File file, String version, Consumer<String> stdOut) {
     val text = FileReaderPS.readFile(file);
     val tokens =
         Lexer.lex(text, VersionsConfig.getConfig(Optional.ofNullable(version).orElse("1.1")));
