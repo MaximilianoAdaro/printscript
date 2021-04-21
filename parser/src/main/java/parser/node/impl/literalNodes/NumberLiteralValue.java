@@ -24,6 +24,8 @@ public class NumberLiteralValue implements LiteralValue {
 
   @Override
   public String toString() {
+    if (value == Math.floor(value) && !Double.isInfinite(value))
+      return Integer.toString((int) value);
     return Double.toString(value);
   }
 }
