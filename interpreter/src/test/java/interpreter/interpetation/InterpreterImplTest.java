@@ -156,7 +156,7 @@ public class InterpreterImplTest {
               }
               println(x);""";
 
-    shouldPrint(text, "3.0");
+    shouldPrint(text, "3");
   }
 
   private void testException(String text, String s) {
