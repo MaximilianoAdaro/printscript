@@ -15,7 +15,7 @@ public class OperatorUtils {
     final var valueR = right.getValue();
     if (left.getTypeValue() == NUMBER && right.getTypeValue() == NUMBER)
       return new NumberLiteralValue((double) valueL + (double) valueR);
-    return new StringLiteralValue(valueL.toString() + valueR.toString());
+    return new StringLiteralValue(left.toString() + right);
   }
 
   public static LiteralValue calculateMinus(

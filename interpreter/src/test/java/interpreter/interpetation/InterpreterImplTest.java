@@ -159,6 +159,18 @@ public class InterpreterImplTest {
     shouldPrint(text, "3");
   }
 
+  @Test
+  public void testExample() {
+    final var text =
+        """
+              let someNumber: number = 1;
+              let someString: string = "hello world ";
+              println(someString + someNumber);
+              """;
+
+    shouldPrint(text, "hello world 1");
+  }
+
   private void testException(String text, String s) {
     final var nodes = getNodes(text);
 
