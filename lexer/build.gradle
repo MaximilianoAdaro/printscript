@@ -8,5 +8,5 @@ dependencies {
 }
 
 group 'edu.uni.austral.ingsist'
-version '1.1.4'
+version '2.0'
 

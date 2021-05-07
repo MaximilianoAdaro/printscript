@@ -17,7 +17,7 @@ import picocli.CommandLine;
 @Command(
     name = "printscript",
     description = "Executes ps files",
-    version = "1.1.4",
+    version = "2.0",
     mixinStandardHelpOptions = true)
 public class App implements Callable<Integer> {
 
