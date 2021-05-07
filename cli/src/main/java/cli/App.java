@@ -2,13 +2,14 @@ package cli;
 
 import static picocli.CommandLine.*;
 
+import edu.austral.ingsis.Lexer;
+import edu.austral.ingsis.LexerImpl;
 import fileReader.FileReaderPS;
 import interpreter.Interpreter;
 import java.io.File;
 import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.function.Consumer;
-import lexer.Lexer;
 import lexer.config.VersionsConfig;
 import lombok.val;
 import parser.Parser;
@@ -38,7 +39,7 @@ public class App implements Callable<Integer> {
   private void run() {
     val text = FileReaderPS.readFile(file);
     val tokens =
-        Lexer.lex(text, VersionsConfig.getConfig(Optional.ofNullable(version).orElse("1.1")));
+        lexer.Lexer.lex(text, VersionsConfig.getConfig(Optional.ofNullable(version).orElse("1.1")));
     val nodes = Parser.parse(tokens);
 
     if (validateOnly) Interpreter.run(nodes, __ -> {});
@@ -48,9 +49,14 @@ public class App implements Callable<Integer> {
   public static void run(File file, String version, Consumer<String> stdOut) {
     val text = FileReaderPS.readFile(file);
     val tokens =
-        Lexer.lex(text, VersionsConfig.getConfig(Optional.ofNullable(version).orElse("1.1")));
+        lexer.Lexer.lex(text, VersionsConfig.getConfig(Optional.ofNullable(version).orElse("1.1")));
     val nodes = Parser.parse(tokens);
     Interpreter.run(nodes, stdOut);
+  }
+
+  private void runIntegration() {
+    Lexer lexer = new LexerImpl();
+    //    lexer.analyseLexically();
   }
 
   @Override
